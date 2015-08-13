@@ -10,20 +10,16 @@ public class Trigger: NSObject, NSCoding {
 
     // MARK: - Implements NSCoding protocol
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.targetID, forKey: "targetID")
-        aCoder.encodeObject(self.command, forKey: "command")
-        aCoder.encodeBool(self.enabled, forKey: "enabled")
-        
+        // TODO: implement it.
     }
 
     // MARK: - Implements NSCoding protocol
     public required init(coder aDecoder: NSCoder) {
-        
-        self.targetID = aDecoder.decodeObjectForKey("targetID") as! TypedID
-        self.enabled = aDecoder.decodeBoolForKey("enabled")
+        // TODO: implement it.
+        self.targetID = TypedID(type:"",id:"")
+        self.enabled = true
         self.predicate = Predicate()
-        self.command = aDecoder.decodeObjectForKey("command") as! Command
-        // TODO: add aditional decoder
+        self.command = Command()
     }
 
     /** ID of the Target */
@@ -42,17 +38,6 @@ public class Trigger: NSObject, NSCoding {
         self.predicate = Predicate()
         self.command = Command()
     }
-    
-    public override func isEqual(object: AnyObject?) -> Bool {
-        guard let aTrigger = object as? Trigger else{
-            return false
-        }
-        
-        return self.targetID == aTrigger.targetID &&
-            self.enabled == aTrigger.enabled &&
-            self.command == aTrigger.command
-    }
-    
 }
 
 /** Class represents Predicate */

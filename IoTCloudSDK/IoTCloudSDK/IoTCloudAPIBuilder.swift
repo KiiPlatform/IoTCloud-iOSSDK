@@ -8,8 +8,6 @@ import Foundation
 /** Builder class of IoTCloudAPI */
 public class IoTCloudAPIBuilder {
 
-    var iotCloudAPI: IoTCloudAPI!
-
     /** Initialize builder.
     - Parameter appID: ID of the application published by Kii Cloud.
     - Parameter appKey: Key of the application published by Kii Cloud.
@@ -17,12 +15,7 @@ public class IoTCloudAPIBuilder {
     - Parameter owner: Owner who consumes IoTCloudAPI.
      */
     public init(appID: String, appKey: String, baseURL: String, owner: Owner) {
-
-        iotCloudAPI = IoTCloudAPI()
-        iotCloudAPI.appID = appID
-        iotCloudAPI.appKey = appKey
-        iotCloudAPI.baseURL = baseURL
-        iotCloudAPI.owner = owner
+        // TODO: implement it.
     }
 
     /** Add schema to the builder. Multiple Schema can be added.
@@ -38,6 +31,7 @@ public class IoTCloudAPIBuilder {
     - Returns: IoTCloudAPI instance.
      */
     public func build() -> IoTCloudAPI {
-        return iotCloudAPI
+        // TODO: implement it.
+        return IoTCloudAPI()
     }
 }

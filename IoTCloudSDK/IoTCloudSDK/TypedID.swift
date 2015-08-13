@@ -9,14 +9,14 @@ public class TypedID : NSObject, NSCoding {
 
     // MARK: - Implements NSCoding protocol
     public func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(self.type, forKey: "type")
-        aCoder.encodeObject(self.id, forKey: "id")
+        // TODO: implement it.
     }
 
     // MARK: - Implements NSCoding protocol
     public required init(coder aDecoder: NSCoder) {
-        self.type = aDecoder.decodeObjectForKey("type") as! String
-        self.id = aDecoder.decodeObjectForKey("id") as! String
+        // TODO: implement it.
+        type = ""
+        id = ""
     }
 
     /** Type of the ID */
@@ -31,15 +31,5 @@ public class TypedID : NSObject, NSCoding {
     public init(type:String, id:String) {
         self.type = type
         self.id = id
-    }
-
-    public func toString() -> String {
-        return "\(type):\(id)"
-    }
-    public override func isEqual(object: AnyObject?) -> Bool {
-        guard let aType = object as? TypedID else{
-            return false
-        }
-        return (self.type == aType.type) && (self.id == aType.id)
     }
 }
