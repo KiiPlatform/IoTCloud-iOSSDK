@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7417A3091B65CF8500D116A5 /* IoTCloudSDK.h in Headers */ = {isa = PBXBuildFile; fileRef = 7417A3081B65CF8500D116A5 /* IoTCloudSDK.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7417A30F1B65CF8500D116A5 /* IoTCloudSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7417A3031B65CF8400D116A5 /* IoTCloudSDK.framework */; };
-		7417A3161B65CF8500D116A5 /* IoTCloudSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417A3151B65CF8500D116A5 /* IoTCloudSDKTests.swift */; };
 		7417A3201B65D05200D116A5 /* IoTCloudAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417A31F1B65D05200D116A5 /* IoTCloudAPI.swift */; };
 		7417A3221B65D2B300D116A5 /* Target.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417A3211B65D2B300D116A5 /* Target.swift */; };
 		7417A3241B65DC1B00D116A5 /* Owner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7417A3231B65DC1B00D116A5 /* Owner.swift */; };
@@ -27,7 +26,6 @@
 		7D26FF101B7C74F300E63E1B /* IoTCloudAPI+OnBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D26FF0F1B7C74F300E63E1B /* IoTCloudAPI+OnBoard.swift */; };
 		7D8D36A21B7B2699003DFE76 /* OnboardingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D8D36A11B7B2699003DFE76 /* OnboardingTests.swift */; };
 		D552E8321B7D91F000205A11 /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D552E8311B7D91F000205A11 /* XCTest+Utils.swift */; };
-		D554F5131B7B372D00CC9655 /* NSData+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F5121B7B372D00CC9655 /* NSData+Operations.swift */; };
 		D554F5161B7C702900CC9655 /* IoTCloudAPI+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F5151B7C702900CC9655 /* IoTCloudAPI+Push.swift */; };
 		D554F51E1B7C80F300CC9655 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F51D1B7C80F300CC9655 /* AppDelegate.swift */; };
 		D554F5201B7C80F300CC9655 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F51F1B7C80F300CC9655 /* ViewController.swift */; };
@@ -39,13 +37,11 @@
 		D554F5371B7C88CF00CC9655 /* PushInstallationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D554F5361B7C88CF00CC9655 /* PushInstallationTests.swift */; };
 		D55D28FA1B78923B006759C4 /* BlockObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28DB1B78923B006759C4 /* BlockObserver.swift */; };
 		D55D28FB1B78923B006759C4 /* BlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28DC1B78923B006759C4 /* BlockOperation.swift */; };
-		D55D28FF1B78923B006759C4 /* DelayOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E01B78923B006759C4 /* DelayOperation.swift */; };
 		D55D29001B78923B006759C4 /* Dictionary+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E11B78923B006759C4 /* Dictionary+Operations.swift */; };
 		D55D29011B78923B006759C4 /* ExclusivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E21B78923B006759C4 /* ExclusivityController.swift */; };
 		D55D29021B78923B006759C4 /* GroupOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E31B78923B006759C4 /* GroupOperation.swift */; };
 		D55D29061B78923B006759C4 /* MutuallyExclusive.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E71B78923B006759C4 /* MutuallyExclusive.swift */; };
 		D55D29071B78923B006759C4 /* NegatedCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E81B78923B006759C4 /* NegatedCondition.swift */; };
-		D55D29081B78923B006759C4 /* NoCancelledDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28E91B78923B006759C4 /* NoCancelledDependencies.swift */; };
 		D55D29091B78923B006759C4 /* NSLock+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28EA1B78923B006759C4 /* NSLock+Operations.swift */; };
 		D55D290A1B78923B006759C4 /* NSOperation+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28EB1B78923B006759C4 /* NSOperation+Operations.swift */; };
 		D55D290B1B78923B006759C4 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28EC1B78923B006759C4 /* Operation.swift */; };
@@ -54,12 +50,7 @@
 		D55D290E1B78923B006759C4 /* OperationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28EF1B78923B006759C4 /* OperationObserver.swift */; };
 		D55D290F1B78923B006759C4 /* OperationQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F01B78923B006759C4 /* OperationQueue.swift */; };
 		D55D29121B78923B006759C4 /* ReachabilityCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F31B78923B006759C4 /* ReachabilityCondition.swift */; };
-		D55D29131B78923B006759C4 /* RemoteNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F41B78923B006759C4 /* RemoteNotificationCondition.swift */; };
-		D55D29141B78923B006759C4 /* SilentCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F51B78923B006759C4 /* SilentCondition.swift */; };
-		D55D29151B78923B006759C4 /* TimeoutObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F61B78923B006759C4 /* TimeoutObserver.swift */; };
-		D55D29161B78923B006759C4 /* UIUserNotifications+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F71B78923B006759C4 /* UIUserNotifications+Operations.swift */; };
 		D55D29171B78923B006759C4 /* URLSessionTaskOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F81B78923B006759C4 /* URLSessionTaskOperation.swift */; };
-		D55D29181B78923B006759C4 /* UserNotificationCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = D55D28F91B78923B006759C4 /* UserNotificationCondition.swift */; };
 		D57D2A531B747B6A003E8BC7 /* EntitySerializationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57D2A521B747B6A003E8BC7 /* EntitySerializationTests.swift */; };
 		D5B395B21B79A41F00E0F660 /* IoTRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B395B11B79A41F00E0F660 /* IoTRequestOperation.swift */; };
 		D5B395B41B79B2AE00E0F660 /* NetworkObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B395B31B79B2AE00E0F660 /* NetworkObserver.swift */; };
@@ -118,7 +109,6 @@
 		7417A3081B65CF8500D116A5 /* IoTCloudSDK.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IoTCloudSDK.h; sourceTree = "<group>"; };
 		7417A30E1B65CF8500D116A5 /* IoTCloudSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IoTCloudSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7417A3141B65CF8500D116A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7417A3151B65CF8500D116A5 /* IoTCloudSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IoTCloudSDKTests.swift; sourceTree = "<group>"; };
 		7417A31F1B65D05200D116A5 /* IoTCloudAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IoTCloudAPI.swift; sourceTree = "<group>"; };
 		7417A3211B65D2B300D116A5 /* Target.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Target.swift; sourceTree = "<group>"; };
 		7417A3231B65DC1B00D116A5 /* Owner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Owner.swift; sourceTree = "<group>"; };
@@ -138,7 +128,6 @@
 		7D26FF0F1B7C74F300E63E1B /* IoTCloudAPI+OnBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IoTCloudAPI+OnBoard.swift"; sourceTree = "<group>"; };
 		7D8D36A11B7B2699003DFE76 /* OnboardingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingTests.swift; sourceTree = "<group>"; };
 		D552E8311B7D91F000205A11 /* XCTest+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Utils.swift"; sourceTree = "<group>"; };
-		D554F5121B7B372D00CC9655 /* NSData+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSData+Operations.swift"; sourceTree = "<group>"; };
 		D554F5151B7C702900CC9655 /* IoTCloudAPI+Push.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IoTCloudAPI+Push.swift"; sourceTree = "<group>"; };
 		D554F51B1B7C80F300CC9655 /* HostApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HostApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D554F51D1B7C80F300CC9655 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,13 +139,11 @@
 		D554F5361B7C88CF00CC9655 /* PushInstallationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushInstallationTests.swift; sourceTree = "<group>"; };
 		D55D28DB1B78923B006759C4 /* BlockObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockObserver.swift; sourceTree = "<group>"; };
 		D55D28DC1B78923B006759C4 /* BlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockOperation.swift; sourceTree = "<group>"; };
-		D55D28E01B78923B006759C4 /* DelayOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DelayOperation.swift; sourceTree = "<group>"; };
 		D55D28E11B78923B006759C4 /* Dictionary+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Operations.swift"; sourceTree = "<group>"; };
 		D55D28E21B78923B006759C4 /* ExclusivityController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExclusivityController.swift; sourceTree = "<group>"; };
 		D55D28E31B78923B006759C4 /* GroupOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupOperation.swift; sourceTree = "<group>"; };
 		D55D28E71B78923B006759C4 /* MutuallyExclusive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutuallyExclusive.swift; sourceTree = "<group>"; };
 		D55D28E81B78923B006759C4 /* NegatedCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NegatedCondition.swift; sourceTree = "<group>"; };
-		D55D28E91B78923B006759C4 /* NoCancelledDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoCancelledDependencies.swift; sourceTree = "<group>"; };
 		D55D28EA1B78923B006759C4 /* NSLock+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSLock+Operations.swift"; sourceTree = "<group>"; };
 		D55D28EB1B78923B006759C4 /* NSOperation+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSOperation+Operations.swift"; sourceTree = "<group>"; };
 		D55D28EC1B78923B006759C4 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
@@ -165,12 +152,7 @@
 		D55D28EF1B78923B006759C4 /* OperationObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationObserver.swift; sourceTree = "<group>"; };
 		D55D28F01B78923B006759C4 /* OperationQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperationQueue.swift; sourceTree = "<group>"; };
 		D55D28F31B78923B006759C4 /* ReachabilityCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityCondition.swift; sourceTree = "<group>"; };
-		D55D28F41B78923B006759C4 /* RemoteNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteNotificationCondition.swift; sourceTree = "<group>"; };
-		D55D28F51B78923B006759C4 /* SilentCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SilentCondition.swift; sourceTree = "<group>"; };
-		D55D28F61B78923B006759C4 /* TimeoutObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeoutObserver.swift; sourceTree = "<group>"; };
-		D55D28F71B78923B006759C4 /* UIUserNotifications+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIUserNotifications+Operations.swift"; sourceTree = "<group>"; };
 		D55D28F81B78923B006759C4 /* URLSessionTaskOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionTaskOperation.swift; sourceTree = "<group>"; };
-		D55D28F91B78923B006759C4 /* UserNotificationCondition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserNotificationCondition.swift; sourceTree = "<group>"; };
 		D57D2A521B747B6A003E8BC7 /* EntitySerializationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntitySerializationTests.swift; sourceTree = "<group>"; };
 		D5B395B11B79A41F00E0F660 /* IoTRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IoTRequestOperation.swift; path = IoTOperations/IoTRequestOperation.swift; sourceTree = "<group>"; };
 		D5B395B31B79B2AE00E0F660 /* NetworkObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkObserver.swift; sourceTree = "<group>"; };
@@ -269,7 +251,6 @@
 			children = (
 				D554F5361B7C88CF00CC9655 /* PushInstallationTests.swift */,
 				7D8D36A11B7B2699003DFE76 /* OnboardingTests.swift */,
-				7417A3151B65CF8500D116A5 /* IoTCloudSDKTests.swift */,
 				7417A3131B65CF8500D116A5 /* Supporting Files */,
 				D57D2A521B747B6A003E8BC7 /* EntitySerializationTests.swift */,
 				D5B395BB1B79E24100E0F660 /* TestHelpers.swift */,
@@ -370,7 +351,6 @@
 			isa = PBXGroup;
 			children = (
 				D55D28DC1B78923B006759C4 /* BlockOperation.swift */,
-				D55D28E01B78923B006759C4 /* DelayOperation.swift */,
 				D55D28E31B78923B006759C4 /* GroupOperation.swift */,
 				D55D28EC1B78923B006759C4 /* Operation.swift */,
 				D55D28F81B78923B006759C4 /* URLSessionTaskOperation.swift */,
@@ -383,7 +363,6 @@
 			children = (
 				D55D28DB1B78923B006759C4 /* BlockObserver.swift */,
 				D55D28EF1B78923B006759C4 /* OperationObserver.swift */,
-				D55D28F61B78923B006759C4 /* TimeoutObserver.swift */,
 			);
 			name = Observers;
 			sourceTree = "<group>";
@@ -393,13 +372,9 @@
 			children = (
 				D55D28E71B78923B006759C4 /* MutuallyExclusive.swift */,
 				D55D28E81B78923B006759C4 /* NegatedCondition.swift */,
-				D55D28E91B78923B006759C4 /* NoCancelledDependencies.swift */,
 				D55D28ED1B78923B006759C4 /* OperationCondition.swift */,
 				D55D28EE1B78923B006759C4 /* OperationErrors.swift */,
 				D55D28F31B78923B006759C4 /* ReachabilityCondition.swift */,
-				D55D28F41B78923B006759C4 /* RemoteNotificationCondition.swift */,
-				D55D28F51B78923B006759C4 /* SilentCondition.swift */,
-				D55D28F91B78923B006759C4 /* UserNotificationCondition.swift */,
 			);
 			name = Conditions;
 			sourceTree = "<group>";
@@ -410,8 +385,6 @@
 				D55D28E11B78923B006759C4 /* Dictionary+Operations.swift */,
 				D55D28EA1B78923B006759C4 /* NSLock+Operations.swift */,
 				D55D28EB1B78923B006759C4 /* NSOperation+Operations.swift */,
-				D55D28F71B78923B006759C4 /* UIUserNotifications+Operations.swift */,
-				D554F5121B7B372D00CC9655 /* NSData+Operations.swift */,
 			);
 			name = "Convenience Extensions";
 			sourceTree = "<group>";
@@ -614,20 +587,15 @@
 				D55D290F1B78923B006759C4 /* OperationQueue.swift in Sources */,
 				7417A3331B66023400D116A5 /* Schema.swift in Sources */,
 				D55D290C1B78923B006759C4 /* OperationCondition.swift in Sources */,
-				D55D29081B78923B006759C4 /* NoCancelledDependencies.swift in Sources */,
 				7417A32F1B65FC4800D116A5 /* Statement.swift in Sources */,
 				D554F5161B7C702900CC9655 /* IoTCloudAPI+Push.swift in Sources */,
 				7417A3351B66038000D116A5 /* IoTCloudAPIBuilder.swift in Sources */,
-				D55D29181B78923B006759C4 /* UserNotificationCondition.swift in Sources */,
 				D55D28FB1B78923B006759C4 /* BlockOperation.swift in Sources */,
-				D55D29141B78923B006759C4 /* SilentCondition.swift in Sources */,
-				D55D29131B78923B006759C4 /* RemoteNotificationCondition.swift in Sources */,
 				7417A3371B66287700D116A5 /* IoTCloudError.swift in Sources */,
 				7417A3221B65D2B300D116A5 /* Target.swift in Sources */,
 				D55D290B1B78923B006759C4 /* Operation.swift in Sources */,
 				D55D29021B78923B006759C4 /* GroupOperation.swift in Sources */,
 				7417A3241B65DC1B00D116A5 /* Owner.swift in Sources */,
-				D55D29151B78923B006759C4 /* TimeoutObserver.swift in Sources */,
 				D5B395B61B79B2E100E0F660 /* BackgroundObserver.swift in Sources */,
 				7D26FF101B7C74F300E63E1B /* IoTCloudAPI+OnBoard.swift in Sources */,
 				7D26FF0C1B7C746800E63E1B /* Dictionary+toNSDictionary.swift in Sources */,
@@ -641,15 +609,12 @@
 				7417A3201B65D05200D116A5 /* IoTCloudAPI.swift in Sources */,
 				D55D29001B78923B006759C4 /* Dictionary+Operations.swift in Sources */,
 				7417A3291B65F55100D116A5 /* Command.swift in Sources */,
-				D55D29161B78923B006759C4 /* UIUserNotifications+Operations.swift in Sources */,
 				7417A32D1B65FA0D00D116A5 /* Trigger.swift in Sources */,
 				7417A3261B65DCA300D116A5 /* TypedID.swift in Sources */,
-				D554F5131B7B372D00CC9655 /* NSData+Operations.swift in Sources */,
 				D55D29121B78923B006759C4 /* ReachabilityCondition.swift in Sources */,
 				D55D29091B78923B006759C4 /* NSLock+Operations.swift in Sources */,
 				D55D28FA1B78923B006759C4 /* BlockObserver.swift in Sources */,
 				D55D290D1B78923B006759C4 /* OperationErrors.swift in Sources */,
-				D55D28FF1B78923B006759C4 /* DelayOperation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,7 +624,6 @@
 			files = (
 				D554F5371B7C88CF00CC9655 /* PushInstallationTests.swift in Sources */,
 				D57D2A531B747B6A003E8BC7 /* EntitySerializationTests.swift in Sources */,
-				7417A3161B65CF8500D116A5 /* IoTCloudSDKTests.swift in Sources */,
 				7D8D36A21B7B2699003DFE76 /* OnboardingTests.swift in Sources */,
 				D552E8321B7D91F000205A11 /* XCTest+Utils.swift in Sources */,
 				D5B395BC1B79E24100E0F660 /* TestHelpers.swift in Sources */,
