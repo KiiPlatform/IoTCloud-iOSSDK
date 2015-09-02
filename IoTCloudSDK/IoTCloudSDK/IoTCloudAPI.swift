@@ -41,6 +41,18 @@ public class IoTCloudAPI: NSObject, NSCoding {
         // TODO: define proper initializer.
     }
 
+    /** Initialize IoTCloudAPI from stored instance. IoTAPI instance is stored in NSUserDefault with key "iotAPI", please be careful not to over write it.
+
+    - Returns: An IoTCloudAPI instance if there is a valid IoTCloudAPI instance stored locally
+    - Throws: IoTCloudError.STORED_IOTAPI_NOT_AVAILABLE will be thrown when there is not stored IoTCloudAPI instance found; IoTCloudError.STORED_IOTAPI_INVALID will be thrown when stored instance is not valid IoTCloudAPI instance
+    */
+    public class func initWithStoredInstance() throws -> IoTCloudAPI? {
+        do {
+            return try IoTCloudAPI.getStoredInstance()
+        }catch(let e) {
+            throw e
+        }
+    }
     // MARK: - On board methods
 
     /** On board IoT Cloud with the specified vendor thing ID.
