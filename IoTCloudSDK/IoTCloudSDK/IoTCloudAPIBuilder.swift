@@ -23,7 +23,7 @@ public class IoTCloudAPIBuilder {
         iotCloudAPI.appKey = appKey
         iotCloudAPI.baseURL = baseURL
         iotCloudAPI.owner = owner
-        IoTCloudAPI.storeInstance(iotCloudAPI)
+        iotCloudAPI._storeSelf()
     }
 
     /** Build IoTCloudAPI instance.

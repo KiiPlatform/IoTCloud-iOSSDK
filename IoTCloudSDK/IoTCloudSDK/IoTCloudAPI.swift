@@ -50,7 +50,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
     */
     public class func initWithStoredInstance() throws -> IoTCloudAPI? {
         do {
-            return try IoTCloudAPI.getStoredInstance()
+            return try IoTCloudAPI._getStoredInstance()
         }catch(let e) {
             throw e
         }
