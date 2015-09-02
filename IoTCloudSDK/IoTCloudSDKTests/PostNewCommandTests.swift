@@ -181,4 +181,29 @@ class PostNewCommandTests: XCTestCase {
             }
         }
     }
+
+    func testPostNewCommand_target_not_available_error() {
+
+        let expectation = self.expectationWithDescription("testPostNewCommand_target_not_available_error")
+
+        api.postNewCommand("", schemaVersion: self.schema.version, actions: [], completionHandler: { (command, error) -> Void in
+            if error == nil{
+                XCTFail("should fail")
+            }else {
+                switch error! {
+                case .TARGET_NOT_AVAILABLE:
+                    break
+                default:
+                    XCTFail("should be TARGET_NOT_AVAILABLE")
+                }
+            }
+            expectation.fulfill()
+        })
+
+        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+            if error != nil {
+                XCTFail("execution timeout")
+            }
+        }
+    }
 }

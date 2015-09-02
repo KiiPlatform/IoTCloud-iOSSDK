@@ -237,8 +237,8 @@ class ListCommandsTests: XCTestCase {
         }
     }
 
-    func testListCommand_target_not_found_error() {
-        let expectation = self.expectationWithDescription("getCommand404Error")
+    func testListCommand_target_not_available_error() {
+        let expectation = self.expectationWithDescription("testListCommand_target_not_available_error")
 
         api.listCommands(nil, paginationKey: nil, completionHandler: { (commands, paginationKey, error) -> Void in
             if error == nil{
@@ -262,7 +262,5 @@ class ListCommandsTests: XCTestCase {
             }
         }
         
-    }
-
-    
+    }    
 }

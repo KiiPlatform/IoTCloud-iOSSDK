@@ -227,4 +227,30 @@ class PatchTriggerTests: XCTestCase {
         }
     }
 
+    func testPatchTrigger_target_not_available_error() {
+        let expectation = self.expectationWithDescription("testPatchTrigger_target_not_available_error")
+
+        let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
+        let predicate = StatePredicate(condition: Condition(clause: EqualsClause(field: "color", value: 0)), triggersWhen: TriggersWhen.CONDITION_FALSE_TO_TRUE)
+
+        api.patchTrigger(expectedTriggerID, schemaName: nil, schemaVersion: nil, actions: nil, predicate: predicate) { (trigger, error) -> Void in
+            if error == nil{
+                XCTFail("should fail")
+            }else {
+                switch error! {
+                case .TARGET_NOT_AVAILABLE:
+                    break
+                default:
+                    XCTFail("should be TARGET_NOT_AVAILABLE")
+                }
+            }
+            expectation.fulfill()
+        }
+
+        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+            if error != nil {
+                XCTFail("execution timeout")
+            }
+        }
+    }
 }
