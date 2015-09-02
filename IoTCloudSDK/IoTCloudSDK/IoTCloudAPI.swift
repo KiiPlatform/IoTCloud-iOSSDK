@@ -26,6 +26,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
         aCoder.encodeObject(self.appID, forKey: "appID")
         aCoder.encodeObject(self.appKey, forKey: "appKey")
         aCoder.encodeObject(self.owner, forKey: "owner")
+        aCoder.encodeObject(self._installationID, forKey: "_installationID")
         aCoder.encodeObject(self.target, forKey: "target")
     }
 
@@ -34,6 +35,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
         self.appID = aDecoder.decodeObjectForKey("appID") as! String
         self.appKey = aDecoder.decodeObjectForKey("appKey") as! String
         self.owner = aDecoder.decodeObjectForKey("owner") as! Owner
+        self._installationID = aDecoder.decodeObjectForKey("_installationID") as? String
         self.target = aDecoder.decodeObjectForKey("target") as? Target
     }
     
