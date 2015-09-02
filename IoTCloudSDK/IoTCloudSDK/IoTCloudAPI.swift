@@ -17,6 +17,8 @@ public class IoTCloudAPI: NSObject, NSCoding {
     public var appKey: String!
     /** owner of target */
     public var owner: Owner!
+    /** target, you can set it manually, but after successfully onboarding it will be setted to the onboarded target */
+    public var target: Target?
     
     // MARK: - Implements NSCoding protocol
     public func encodeWithCoder(aCoder: NSCoder) {
@@ -24,6 +26,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
         aCoder.encodeObject(self.appID, forKey: "appID")
         aCoder.encodeObject(self.appKey, forKey: "appKey")
         aCoder.encodeObject(self.owner, forKey: "owner")
+        aCoder.encodeObject(self.target, forKey: "target")
     }
 
     public required init(coder aDecoder: NSCoder) {
@@ -31,6 +34,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
         self.appID = aDecoder.decodeObjectForKey("appID") as! String
         self.appKey = aDecoder.decodeObjectForKey("appKey") as! String
         self.owner = aDecoder.decodeObjectForKey("owner") as! Owner
+        self.target = aDecoder.decodeObjectForKey("target") as? Target
     }
     
     public override init() {
@@ -66,6 +70,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
     {
         _onBoard(true, IDString: vendorThingID, thingPassword: thingPassword, thingType: thingType, thingProperties: thingProperties) { (target, error) -> Void in
             completionHandler(target, error)
+            self.target = target
         }
     }
     
@@ -88,6 +93,7 @@ public class IoTCloudAPI: NSObject, NSCoding {
     {
          _onBoard(false, IDString: thingID, thingPassword: thingPassword, thingType: nil, thingProperties: nil) { (target, error) -> Void in
             completionHandler(target, error)
+            self.target = target
         }
     }
 
@@ -145,9 +151,8 @@ public class IoTCloudAPI: NSObject, NSCoding {
 
     /** Post new command to IoT Cloud.
     Command will be delivered to specified target and result will be notified
-    through push notification.
+    through push notification. **self.target** will be used. If it is nil, error returns in completionHandler.
     
-    - Parameter target: Target of the command to be delivered.
     - Parameter schemaName: Name of the Schema of which the Command is defined.
     - Parameter schemaVersion: Version of the Schema of which the Command is
     defined.
@@ -155,34 +160,30 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: an instance of created command, an instance of IoTCloudError when failed.
     */
     public func postNewCommand(
-        target:Target,
         schemaName:String,
         schemaVersion:Int,
         actions:[Dictionary<String,AnyObject>],
         completionHandler: (Command?, IoTCloudError?)-> Void
         ) -> Void
     {
-        _postNewCommand(target, schemaName: schemaName, schemaVersion: schemaVersion, actions: actions, completionHandler: completionHandler)
+        _postNewCommand(schemaName, schemaVersion: schemaVersion, actions: actions, completionHandler: completionHandler)
     }
     
-    /** Get specified command
+    /** Get specified command. **self.target** will be used. If it is nil, error returns in completionHandler.
     
-    - Parameter target: Target of the Command.
     - Parameter commandID: ID of the Command to obtain.
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: an instance of created command, an instance of IoTCloudError when failed.
      */
     public func getCommand(
-        target:Target,
         commandID:String,
         completionHandler: (Command?, IoTCloudError?)-> Void
         )
     {
-        _getCommand(target, commandID: commandID, completionHandler: completionHandler)
+        _getCommand(commandID, completionHandler: completionHandler)
     }
     
-    /** List Commands in the specified Target.
+    /** List Commands in the specified Target. **self.target** will be used. If it is nil, error returns in completionHandler.
     
-    - Parameter target: Target to which Commands belong
     - Parameter bestEffortLimit: Limit the maximum number of the Commands in the
     Response. If omitted default limit internally defined is applied.
     Meaning of 'bestEffort' is if specified value is greater than default limit,
@@ -196,18 +197,17 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 3 arguments: 1st one is Array of Commands if found, 2nd one is paginationKey if there is further page to be retrieved, and 3rd one is an instance of IoTCloudError when failed.
      */
     public func listCommands(
-        target:Target,
         bestEffortLimit:Int?,
         paginationKey:String?,
         completionHandler: ([Command]?, String?, IoTCloudError?)-> Void
         )
     {
-        _listCommands(target, bestEffortLimit: bestEffortLimit, paginationKey: paginationKey, completionHandler: completionHandler)
+        _listCommands(bestEffortLimit, paginationKey: paginationKey, completionHandler: completionHandler)
     }
 
     // MARK: - Trigger methods
 
-    /** Post new Trigger to IoT Cloud.
+    /** Post new Trigger to IoT Cloud. **self.target** will be used. If it is nil, error returns in completionHandler
 
     - Parameter target: Target of which the trigger stored.
     It the trigger is based on state of target, Trigger is evaluated when the
@@ -221,7 +221,6 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: 1st one is an created Trigger instance, 2nd one is an IoTCloudError instance when failed.
     */
     public func postNewTrigger(
-        target:Target,
         schemaName:String,
         schemaVersion:Int,
         actions:[Dictionary<String, AnyObject>],
@@ -229,29 +228,27 @@ public class IoTCloudAPI: NSObject, NSCoding {
         completionHandler: (Trigger?, IoTCloudError?)-> Void
         )
     {
-        _postNewTrigger(target, schemaName: schemaName, schemaVersion: schemaVersion, actions: actions, predicate: predicate, completionHandler: completionHandler)
+        _postNewTrigger(schemaName, schemaVersion: schemaVersion, actions: actions, predicate: predicate, completionHandler: completionHandler)
     }
 
-    /** Get specified trigger
+    /** Get specified trigger. **self.target** will be used. If it is nil, error returns in completionHandler
 
     - Parameter target: Target of the Trigger.
     - Parameter triggerID: ID of the Trigger to obtain.
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: an instance of Trigger, an instance of IoTCloudError when failed.
     */
     public func getTrigger(
-        target:Target,
         triggerID:String,
         completionHandler: (Trigger?, IoTCloudError?)-> Void
         )
     {
-        _getTrigger(target, triggerID: triggerID, completionHandler: completionHandler)
+        _getTrigger(triggerID, completionHandler: completionHandler)
     }
 
 
     /** Apply patch to a registered Trigger
-    Modify a registered Trigger with the specified patch.
+    Modify a registered Trigger with the specified patch. **self.target** will be used. If it is nil, error returns in completionHandler
 
-    - Parameter target: Target to which the Trigger belongs.
     - Parameter triggerID: ID of the Trigger to which the patch is applied.
     - Parameter schemaName: Name of the Schema of which the Command specified in
     Trigger is defined.
@@ -262,7 +259,6 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: 1st one is the modified Trigger instance, 2nd one is an IoTCloudError instance when failed.
     */
     public func patchTrigger(
-        target:Target,
         triggerID:String,
         schemaName:String?,
         schemaVersion:Int?,
@@ -271,12 +267,12 @@ public class IoTCloudAPI: NSObject, NSCoding {
         completionHandler: (Trigger?, IoTCloudError?)-> Void
         )
     {
-        _patchTrigger(target, triggerID: triggerID, schemaName: schemaName, schemaVersion: schemaVersion, actions: actions, predicate: predicate, completionHandler: completionHandler)
+        _patchTrigger(triggerID, schemaName: schemaName, schemaVersion: schemaVersion, actions: actions, predicate: predicate, completionHandler: completionHandler)
     }
     
     /** Enable/Disable a registered Trigger
     If its already enabled(/disabled), this method won't throw error and behave
-    as succeeded.
+    as succeeded. **self.target** will be used. If it is nil, error returns in completionHandler
 
     - Parameter target: Target to which the Trigger belongs.
     - Parameter triggerID: ID of the Trigger to be enabled/disabled.
@@ -284,33 +280,30 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: 1st one is the enabled/disabled Trigger instance, 2nd one is an IoTCloudError instance when failed.
     */
     public func enableTrigger(
-        target:Target,
         triggerID:String,
         enable:Bool,
         completionHandler: (Trigger?, IoTCloudError?)-> Void
         )
     {
-        _enableTrigger(target, triggerID: triggerID, enable: enable, completionHandler: completionHandler)
+        _enableTrigger(triggerID, enable: enable, completionHandler: completionHandler)
     }
     
-    /** Delete a registered Trigger.
+    /** Delete a registered Trigger. **self.target** will be used. If it is nil, error returns in completionHandler
 
-    - Parameter target: Target to which the Trigger belongs.
     - Parameter triggerID: ID of the Trigger to be deleted.
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 2 arguments: 1st one is the deleted Trigger instance, 2nd one is an IoTCloudError instance when failed.
     */
     public func deleteTrigger(
-        target:Target,
         triggerID:String,
         completionHandler: (Trigger!, IoTCloudError?)-> Void
         )
     {
-        _deleteTrigger(target, triggerID: triggerID, completionHandler: completionHandler)
+        _deleteTrigger(triggerID, completionHandler: completionHandler)
     }
     
-    /** List Triggers belongs to the specified Target
+    /** List Triggers belongs to the specified Target.
+     **self.target** will be used. If it is nil, error returns in completionHandler
 
-    - Parameter target: Target to which the Triggers belongs.
     - Parameter bestEffortLimit: Limit the maximum number of the Triggers in the
     Response. If omitted default limit internally defined is applied.
     Meaning of 'bestEffort' is if specified value is greater than default limit,
@@ -321,28 +314,26 @@ public class IoTCloudAPI: NSObject, NSCoding {
     - Parameter completionHandler: A closure to be executed once finished. The closure takes 3 arguments: 1st one is Array of Triggers instance if found, 2nd one is paginationKey if there is further page to be retrieved, and 3rd one is an instance of IoTCloudError when failed.
     */
     public func listTriggers(
-        target:Target,
         bestEffortLimit:Int?,
         paginationKey:String?,
         completionHandler: (triggers:[Trigger]?, paginationKey:String?, error: IoTCloudError?)-> Void
         )
     {
-        _listTriggers(target, bestEffortLimit: bestEffortLimit, paginationKey: paginationKey, completionHandler: completionHandler)
+        _listTriggers(bestEffortLimit, paginationKey: paginationKey, completionHandler: completionHandler)
     }
 
     // MARK: - Get the state of specified target
 
-    /** Get the state of specified target.
+    /** Get the state of specified target. **self.target** will be used. If it is nil, error returns in completionHandler
 
     - Parameter target: Specify Target to which the State is bound.
     - Parameter completionHandler: A closure to be executed once get state has finished. The closure takes 2 arguments: 1st one is Dictionary that represent Target State and 2nd one is an instance of IoTCloudError when failed.
     */
     public func getState(
-        target:Target!,
         completionHandler: (Dictionary<String, AnyObject>?,  IoTCloudError?)-> Void
         )
     {
-        _getState(target, completionHandler: completionHandler)
+        _getState(completionHandler)
         
     }
     

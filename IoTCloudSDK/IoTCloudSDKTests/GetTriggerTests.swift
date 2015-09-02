@@ -56,6 +56,8 @@ class GetTriggerTests: XCTestCase {
             ["type": "and", "clauses": [["type":"eq","field":"brightness", "value": 50], orClauseStatement]],
             ["type": "or", "clauses": [["type":"eq","field":"brightness", "value": 50], andClauseStatement]]
         ]
+
+        api.target = target
         for complextStatement in complexStatementsToTest {
             getTriggerSuccess("getTriggerSuccess", statementToTest: complextStatement as! Dictionary<String, AnyObject>, triggersWhen: "CONDITION_FALSE_TO_TRUE")
         }
@@ -101,7 +103,8 @@ class GetTriggerTests: XCTestCase {
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
 
-            api.getTrigger(self.target, triggerID: expectedTriggerID, completionHandler: { (trigger, error) -> Void in
+            api.target = self.target
+            api.getTrigger(expectedTriggerID, completionHandler: { (trigger, error) -> Void in
                 if(error != nil) {
                     XCTFail("should success")
                 }else {
@@ -158,7 +161,7 @@ class GetTriggerTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-            api.getTrigger(target, triggerID: triggerID, completionHandler: { (trigger, error) -> Void in
+            api.getTrigger(triggerID, completionHandler: { (trigger, error) -> Void in
                 if error == nil{
                     XCTFail("should fail")
                 }else {
@@ -183,6 +186,58 @@ class GetTriggerTests: XCTestCase {
                 XCTFail("execution timeout")
             }
         }
-
     }
+
+    func testGetTrigger_Target_not_available_error() {
+        let expectation = self.expectationWithDescription("testGetTrigger_Target_not_available_error")
+
+        do{
+            let triggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
+
+            // mock response
+            let responsedDict = ["errorCode" : "TARGET_NOT_FOUND",
+                "message" : "Target \(target.targetType.toString()) not found"]
+            let jsonData = try NSJSONSerialization.dataWithJSONObject(responsedDict, options: .PrettyPrinted)
+            let urlResponse = NSHTTPURLResponse(URL: NSURL(string:baseURLString)!, statusCode: 404, HTTPVersion: nil, headerFields: nil)
+
+            // verify request
+            let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
+                XCTAssertEqual(request.HTTPMethod, "GET")
+                //verify header
+                let expectedHeader = ["authorization": "Bearer \(self.owner.accessToken)", "Content-type":"application/json"]
+                for (key, value) in expectedHeader {
+                    XCTAssertEqual(value, request.valueForHTTPHeaderField(key))
+                }
+            }
+            MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
+            MockSession.requestVerifier = requestVerifier
+            iotSession = MockSession.self
+            api.getTrigger(triggerID, completionHandler: { (trigger, error) -> Void in
+                if error == nil{
+                    XCTFail("should fail")
+                }else {
+                    switch error! {
+                    case .CONNECTION:
+                        XCTFail("should not be connection error")
+                    case .ERROR_RESPONSE(let actualErrorResponse):
+                        XCTAssertEqual(404, actualErrorResponse.httpStatusCode)
+                        XCTAssertEqual(responsedDict["errorCode"]!, actualErrorResponse.errorCode)
+                        XCTAssertEqual(responsedDict["message"]!, actualErrorResponse.errorMessage)
+                    default:
+                        break
+                    }
+                }
+                expectation.fulfill()
+            })
+        }catch(let e){
+            print(e)
+        }
+        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+            if error != nil {
+                XCTFail("execution timeout")
+            }
+        }
+        
+    }
+
 }
