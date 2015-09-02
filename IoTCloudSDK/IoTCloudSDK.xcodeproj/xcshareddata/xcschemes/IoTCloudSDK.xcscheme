@@ -38,16 +38,6 @@
                ReferencedContainer = "container:IoTCloudSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "745088C71B68C21100821F7D"
-               BuildableName = "IoTCloudSDKUsage.xctest"
-               BlueprintName = "IoTCloudSDKUsage"
-               ReferencedContainer = "container:IoTCloudSDK.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
