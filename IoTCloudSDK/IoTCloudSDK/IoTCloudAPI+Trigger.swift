@@ -18,13 +18,14 @@ extension IoTCloudAPI {
         completionHandler: (Trigger?, IoTCloudError?)-> Void
         )
     {
-        if self.target == nil {
-            completionHandler(nil, IoTCloudError.TARGET_NOT_AVAILABLE)
-            return
-        }
 
         if predicate is SchedulePredicate {
             completionHandler(nil, IoTCloudError.UNSUPPORTED_ERROR)
+            return
+        }
+
+        if self.target == nil {
+            completionHandler(nil, IoTCloudError.TARGET_NOT_AVAILABLE)
             return
         }
 
@@ -83,13 +84,13 @@ extension IoTCloudAPI {
         let requestBodyDict = NSMutableDictionary()
 
         // generate predicate
-            if predicate != nil {
-                if predicate is SchedulePredicate {
-                    completionHandler(nil, IoTCloudError.UNSUPPORTED_ERROR)
-                    return
-                }
-                requestBodyDict.setObject(predicate!.toNSDictionary(), forKey: "predicate")
+        if predicate != nil {
+            if predicate is SchedulePredicate {
+                completionHandler(nil, IoTCloudError.UNSUPPORTED_ERROR)
+                return
             }
+            requestBodyDict.setObject(predicate!.toNSDictionary(), forKey: "predicate")
+        }
 
         // generate command
         if schemaName != nil || schemaVersion != nil || actions != nil {

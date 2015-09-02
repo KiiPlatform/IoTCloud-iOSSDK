@@ -93,8 +93,8 @@ class PostNewCommandTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-
-            api.postNewCommand(testcase.target, schemaName: testcase.schema, schemaVersion: testcase.schemaVersion, actions: testcase.actions, completionHandler: { (command, error) -> Void in
+            api.target = self.target
+            api.postNewCommand(testcase.schema, schemaVersion: testcase.schemaVersion, actions: testcase.actions, completionHandler: { (command, error) -> Void in
                 if error == nil{
                     XCTAssertNotNil(command, tag)
                     XCTAssertEqual(command!.commandID, expectedCommandID, tag)
@@ -154,8 +154,8 @@ class PostNewCommandTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-
-            api.postNewCommand(target, schemaName: "", schemaVersion: self.schema.version, actions: [], completionHandler: { (command, error) -> Void in
+            api.target = self.target
+            api.postNewCommand("", schemaVersion: self.schema.version, actions: [], completionHandler: { (command, error) -> Void in
                 if error == nil{
                     XCTFail("should fail")
                 }else {

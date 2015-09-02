@@ -136,7 +136,8 @@ class ListCommandsTests: XCTestCase {
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
 
-            api.listCommands(target, bestEffortLimit: testcase.bestEffortLimit, paginationKey: testcase.paginationKey, completionHandler: { (commands, nextPaginationKey, error) -> Void in
+            api.target = self.target
+            api.listCommands(testcase.bestEffortLimit, paginationKey: testcase.paginationKey, completionHandler: { (commands, nextPaginationKey, error) -> Void in
                 if(error != nil) {
                     XCTFail("should success")
                 }else {
@@ -206,7 +207,8 @@ class ListCommandsTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-            api.listCommands(target, bestEffortLimit: nil, paginationKey: nil, completionHandler: { (commands, paginationKey, error) -> Void in
+            api.target = self.target
+            api.listCommands(nil, paginationKey: nil, completionHandler: { (commands, paginationKey, error) -> Void in
                 if error == nil{
                     XCTFail("should fail")
                 }else {
@@ -233,7 +235,34 @@ class ListCommandsTests: XCTestCase {
                 XCTFail("execution timeout")
             }
         }
+    }
+
+    func testListCommand_target_not_found_error() {
+        let expectation = self.expectationWithDescription("getCommand404Error")
+
+        api.listCommands(nil, paginationKey: nil, completionHandler: { (commands, paginationKey, error) -> Void in
+            if error == nil{
+                XCTFail("should fail")
+            }else {
+                XCTAssertNil(commands)
+                XCTAssertNil(paginationKey)
+                switch error! {
+                case .TARGET_NOT_AVAILABLE:
+                    break
+                default:
+                    XCTFail("error should be TARGET_NOT_AVAILABLE")
+                }
+            }
+            expectation.fulfill()
+        })
+
+        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+            if error != nil {
+                XCTFail("execution timeout")
+            }
+        }
         
     }
+
     
 }

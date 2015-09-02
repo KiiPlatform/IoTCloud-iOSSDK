@@ -15,6 +15,7 @@ class PostNewTriggerTests: XCTestCase {
     var schema = (thingType: "SmartLight-Demo",
         name: "SmartLight-Demo", version: 1)
     let baseURLString = "https://small-tests.internal.kii.com"
+    let target = Target(targetType: TypedID(type: "thing", id: "th.0267251d9d60-1858-5e11-3dc3-00f3f0b5"))
     var api: IoTCloudAPI!
 
     override func setUp() {
@@ -39,6 +40,8 @@ class PostNewTriggerTests: XCTestCase {
     }
 
     func testPostNewTrigger_success() {
+
+        api.target = self.target
 
         let orClauseClause = ["type": "or", "clauses": [["type":"eq","field":"color", "value": 0], ["type": "not", "clause": ["type":"eq","field":"power", "value": true]] ]]
         let andClauseClause = ["type": "and", "clauses": [["type":"eq","field":"color", "value": 0], ["type": "not", "clause": ["type":"eq","field":"power", "value": true]] ]]
@@ -81,7 +84,6 @@ class PostNewTriggerTests: XCTestCase {
 
         do{
             let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
-            let target = Target(targetType: TypedID(type: "thing", id: expectedTriggerID))
             let actions: [Dictionary<String, AnyObject>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
             let condition = Condition(clause: testcase.clause)
             let predicate = StatePredicate(condition: condition, triggersWhen: testcase.triggersWhen)
@@ -107,7 +109,7 @@ class PostNewTriggerTests: XCTestCase {
                 }
                 //verify body
 
-                let expectedBody = ["predicate": expectedPredicateDict, "command":["issuer":self.owner.ownerID.toString(), "target": target.targetType.toString(), "schema": self.schema.name, "schemaVersion": self.schema.version,"actions":expectedActions]]
+                let expectedBody = ["predicate": expectedPredicateDict, "command":["issuer":self.owner.ownerID.toString(), "target": self.target.targetType.toString(), "schema": self.schema.name, "schemaVersion": self.schema.version,"actions":expectedActions]]
                 do {
                     let expectedBodyData = try NSJSONSerialization.dataWithJSONObject(expectedBody, options: NSJSONWritingOptions(rawValue: 0))
                     let actualBodyData = request.HTTPBody
@@ -120,10 +122,10 @@ class PostNewTriggerTests: XCTestCase {
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
 
-            api.postNewTrigger(target, schemaName: schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
+            api.postNewTrigger(schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
                 if error == nil{
                     XCTAssertEqual(trigger!.triggerID, expectedTriggerID, tag)
-                    XCTAssertEqual(trigger!.targetID.toString(), target.targetType.toString(), tag)
+                    XCTAssertEqual(trigger!.targetID.toString(), self.target.targetType.toString(), tag)
                     XCTAssertEqual(trigger!.enabled, true, tag)
                     XCTAssertNotNil(trigger!.predicate, tag)
                     XCTAssertEqual(trigger!.command.commandID, "", tag)
@@ -146,8 +148,6 @@ class PostNewTriggerTests: XCTestCase {
         let expectation = self.expectationWithDescription("postNewTrigger404Error")
 
         do{
-            let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
-            let target = Target(targetType: TypedID(type: "thing", id: expectedTriggerID))
             let actions: [Dictionary<String, AnyObject>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
             let clause = EqualsClause(field: "color", value: 0)
             let condition = Condition(clause: clause)
@@ -174,7 +174,7 @@ class PostNewTriggerTests: XCTestCase {
                 }
                 //verify body
 
-                let expectedBody = ["predicate": expectedPredicateDict, "command":["issuer":self.owner.ownerID.toString(), "target": target.targetType.toString(), "schema": self.schema.name, "schemaVersion": self.schema.version,"actions":actions]]
+                let expectedBody = ["predicate": expectedPredicateDict, "command":["issuer":self.owner.ownerID.toString(), "target": self.target.targetType.toString(), "schema": self.schema.name, "schemaVersion": self.schema.version,"actions":actions]]
                 do {
                     let expectedBodyData = try NSJSONSerialization.dataWithJSONObject(expectedBody, options: NSJSONWritingOptions(rawValue: 0))
                     let actualBodyData = request.HTTPBody
@@ -186,8 +186,8 @@ class PostNewTriggerTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-
-            api.postNewTrigger(target, schemaName: schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
+            api.target = self.target
+            api.postNewTrigger(schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
                 if error == nil{
                     XCTFail("should fail")
                 }else {
@@ -217,12 +217,10 @@ class PostNewTriggerTests: XCTestCase {
     func testPostNewTrigger_UnsupportError() {
         let expectation = self.expectationWithDescription("postNewTriggerUnsupportError")
 
-        let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
-        let target = Target(targetType: TypedID(type: "thing", id: expectedTriggerID))
         let actions: [Dictionary<String, AnyObject>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
         let predicate = SchedulePredicate(schedule: "'*/15 * * * *")
 
-        api.postNewTrigger(target, schemaName: schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
+        api.postNewTrigger(schema.name, schemaVersion: schema.version, actions: actions, predicate: predicate, completionHandler: { (trigger, error) -> Void in
             if error == nil{
                 XCTFail("should fail")
             }else {
