@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+@testable import IoTCloudSDK
 
 extension XCTestCase {
     
@@ -36,5 +37,13 @@ extension XCTestCase {
 
     func XCTAssertEqualDictionaries<S, T: Equatable>(first: [S:T], _ second: [S:T]) {
         XCTAssert(first == second)
+    }
+
+    func XCTAssertEqualIoTAPI(first: IoTCloudAPI, _ second: IoTCloudAPI) {
+        XCTAssertEqual(first.baseURL, second.baseURL)
+        XCTAssertEqual(first.appID, second.appID)
+        XCTAssertEqual(first.appKey, second.appKey)
+        XCTAssertEqual(first.target?.targetType.toString(), second.target?.targetType.toString())
+        XCTAssertEqual(first.installationID, second.installationID)
     }
 }

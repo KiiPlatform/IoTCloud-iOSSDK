@@ -8,6 +8,7 @@
 
 import Foundation
 import XCTest
+import IoTCloudSDK
 
 func failIfNotRunningOnDevice(){
     let environment = NSProcessInfo.processInfo().environment
@@ -17,6 +18,7 @@ func failIfNotRunningOnDevice(){
     }
     
 }
+
 typealias MockResponse = (data: NSData?, urlResponse: NSURLResponse?, error: NSError?)
 typealias MockResponsePair = (response: MockResponse,requestVerifier: ((NSURLRequest) -> Void))
 
@@ -104,4 +106,17 @@ class MockMultipleSession: NSURLSession {
 
     }
 }
+
+func getStoredIoTAPI(userDefaults: NSUserDefaults) -> IoTCloudAPI? {
+    var iotAPI: IoTCloudAPI?
+
+    if let iotAPIData = userDefaults.objectForKey("iotAPI") as? NSData {
+        if let storedIoTAPI = NSKeyedUnarchiver.unarchiveObjectWithData(iotAPIData) as? IoTCloudAPI {
+            iotAPI = storedIoTAPI
+        }
+    }
+    return iotAPI
+
+}
+
 
