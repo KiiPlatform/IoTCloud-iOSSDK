@@ -19,7 +19,11 @@ public class IoTCloudAPI: NSObject, NSCoding {
     public var owner: Owner!
     /** target, you can set it manually, but after successfully onboarding it will be setted to the onboarded target */
     public var target: Target?
-    
+
+    // for dependency injection
+    static var userDefaults = NSUserDefaults.standardUserDefaults()
+
+
     // MARK: - Implements NSCoding protocol
     public func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(self.baseURL, forKey: "baseURL")
