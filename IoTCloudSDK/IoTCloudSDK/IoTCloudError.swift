@@ -29,4 +29,6 @@ public enum IoTCloudError : ErrorType {
     case STORED_IOTAPI_NOT_AVAILABLE
     /** when the stored IoTCloudAPI instance is invalid */
     case STORED_IOTAPI_INVALID
+    /** when target assigned twice */
+    case TARGET_ASSIGNED_TWICE
 }

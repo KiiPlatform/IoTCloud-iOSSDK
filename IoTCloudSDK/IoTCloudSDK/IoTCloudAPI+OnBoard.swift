@@ -9,7 +9,7 @@
 import Foundation
 extension IoTCloudAPI {
 
-    func _onBoard(
+    func _onboard(
         byVendorThingID: Bool,
         IDString: String,
         thingPassword:String,
@@ -50,7 +50,7 @@ extension IoTCloudAPI {
                     var target:Target?
                     if let thingID = response?["thingID"] as? String{
                         target = Target(targetType: TypedID(type: "THING", id: thingID))
-                        self.target = target
+                        self._target = target
                         self._storeSelf()
                     }
                     dispatch_async(dispatch_get_main_queue()) {
