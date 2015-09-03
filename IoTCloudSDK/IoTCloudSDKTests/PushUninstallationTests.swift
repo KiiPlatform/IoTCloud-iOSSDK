@@ -27,7 +27,8 @@ class PushUninstallationTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+
+        IoTCloudAPI.userDefaults = NSUserDefaults.standardUserDefaults()
         super.tearDown()
     }
     
@@ -85,10 +86,13 @@ class PushUninstallationTests: XCTestCase {
         let expectation = self.expectationWithDescription("testPushUninstallation_success")
         let installID = "dummyInstallId"
         
+        let mockUserDefaults = NSUserDefaults(suiteName: "testPushUninstallation_success")
+        IoTCloudAPI.userDefaults = mockUserDefaults!
+
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
             XCTAssertEqual(request.HTTPMethod, "DELETE")
-            let expectedPath = "\(self.api.baseURL!)/iot-api/apps/\(self.api.appID!)/installations/\(installID)"
+            let expectedPath = "\(self.api.baseURL!)/api/apps/\(self.api.appID!)/installations/\(installID)"
             XCTAssertEqual(request.URL!.absoluteString, expectedPath, "Should be equal")
             //verify header
             let expectedHeader = ["authorization": "Bearer \(self.owner.accessToken)", "appID": "50a62843"]
@@ -105,6 +109,9 @@ class PushUninstallationTests: XCTestCase {
         api.uninstallPush(installID) { (error) -> Void in
             XCTAssertTrue(error==nil,"should not error")
             XCTAssertNil(self.api._installationID,"Should be nil")
+            let storedAPI = getStoredIoTAPI(mockUserDefaults!)
+            XCTAssertNotNil(storedAPI)
+            self.XCTAssertEqualIoTAPI(self.api, storedAPI!)
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30.0) { (error) -> Void in
@@ -120,7 +127,7 @@ class PushUninstallationTests: XCTestCase {
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
             XCTAssertEqual(request.HTTPMethod, "DELETE")
-            let expectedPath = "\(self.api.baseURL!)/iot-api/apps/\(self.api.appID!)/installations/\(installID)"
+            let expectedPath = "\(self.api.baseURL!)/api/apps/\(self.api.appID!)/installations/\(installID)"
             XCTAssertEqual(request.URL!.absoluteString, expectedPath, "Should be equal")
             //verify header
             let expectedHeader = ["authorization": "Bearer \(self.owner.accessToken)", "appID": "50a62843"]
@@ -176,7 +183,7 @@ class PushUninstallationTests: XCTestCase {
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
             XCTAssertEqual(request.HTTPMethod, "DELETE")
-            let expectedPath = "\(self.api.baseURL!)/iot-api/apps/\(self.api.appID!)/installations/\(installID)"
+            let expectedPath = "\(self.api.baseURL!)/api/apps/\(self.api.appID!)/installations/\(installID)"
             XCTAssertEqual(request.URL!.absoluteString, expectedPath, "Should be equal")
             //verify header
             let expectedHeader = ["authorization": "Bearer \(self.owner.accessToken)", "appID": "50a62843"]

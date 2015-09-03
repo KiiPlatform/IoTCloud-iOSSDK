@@ -36,6 +36,7 @@ extension IoTCloudAPI {
                 
                 if let installationID = response?["installationID"] as? String{
                     self._installationID = installationID
+                    self._storeSelf()
                 }
                 dispatch_async(dispatch_get_main_queue()) {
                     completionHandler(self._installationID, error)
@@ -68,6 +69,7 @@ extension IoTCloudAPI {
             
             if error == nil{
                 self._installationID = nil
+                self._storeSelf()
             }
             
             dispatch_async(dispatch_get_main_queue()) {

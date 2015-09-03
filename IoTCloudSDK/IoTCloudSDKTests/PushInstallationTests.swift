@@ -27,13 +27,13 @@ class PushInstallationTests: XCTestCase {
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        IoTCloudAPI.userDefaults = NSUserDefaults.standardUserDefaults()
         super.tearDown()
     }
 
     func onboard(){
         let expectation = self.expectationWithDescription("onboardWithVendorThingID")
-        
+
         do{
             let thingProperties:Dictionary<String, AnyObject> = ["key1":"value1", "key2":"value2"]
             let thingType = "LED"
@@ -84,6 +84,9 @@ class PushInstallationTests: XCTestCase {
         self.onboard()
         let expectation = self.expectationWithDescription("testPushInstallation_success")
         //iotSession = NSURLSession.self
+        let mockUserDefaults = NSUserDefaults(suiteName: "testPushInstallation_success")
+        IoTCloudAPI.userDefaults = mockUserDefaults!
+
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
             XCTAssertEqual(request.HTTPMethod, "POST")
@@ -98,7 +101,7 @@ class PushInstallationTests: XCTestCase {
             self.verifyDict(expectedBody, actualData: request.HTTPBody!)
         }
         
-        let dict = ["InstallationID":"dummy_installation_ID"]
+        let dict = ["installationID":"dummy_installation_ID"]
         do {
             let jsonData = try NSJSONSerialization.dataWithJSONObject(dict, options: .PrettyPrinted)
             
@@ -116,6 +119,10 @@ class PushInstallationTests: XCTestCase {
             XCTAssertTrue(error==nil,"should not error")
             
             XCTAssertNotNil(installID,"Should not nil")
+            let storedAPI = getStoredIoTAPI(mockUserDefaults!)
+            XCTAssertNotNil(storedAPI)
+            self.XCTAssertEqualIoTAPI(self.api, storedAPI!)
+
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(30.0) { (error) -> Void in

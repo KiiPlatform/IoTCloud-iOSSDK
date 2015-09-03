@@ -24,4 +24,11 @@ public enum IoTCloudError : ErrorType {
     case PUSH_NOT_AVAILABLE
     case JSON_PARSE_ERROR
     case UNSUPPORTED_ERROR
+    case TARGET_NOT_AVAILABLE
+    /** when there is not stored IoTCloudAPI instance found */
+    case STORED_IOTAPI_NOT_AVAILABLE
+    /** when the stored IoTCloudAPI instance is invalid */
+    case STORED_IOTAPI_INVALID
+    /** when target assigned twice */
+    case TARGET_ASSIGNED_TWICE
 }

@@ -18,15 +18,14 @@ class ListTriggersTests: XCTestCase {
 
     let baseURLString = "https://small-tests.internal.kii.com"
 
-    let api = IoTCloudAPIBuilder(appID: "50a62843", appKey: "2bde7d4e3eed1ad62c306dd2144bb2b0",
-        baseURL: "https://small-tests.internal.kii.com", owner: Owner(ownerID: TypedID(type:"user", id:"53ae324be5a0-2b09-5e11-6cc3-0862359e"), accessToken: "BbBFQMkOlEI9G1RZrb2Elmsu5ux1h-TIm5CGgh9UBMc")).build()
+    var api: IoTCloudAPI!
 
     let target = Target(targetType: TypedID(type: "thing", id: "th.0267251d9d60-1858-5e11-3dc3-00f3f0b5"))
 
     override func setUp() {
         super.setUp()
-
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        api = IoTCloudAPIBuilder(appID: "50a62843", appKey: "2bde7d4e3eed1ad62c306dd2144bb2b0",
+            baseURL: "https://small-tests.internal.kii.com", owner: Owner(ownerID: TypedID(type:"user", id:"53ae324be5a0-2b09-5e11-6cc3-0862359e"), accessToken: "BbBFQMkOlEI9G1RZrb2Elmsu5ux1h-TIm5CGgh9UBMc")).build()
     }
 
     override func tearDown() {
@@ -97,7 +96,8 @@ class ListTriggersTests: XCTestCase {
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
 
-            api.listTriggers(self.target, bestEffortLimit: nil, paginationKey: nil, completionHandler: { (triggers, paginationKey, error) -> Void in
+            api.target = self.target
+            api.listTriggers(nil, paginationKey: nil, completionHandler: { (triggers, paginationKey, error) -> Void in
 
                 if(error != nil) {
                     XCTFail("should success")
@@ -164,7 +164,8 @@ class ListTriggersTests: XCTestCase {
             MockSession.mockResponse = (jsonData, urlResponse: urlResponse, error: nil)
             MockSession.requestVerifier = requestVerifier
             iotSession = MockSession.self
-            api.getTrigger(target, triggerID: triggerID, completionHandler: { (trigger, error) -> Void in
+            api.target = self.target
+            api.getTrigger(triggerID, completionHandler: { (trigger, error) -> Void in
                 if error == nil{
                     XCTFail("should fail")
                 }else {
@@ -189,6 +190,32 @@ class ListTriggersTests: XCTestCase {
                 XCTFail("execution timeout")
             }
         }
-        
+    }
+
+    func testListTriggers_target_not_available_error() {
+        let expectation = self.expectationWithDescription("testListTriggers_target_not_available_error")
+
+        api.listTriggers(nil, paginationKey: nil, completionHandler: { (commands, paginationKey, error) -> Void in
+            if error == nil{
+                XCTFail("should fail")
+            }else {
+                XCTAssertNil(commands)
+                XCTAssertNil(paginationKey)
+                switch error! {
+                case .TARGET_NOT_AVAILABLE:
+                    break
+                default:
+                    XCTFail("error should be TARGET_NOT_AVAILABLE")
+                }
+            }
+            expectation.fulfill()
+        })
+
+        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+            if error != nil {
+                XCTFail("execution timeout")
+            }
+        }
+
     }
 }
