@@ -13,7 +13,7 @@ extension IoTCloudAPI {
     class func _getStoredInstance() throws -> IoTCloudAPI? {
         var iotAPI: IoTCloudAPI?
 
-        if let iotAPIData = NSUserDefaults.standardUserDefaults().objectForKey("iotAPI") as? NSData {
+        if let iotAPIData = userDefaults.objectForKey("iotAPI") as? NSData {
             if let storedIoTAPI = NSKeyedUnarchiver.unarchiveObjectWithData(iotAPIData) as? IoTCloudAPI {
                 iotAPI = storedIoTAPI
             }else {
@@ -27,7 +27,7 @@ extension IoTCloudAPI {
     }
 
     func _storeSelf() {
-        NSUserDefaults.standardUserDefaults().setObject(NSKeyedArchiver.archivedDataWithRootObject(self), forKey: "iotAPI")
+        IoTCloudAPI.userDefaults.setObject(NSKeyedArchiver.archivedDataWithRootObject(self), forKey: "iotAPI")
     }
 
 
