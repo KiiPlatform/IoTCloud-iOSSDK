@@ -9,20 +9,24 @@ public class Command: NSObject, NSCoding {
 
     // MARK: - Implements NSCoding protocol
     public func encodeWithCoder(aCoder: NSCoder) {
-        // TODO: implement it.
+        aCoder.encodeObject(self.commandID, forKey: "commandID")
+        aCoder.encodeObject(self.targetID, forKey: "targetID")
+        aCoder.encodeObject(self.issuerID, forKey: "issuerID")
+        aCoder.encodeObject(self.schemaName, forKey: "schemaName")
+        aCoder.encodeInteger(self.schemaVersion, forKey: "schemaVersion")
     }
 
     // MARK: - Implements NSCoding protocol
     public required init(coder aDecoder: NSCoder) {
         // TODO: implement it.
-        commandID = ""
-        targetID = TypedID(type: "", id: "")
-        issuerID = TypedID(type:"", id:"")
-        schemaName = ""
-        schemaVersion = 0
-        actions = []
-        actionResults = []
-        commandState = CommandState.SENDING
+        self.commandID = aDecoder.decodeObjectForKey("commandID") as! String
+        self.targetID = aDecoder.decodeObjectForKey("targetID") as! TypedID
+        self.issuerID = aDecoder.decodeObjectForKey("issuerID") as! TypedID
+        self.schemaName = aDecoder.decodeObjectForKey("schemaName") as! String
+        self.schemaVersion = aDecoder.decodeIntegerForKey("schemaVersion")
+        self.actions = []
+        self.actionResults = []
+        self.commandState = CommandState.SENDING
     }
 
 
@@ -42,10 +46,10 @@ public class Command: NSObject, NSCoding {
     public let schemaVersion: Int
 
     /** Actions to be executed. */
-    public let actions: [Dictionary<String, Any>]
+    public let actions: [Dictionary<String, AnyObject>]
 
     /** Results of the action. */
-    public let actionResults: [Dictionary<String, Any>]
+    public let actionResults: [Dictionary<String, AnyObject>]
 
     /** State of the Command. */
     public let commandState: CommandState
@@ -61,6 +65,95 @@ public class Command: NSObject, NSCoding {
         self.actionResults = []
         self.commandState = CommandState.SENDING
     }
+
+    init(commandID: String?, targetID: TypedID, issuerID: TypedID, schemaName: String, schemaVersion: Int, actions:[Dictionary<String, AnyObject>], actionResults:[Dictionary<String, AnyObject>]?, commandState: CommandState?) {
+        if commandID != nil {
+            self.commandID = commandID!
+        }else {
+            self.commandID = ""
+        }
+        self.targetID = targetID
+        self.issuerID = issuerID
+        self.schemaName = schemaName
+        self.schemaVersion = schemaVersion
+        self.actions = actions
+
+        if actionResults != nil {
+            self.actionResults = actionResults!
+        }else {
+            self.actionResults = []
+        }
+        if commandState != nil {
+            self.commandState = commandState!
+        }else {
+            self.commandState = CommandState.SENDING
+        }
+    }
+    
+    public override func isEqual(object: AnyObject?) -> Bool {
+        guard let aCommand = object as? Command else{
+            return false
+        }
+        
+        return self.commandID == aCommand.commandID &&
+            self.targetID == aCommand.targetID &&
+            self.issuerID == aCommand.issuerID &&
+            self.schemaName == aCommand.schemaName &&
+            self.schemaVersion == aCommand.schemaVersion
+        
+    }
+
+    class func commandWithNSDictionary(nsDict: NSDictionary!) -> Command?{
+
+        let commandID = nsDict["commandID"] as? String
+        let schemaName = nsDict["schema"] as? String
+        // actions array
+        var actionsArray = [Dictionary<String, AnyObject>]()
+        if let actions = nsDict["actions"] as? [NSDictionary] {
+            actionsArray = actions as! [Dictionary<String, AnyObject>]
+        }
+        // actionResult array
+        var actionsResultArray = [Dictionary<String, AnyObject>]()
+        if let actionResults = nsDict["actionResults"] as? [NSDictionary] {
+            actionsResultArray = actionResults as! [Dictionary<String, AnyObject>]
+        }
+        let schemaVersion = nsDict["schemaVersion"] as? Int
+
+        var targetID: TypedID?
+        if let targetString = nsDict["target"] as? String {
+            var targetInfoArray = targetString.componentsSeparatedByString(":")
+            if targetInfoArray.count == 2 {
+                targetID = TypedID(type: targetInfoArray[0], id: targetInfoArray[1])
+            }
+        }
+
+        var issuerID: TypedID?
+        if let issureString = nsDict["issuer"] as? String {
+            var issuerInfoArray = issureString.componentsSeparatedByString(":")
+            if issuerInfoArray.count == 2 {
+                issuerID = TypedID(type: issuerInfoArray[0], id: issuerInfoArray[1])
+            }
+        }
+
+        var commandState: CommandState?
+        if let commandStateString = nsDict["commandState"] as? String {
+            switch commandStateString {
+            case "SENDING":
+                commandState = CommandState.SENDING
+            case "DELIVERED":
+                commandState = CommandState.DELIVERED
+            case "INCOMPLETE":
+                commandState = CommandState.INCOMPLETE
+            default:
+                commandState = CommandState.DONE
+            }
+        }
+        var command: Command?
+        if ((targetID != nil) || (issuerID != nil) || (schemaName != nil)) || (schemaVersion != nil) {
+                command = Command(commandID: commandID, targetID: targetID!, issuerID: issuerID!, schemaName: schemaName!, schemaVersion: schemaVersion!, actions: actionsArray, actionResults: actionsResultArray, commandState: commandState)
+        }
+        return command
+    }
 }
 
 /** Enum represents state of the Command. */
@@ -70,7 +163,7 @@ public enum CommandState {
     /** Command is published to the Target. */
     case DELIVERED
     /** Target returns execution result but not completed all actions successfully. */
-    case IMCOMPLETE
+    case INCOMPLETE
     /** Target returns execution result and all actions successfully done. */
     case DONE
 }

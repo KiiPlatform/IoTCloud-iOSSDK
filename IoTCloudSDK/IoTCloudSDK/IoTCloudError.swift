@@ -21,4 +21,16 @@ public struct ErrorResponse {
 public enum IoTCloudError : ErrorType {
     case CONNECTION
     case ERROR_RESPONSE(required: ErrorResponse)
+    case PUSH_NOT_AVAILABLE
+    case JSON_PARSE_ERROR
+    case UNSUPPORTED_ERROR
+    /** when already onboarded */
+    case ALREADY_ONBOARDED
+    /** where target not found */
+    case TARGET_NOT_AVAILABLE
+    /** when trying to load API from persistance but not avaialble*/
+    case API_NOT_STORED
+    /** when trying to load API from persistance but it does not have correct instance*/
+    case INVALID_STORED_API
+
 }
