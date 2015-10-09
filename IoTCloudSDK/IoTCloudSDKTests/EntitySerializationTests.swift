@@ -37,12 +37,12 @@ class EntitySerializationTests: XCTestCase {
     }
     //TypeID
     func testTypedID_NSUserDefaultSerialization() {
-        let aTypedID = TypedID(type: "camera", id: "cameraID")
+        let aTypedID = TypedID(type: "camera", typedID: "cameraID")
         self.doSerializationTest(aTypedID)
     }
     //Owner
     func testOwner_NSUserDefaultSerialization() {
-        let aTypedID = TypedID(type: "camera", id: "cameraID")
+        let aTypedID = TypedID(type: "camera", typedID: "cameraID")
         let anOwner = Owner(ownerID: aTypedID, accessToken: "accessToken")
         self.doSerializationTest(anOwner)
     }
@@ -58,7 +58,7 @@ class EntitySerializationTests: XCTestCase {
     }
     //Target
     func testTarget_NSUserDefaultSerialization() {
-        let aTypedID = TypedID(type: "camera", id: "cameraID")
+        let aTypedID = TypedID(type: "camera", typedID: "cameraID")
         let aTarget = Target(targetType: aTypedID)
 
         XCTAssertNil(aTarget.accessToken)
