@@ -57,8 +57,8 @@ public class Command: NSObject, NSCoding {
     public override init() {
         // TODO: implement it with proper initilizer.
         self.commandID = ""
-        self.targetID = TypedID(type: "", id: "")
-        self.issuerID = TypedID(type: "", id: "")
+        self.targetID = TypedID(type: "", typedID: "")
+        self.issuerID = TypedID(type: "", typedID: "")
         self.schemaName = ""
         self.schemaVersion = 0
         self.actions = []
@@ -123,7 +123,7 @@ public class Command: NSObject, NSCoding {
         if let targetString = nsDict["target"] as? String {
             var targetInfoArray = targetString.componentsSeparatedByString(":")
             if targetInfoArray.count == 2 {
-                targetID = TypedID(type: targetInfoArray[0], id: targetInfoArray[1])
+                targetID = TypedID(type: targetInfoArray[0], typedID: targetInfoArray[1])
             }
         }
 
@@ -131,7 +131,7 @@ public class Command: NSObject, NSCoding {
         if let issureString = nsDict["issuer"] as? String {
             var issuerInfoArray = issureString.componentsSeparatedByString(":")
             if issuerInfoArray.count == 2 {
-                issuerID = TypedID(type: issuerInfoArray[0], id: issuerInfoArray[1])
+                issuerID = TypedID(type: issuerInfoArray[0], typedID: issuerInfoArray[1])
             }
         }
 
