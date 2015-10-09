@@ -16,12 +16,12 @@ class PostNewTriggerTests: XCTestCase {
         name: "SmartLight-Demo", version: 1)
     let baseURLString = "https://small-tests.internal.kii.com"
     var api: IoTCloudAPI!
-    let target = Target(targetType: TypedID(type: "thing", id: "0267251d9d60-1858-5e11-3dc3-00f3f0b5"))
+    let target = Target(targetType: TypedID(type: "thing", typedID: "0267251d9d60-1858-5e11-3dc3-00f3f0b5"))
 
     override func setUp() {
         super.setUp()
 
-        owner = Owner(ownerID: TypedID(type:"user", id:"53ae324be5a0-2b09-5e11-6cc3-0862359e"), accessToken: "BbBFQMkOlEI9G1RZrb2Elmsu5ux1h-TIm5CGgh9UBMc")
+        owner = Owner(ownerID: TypedID(type:"user", typedID:"53ae324be5a0-2b09-5e11-6cc3-0862359e"), accessToken: "BbBFQMkOlEI9G1RZrb2Elmsu5ux1h-TIm5CGgh9UBMc")
 
         api = IoTCloudAPIBuilder(appID: "dummyID", appKey: "dummyKey",
             site: Site.CUSTOM(self.baseURLString), owner: owner).build()

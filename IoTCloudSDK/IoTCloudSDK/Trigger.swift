@@ -70,7 +70,7 @@ public class Trigger: NSObject, NSCoding {
     public override init() {
         // TODO: implement it with proper initializer.
         self.triggerID = ""
-        self.targetID = TypedID(type:"",id:"")
+        self.targetID = TypedID(type:"",typedID:"")
         self.enabled = false
         self.predicate = Predicate()
         self.command = Command()
