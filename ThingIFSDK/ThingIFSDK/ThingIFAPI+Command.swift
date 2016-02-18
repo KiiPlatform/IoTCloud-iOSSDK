@@ -46,8 +46,8 @@ extension ThingIFAPI {
                     completionHandler(command, error)
                 }
             })
-            let onboardRequestOperation = IoTRequestOperation(request: request)
-            operationQueue.addOperation(onboardRequestOperation)
+            let operation = IoTRequestOperation(request: request)
+            operationQueue.addOperation(operation)
             
         }catch(_){
             kiiSevereLog("ThingIFError.JSON_PARSE_ERROR")
@@ -81,8 +81,8 @@ extension ThingIFAPI {
             }
         })
         
-        let onboardRequestOperation = IoTRequestOperation(request: request)
-        operationQueue.addOperation(onboardRequestOperation)
+        let operation = IoTRequestOperation(request: request)
+        operationQueue.addOperation(operation)
     }
     
     func _listCommands(
@@ -98,7 +98,7 @@ extension ThingIFAPI {
 
         var requestURL = "\(baseURL)/thing-if/apps/\(appID)/targets/\(target!.typedID.toString())/commands"
         if paginationKey != nil && bestEffortLimit != nil{
-            requestURL += "?paginationKey=\(paginationKey!)&&bestEffortLimit=\(bestEffortLimit!)"
+            requestURL += "?paginationKey=\(paginationKey!)&bestEffortLimit=\(bestEffortLimit!)"
         }else if bestEffortLimit != nil {
             requestURL += "?bestEffortLimit=\(bestEffortLimit!)"
         }else if paginationKey != nil {
@@ -126,7 +126,7 @@ extension ThingIFAPI {
             }
         })
         
-        let onboardRequestOperation = IoTRequestOperation(request: request)
-        operationQueue.addOperation(onboardRequestOperation)
+        let operation = IoTRequestOperation(request: request)
+        operationQueue.addOperation(operation)
     }
 }
