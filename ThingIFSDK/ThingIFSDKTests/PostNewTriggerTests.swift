@@ -21,7 +21,7 @@ class PostNewTriggerTests: SmallTestBase {
 
     struct TestCase {
         let clause: Clause
-        let expectedClauseDict: Dictionary<String, AnyObject>
+        let expectedClauseDict: Dictionary<String, AnyObject>?
         let triggersWhen: TriggersWhen
         let expectedTriggersWhenString: String
         let expectedEventSource: String
@@ -45,7 +45,12 @@ class PostNewTriggerTests: SmallTestBase {
                 let expectedClause = testcase.expectedClauseDict
                 let expectedEventSource = testcase.expectedEventSource
                 let expectedTriggerWhen = testcase.expectedTriggersWhenString
-                let expectedPredicateDict = ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen, "condition":expectedClause]
+                let expectedPredicateDict: Dictionary<String, AnyObject>
+                if expectedClause != nil {
+                    expectedPredicateDict = ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen, "condition":expectedClause!]
+                } else {
+                    expectedPredicateDict = ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen]
+                }
 
                 // mock response
                 let dict = ["triggerID": expectedTriggerID]
