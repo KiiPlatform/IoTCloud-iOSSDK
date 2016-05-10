@@ -27,12 +27,12 @@ class PostNewTriggerTests: SmallTestBase {
         let expectedEventSource: String
     }
 
-    func testPostNewTrigger_success() {
+    func postNewTriggerSuccess(tag: String, testcase: TestCase, setting:TestSetting) {
         weak var expectation : XCTestExpectation!
         defer {
             expectation = nil
         }
-        func postNewTriggerSuccess(tag: String, testcase: TestCase, setting:TestSetting) {
+        func execPostNewTriggerSuccess(tag: String, testcase: TestCase, setting:TestSetting) {
             expectation = self.expectationWithDescription(tag)
 
             do{
@@ -102,7 +102,10 @@ class PostNewTriggerTests: SmallTestBase {
                 }
             }
         }
+        execPostNewTriggerSuccess(tag, testcase: testcase, setting: setting)
+    }
 
+    func testPostNewTrigger_success() {
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
