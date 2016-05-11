@@ -20,10 +20,20 @@ class PostNewTriggerTestsBase: SmallTestBase {
 
     struct TestCase {
         let clause: Clause
-        let expectedClauseDict: Dictionary<String, AnyObject>?
+        let expectedClauseDict: Dictionary<String, AnyObject>
         let triggersWhen: TriggersWhen
         let expectedTriggersWhenString: String
         let expectedEventSource: String
+    }
+
+    func createPredicate(testcase: TestCase) -> Predicate? {
+        // This is abstract method.
+        return nil
+    }
+
+    func createExpectedPredicate(testcase: TestCase) -> Dictionary<String, AnyObject>? {
+        // This is abstract method.
+        return nil
     }
 
     func postNewTriggerSuccess(tag: String, testcase: TestCase, setting:TestSetting) {
@@ -37,19 +47,10 @@ class PostNewTriggerTestsBase: SmallTestBase {
             do{
                 let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
                 let actions: [Dictionary<String, AnyObject>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
-                let condition = Condition(clause: testcase.clause)
-                let predicate = StatePredicate(condition: condition, triggersWhen: testcase.triggersWhen)
+                let predicate = createPredicate(testcase)!
 
                 let expectedActions = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
-                let expectedClause = testcase.expectedClauseDict
-                let expectedEventSource = testcase.expectedEventSource
-                let expectedTriggerWhen = testcase.expectedTriggersWhenString
-                let expectedPredicateDict: Dictionary<String, AnyObject>
-                if expectedClause != nil {
-                    expectedPredicateDict = ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen, "condition":expectedClause!]
-                } else {
-                    expectedPredicateDict = ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen]
-                }
+                let expectedPredicateDict = createExpectedPredicate(testcase)!
 
                 // mock response
                 let dict = ["triggerID": expectedTriggerID]

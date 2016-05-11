@@ -19,6 +19,21 @@ class PostNewTriggerTests: PostNewTriggerTestsBase {
         super.tearDown()
     }
 
+    override func createPredicate(testcase: TestCase) -> Predicate? {
+        let condition = Condition(clause: testcase.clause)
+        return StatePredicate(condition: condition, triggersWhen: testcase.triggersWhen)
+    }
+
+    override func createExpectedPredicate(testcase: TestCase) -> Dictionary<String, AnyObject>? {
+        let expectedClause = testcase.expectedClauseDict
+        let expectedEventSource = testcase.expectedEventSource
+        let expectedTriggerWhen = testcase.expectedTriggersWhenString
+        let expectedPredicateDict: Dictionary<String, AnyObject> =
+            ["eventSource":expectedEventSource, "triggersWhen":expectedTriggerWhen, "condition":expectedClause]
+        return expectedPredicateDict
+    }
+
+
     func testPostNewTrigger_success() {
         let setting = TestSetting()
         let api = setting.api
