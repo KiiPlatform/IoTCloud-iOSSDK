@@ -10,20 +10,16 @@ import XCTest
 
 @testable import ThingIFSDK
 
+protocol TestCase {
+    // Implementation of TestCase depends on each concrete test.
+}
+
 class PostNewTriggerTestsBase: SmallTestBase {
     override func setUp() {
         super.setUp()
     }
     override func tearDown() {
         super.tearDown()
-    }
-
-    struct TestCase {
-        let clause: Clause
-        let expectedClauseDict: Dictionary<String, AnyObject>
-        let triggersWhen: TriggersWhen
-        let expectedTriggersWhenString: String
-        let expectedEventSource: String
     }
 
     func createPredicate(testcase: TestCase) -> Predicate? {
