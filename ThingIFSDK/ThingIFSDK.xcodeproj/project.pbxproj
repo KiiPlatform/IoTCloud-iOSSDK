@@ -82,6 +82,7 @@
 		B6651A221CBBA6CE00221AAE /* PostNewCommandWithCommandFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6651A211CBBA6CE00221AAE /* PostNewCommandWithCommandFormTests.swift */; };
 		B68227F41C85823A00AB85D0 /* CommandSerializationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68227F31C85823A00AB85D0 /* CommandSerializationTest.swift */; };
 		B683A31B1CBB807A00742570 /* CommandFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B683A31A1CBB807A00742570 /* CommandFormTests.swift */; };
+		B691D7071CE1DF610094CCCD /* PostNewTriggerTestsBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B691D7061CE1DF610094CCCD /* PostNewTriggerTestsBase.swift */; };
 		B6F9F2BD1CB22A4C009A990F /* CommandForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9F2BC1CB22A4C009A990F /* CommandForm.swift */; };
 		D5521C741CCDFDA200037C9F /* Predicate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5521C731CCDFDA200037C9F /* Predicate.swift */; };
 		D5521C761CCDFE7600037C9F /* ServerCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5521C751CCDFE7600037C9F /* ServerCode.swift */; };
@@ -179,6 +180,7 @@
 		B6651A211CBBA6CE00221AAE /* PostNewCommandWithCommandFormTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostNewCommandWithCommandFormTests.swift; sourceTree = "<group>"; };
 		B68227F31C85823A00AB85D0 /* CommandSerializationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandSerializationTest.swift; sourceTree = "<group>"; };
 		B683A31A1CBB807A00742570 /* CommandFormTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandFormTests.swift; sourceTree = "<group>"; };
+		B691D7061CE1DF610094CCCD /* PostNewTriggerTestsBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostNewTriggerTestsBase.swift; sourceTree = "<group>"; };
 		B6F9F2BC1CB22A4C009A990F /* CommandForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandForm.swift; sourceTree = "<group>"; };
 		D5521C731CCDFDA200037C9F /* Predicate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Predicate.swift; sourceTree = "<group>"; };
 		D5521C751CCDFE7600037C9F /* ServerCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerCode.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				7D36B6981BD4D0CC00D9B821 /* OnboardingTests.swift */,
 				7D36B6991BD4D0CC00D9B821 /* PatchTriggerTests.swift */,
 				7D36B69A1BD4D0CC00D9B821 /* PostNewCommandTests.swift */,
+				B691D7061CE1DF610094CCCD /* PostNewTriggerTestsBase.swift */,
 				7D36B69B1BD4D0CC00D9B821 /* PostNewTriggerTests.swift */,
 				7D36B69C1BD4D0CC00D9B821 /* PushInstallationTests.swift */,
 				7D36B69D1BD4D0CC00D9B821 /* PushUninstallationTests.swift */,
@@ -531,6 +534,7 @@
 				7D36B6B11BD4D0CC00D9B821 /* TestHelpers.swift in Sources */,
 				225A591E1C8ED8440042B007 /* ClauseNSCodingTests.swift in Sources */,
 				7D36B6AB1BD4D0CC00D9B821 /* OnboardingTests.swift in Sources */,
+				B691D7071CE1DF610094CCCD /* PostNewTriggerTestsBase.swift in Sources */,
 				A54EFC2E1C7D9EF500BCF4D2 /* SmallTestBase.swift in Sources */,
 				7D36B6A21BD4D0CC00D9B821 /* EnableTriggerTests.swift in Sources */,
 				B6651A221CBBA6CE00221AAE /* PostNewCommandWithCommandFormTests.swift in Sources */,
