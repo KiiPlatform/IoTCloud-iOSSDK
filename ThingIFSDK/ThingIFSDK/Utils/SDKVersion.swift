@@ -12,15 +12,20 @@ public class SDKVersion: NSObject {
     /** Version of the Thing-IF SDK */
     private var _header : String?
     private var _versionString : String?
-    private func getVersionString() -> String{
-        if _versionString == nil {
-            let b:NSBundle? = NSBundle.allFrameworks().filter{$0.bundleIdentifier == "Kii-Corporation.ThingIFSDK"}.first
-            _versionString = b?.infoDictionary?["CFBundleShortVersionString"] as! String?
+
+    public var versionString:String { if _versionString == nil {
+        let b:NSBundle? = NSBundle.allFrameworks().filter{$0.bundleIdentifier == "Kii-Corporation.ThingIFSDK"}.first
+        _versionString = b?.infoDictionary?["CFBundleShortVersionString"] as! String?
         }
         return _versionString!
     }
-     public var versionString:String { return getVersionString() }
-    internal var kiiSDKHeader:String { return "sn=it;sv=\(getVersionString());pv=\(UIDevice.currentDevice().systemVersion)" }
+    internal var kiiSDKHeader:String {
+        if _header == nil {
+            _header = "sn=it;sv=\(versionString);pv=\(UIDevice.currentDevice().systemVersion)"
+        }
+
+        return _header!
+    }
     private override init() {
     }
 }
