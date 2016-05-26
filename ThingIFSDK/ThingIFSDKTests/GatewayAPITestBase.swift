@@ -12,7 +12,6 @@ class GatewayAPITestBase: SmallTestBase {
     let ACCESSTOKEN: String = "token-0000-1111-aaaa-bbbb"
 
     func getLoggedInGatewayAPI() -> GatewayAPI {
-        self.continueAfterFailure = false
         let expectation = self.expectationWithDescription("getLoggedInGatewayAPI")
         let setting = TestSetting()
 
