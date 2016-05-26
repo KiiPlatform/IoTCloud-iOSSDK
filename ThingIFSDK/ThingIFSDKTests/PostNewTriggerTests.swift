@@ -42,7 +42,7 @@ class PostNewTriggerTests: SmallTestBase {
 
 
         func postNewTriggerSuccess(tag: String, testcase: TestCase, setting:TestSetting) {
-            let expectation = self.expectationWithDescription(tag)
+            var expectation : XCTestExpectation! = self.expectationWithDescription(tag)
 
             do{
                 let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
@@ -114,6 +114,7 @@ class PostNewTriggerTests: SmallTestBase {
                 print(e)
             }
             self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
                 if error != nil {
                     XCTFail("execution timeout for \(tag)")
                 }
@@ -166,7 +167,7 @@ class PostNewTriggerTests: SmallTestBase {
 
 
     func testPostNewTrigger_http_404() {
-        let expectation = self.expectationWithDescription("postNewTrigger404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("postNewTrigger404Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -238,6 +239,7 @@ class PostNewTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -245,7 +247,7 @@ class PostNewTriggerTests: SmallTestBase {
     }
 
     func testPostNewTrigger_http_400() {
-        let expectation = self.expectationWithDescription("postNewTrigger400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("postNewTrigger400Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -317,6 +319,7 @@ class PostNewTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -324,7 +327,7 @@ class PostNewTriggerTests: SmallTestBase {
     }
 
     func testPostNewTrigger_http_400_invalidTimestamp() {
-        let expectation = self.expectationWithDescription("postNewTrigger400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("postNewTrigger400Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -392,6 +395,7 @@ class PostNewTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -399,7 +403,7 @@ class PostNewTriggerTests: SmallTestBase {
     }
 
     func testPostNewTrigger_UnsupportError() {
-        let expectation = self.expectationWithDescription("postNewTriggerUnsupportError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("postNewTriggerUnsupportError")
         let setting = TestSetting()
         let api = setting.api
         let schema = setting.schema
@@ -423,6 +427,7 @@ class PostNewTriggerTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -430,7 +435,7 @@ class PostNewTriggerTests: SmallTestBase {
     }
     
     func testPostTrigger_target_not_available_error() {
-        let expectation = self.expectationWithDescription("testPostTrigger_target_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostTrigger_target_not_available_error")
         let setting = TestSetting()
         let api = setting.api
         let schema = setting.schema
@@ -454,6 +459,7 @@ class PostNewTriggerTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

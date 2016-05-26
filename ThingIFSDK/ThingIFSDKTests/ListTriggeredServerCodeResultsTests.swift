@@ -14,7 +14,7 @@ class ListTriggeredServerCodeResultsTests: SmallTestBase {
     func testListTriggeredServerCodeResultsTests_success() {
         let setting:TestSetting = TestSetting()
         let api = setting.api
-        let expectation = self.expectationWithDescription("testPostNewServerCodeTrigger_success")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_success")
         let triggerID = "abcdefgHIJKLMN1234567"
         
         do{
@@ -79,6 +79,7 @@ class ListTriggeredServerCodeResultsTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout for testListTriggeredServerCodeResultsTests_success")
             }

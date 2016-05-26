@@ -54,7 +54,7 @@ class GetCommandTests: SmallTestBase {
 
     func getCommandSuccess(tag: String, testcase: TestCase, setting: TestSetting) {
 
-        let expectation : XCTestExpectation! = self.expectationWithDescription(tag)
+        var expectation : XCTestExpectation! = self.expectationWithDescription(tag)
 
         do{
 
@@ -131,6 +131,7 @@ class GetCommandTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -138,7 +139,7 @@ class GetCommandTests: SmallTestBase {
     }
 
     func testGetCommand_404_error() {
-        let expectation = self.expectationWithDescription("getCommand404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("getCommand404Error")
         let setting = TestSetting()
         let api = setting.api
         do{
@@ -192,6 +193,7 @@ class GetCommandTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -199,7 +201,7 @@ class GetCommandTests: SmallTestBase {
     }
 
     func testGetCommand_trigger_not_available_error() {
-        let expectation = self.expectationWithDescription("testGetCommand_trigger_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testGetCommand_trigger_not_available_error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -220,6 +222,7 @@ class GetCommandTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

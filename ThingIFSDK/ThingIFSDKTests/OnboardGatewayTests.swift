@@ -23,7 +23,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     func testSuccess()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSuccess")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
 
@@ -65,6 +65,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -75,7 +76,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     {
         let setting = TestSetting()
         let api:GatewayAPI = GatewayAPI(app: setting.app, gatewayAddress: NSURL(string: setting.app.baseURL)!)
-        let expectation = self.expectationWithDescription("testNoLoggedInError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testNoLoggedInError")
 
         api.onboardGateway( { (gateway:Gateway?, error:ThingIFError?) -> Void in
             XCTAssertNil(gateway)
@@ -90,6 +91,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -99,7 +101,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     func test400Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test400Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -138,6 +140,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -147,7 +150,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     func test401Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test401Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test401Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -186,6 +189,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -195,7 +199,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     func test409Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test409Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test409Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -234,6 +238,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -243,7 +248,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
     func test503Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test503Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test503Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -282,6 +287,7 @@ class OnboardGatewayTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

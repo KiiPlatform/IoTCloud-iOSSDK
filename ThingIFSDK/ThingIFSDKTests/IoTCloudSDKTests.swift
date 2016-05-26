@@ -52,7 +52,7 @@ class ThingIFSDKTests: SmallTestBase {
         let api2 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[0]).build()
         let api3 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[1]).build()
         
-        let expectation = self.expectationWithDescription("testSavedInstanceWithOnboard")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSavedInstanceWithOnboard")
         setMockResponse4Onboard("access-token-00000001", thingID: "th.00000001", setting: setting)
         api1.onboard("vendor-0001", thingPassword: "password1", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
@@ -61,34 +61,37 @@ class ThingIFSDKTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
         
-        let expectation1 = self.expectationWithDescription("testSavedInstanceWithOnboard1")
+        expectation = self.expectationWithDescription("testSavedInstanceWithOnboard1")
         setMockResponse4Onboard("access-token-00000002", thingID: "th.00000002", setting: setting)
         api2.onboard("vendor-0002", thingPassword: "password2", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
                 XCTFail("should success")
             }
-            expectation1.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
         
-        let expectation2 = self.expectationWithDescription("testSavedInstanceWithOnboard2")
+        expectation = self.expectationWithDescription("testSavedInstanceWithOnboard2")
         setMockResponse4Onboard("access-token-00000003", thingID: "th.00000003", setting: setting)
         api3.onboard("vendor-0002", thingPassword: "password2", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
                 XCTFail("should success")
             }
-            expectation2.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -122,7 +125,7 @@ class ThingIFSDKTests: SmallTestBase {
         let api2 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[0]).build()
         let api3 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[1]).build()
         
-        let expectation = self.expectationWithDescription("testSavedInstanceWithOnboard")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSavedInstanceWithOnboard")
         setMockResponse4Onboard("access-token-00000001", thingID: "th.00000001", setting: setting)
         api1.onboard("vendor-0001", thingPassword: "password1", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
@@ -131,34 +134,37 @@ class ThingIFSDKTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
 
-        let expectation1 = self.expectationWithDescription("testSavedInstanceWithOnboard1")
+        expectation = self.expectationWithDescription("testSavedInstanceWithOnboard1")
         setMockResponse4Onboard("access-token-00000002", thingID: "th.00000002", setting: setting)
         api2.onboard("vendor-0002", thingPassword: "password2", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
                 XCTFail("should success")
             }
-            expectation1.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
 
-        let expectation2 = self.expectationWithDescription("testSavedInstanceWithOnboard2")
+        expectation = self.expectationWithDescription("testSavedInstanceWithOnboard2")
         setMockResponse4Onboard("access-token-00000003", thingID: "th.00000003", setting: setting)
         api3.onboard("vendor-0002", thingPassword: "password2", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
                 XCTFail("should success")
             }
-            expectation2.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -204,7 +210,7 @@ class ThingIFSDKTests: SmallTestBase {
         
         let api1 = ThingIFAPIBuilder(app:app1, owner:owner1, tag: tag).build()
         
-        let expectation = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard")
         setMockResponse4Onboard("access-token-00000001", thingID: "th.00000001", setting: setting)
         api1.onboard("vendor-0001", thingPassword: "password1", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
@@ -213,6 +219,7 @@ class ThingIFSDKTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -220,15 +227,16 @@ class ThingIFSDKTests: SmallTestBase {
         
         let api2 = ThingIFAPIBuilder(app:app2, owner:owner2, tag: tag).build()
 
-        let expectation2 = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard2")
+        expectation = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard2")
         setMockResponse4Onboard("access-token-00000002", thingID: "th.00000002", setting: setting)
         api2.onboard("vendor-0002", thingPassword: "password2", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
                 XCTFail("should success")
             }
-            expectation2.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -248,7 +256,7 @@ class ThingIFSDKTests: SmallTestBase {
         
         let api1 = ThingIFAPIBuilder(app:setting.app, owner:setting.owner!, tag: "tag1").build()
         
-        let expectation = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOverwriteSavedInstanceWithOnboard")
         setMockResponse4Onboard("access-token-00000001", thingID: "th.00000001", setting: setting)
         api1.onboard("vendor-0001", thingPassword: "password1", thingType: "smart-light", thingProperties: nil) { ( target, error) -> Void in
             if error != nil{
@@ -257,6 +265,7 @@ class ThingIFSDKTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -302,7 +311,7 @@ class ThingIFSDKTests: SmallTestBase {
         let api2 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[0]).build()
         let api3 = ThingIFAPIBuilder(app:app, owner:owner, tag:tags[1]).build()
         
-        let expectation = self.expectationWithDescription("testSavedInstanceWithInstallPush")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSavedInstanceWithInstallPush")
         setMockResponse4InstallPush("installationID-0001", setting: setting);
         api1.installPush("deviceToken-0001".dataUsingEncoding(NSUTF8StringEncoding)!, development: false) { (installID, error) -> Void in
             XCTAssertNil(error,"should not error")
@@ -310,32 +319,35 @@ class ThingIFSDKTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
         
-        let expectation1 = self.expectationWithDescription("testSavedInstanceWithInstallPush1")
+        expectation = self.expectationWithDescription("testSavedInstanceWithInstallPush1")
         setMockResponse4InstallPush("installationID-0002", setting: setting);
         api2.installPush("deviceToken-0002".dataUsingEncoding(NSUTF8StringEncoding)!, development: false) { (installID, error) -> Void in
             XCTAssertNil(error,"should not error")
             XCTAssertNotNil(installID,"Should not nil")
-            expectation1.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
 
-        let expectation2 = self.expectationWithDescription("testSavedInstanceWithInstallPush2")
+        expectation = self.expectationWithDescription("testSavedInstanceWithInstallPush2")
         setMockResponse4InstallPush("installationID-0003", setting: setting);
         api3.installPush("deviceToken-0003".dataUsingEncoding(NSUTF8StringEncoding)!, development: false) { (installID, error) -> Void in
             XCTAssertNil(error,"should not error")
             XCTAssertNotNil(installID,"Should not nil")
-            expectation2.fulfill()
+            expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

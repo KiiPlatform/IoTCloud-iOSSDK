@@ -22,7 +22,7 @@ class GatewayAPINSCodingTests: GatewayAPITestBase {
 
     func testSuccess()
     {
-        let expectation = self.expectationWithDescription("testSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSuccess")
         let setting = TestSetting()
 
         do {
@@ -44,6 +44,7 @@ class GatewayAPINSCodingTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

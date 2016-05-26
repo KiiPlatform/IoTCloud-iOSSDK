@@ -23,7 +23,7 @@ class EnableTriggerTests: SmallTestBase {
     func testEnableTrigger_success() {
         let setting:TestSetting = TestSetting()
         let api:ThingIFAPI = setting.api
-        let expectation = self.expectationWithDescription("enableTriggerTests")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("enableTriggerTests")
 
         // perform onboarding
         api._target = setting.target
@@ -89,6 +89,7 @@ class EnableTriggerTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -98,7 +99,7 @@ class EnableTriggerTests: SmallTestBase {
     func testDisableTrigger_success() {
         let setting:TestSetting = TestSetting()
         let api:ThingIFAPI = setting.api
-        let expectation = self.expectationWithDescription("enableTriggerTests")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("enableTriggerTests")
         
         let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
         
@@ -149,6 +150,7 @@ class EnableTriggerTests: SmallTestBase {
         }
         
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -156,7 +158,7 @@ class EnableTriggerTests: SmallTestBase {
     }
 
     func testEnableTrigger_404_error() {
-        let expectation = self.expectationWithDescription("enableTrigger404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("enableTrigger404Error")
         let setting = TestSetting()
         let api = setting.api
         // perform onboarding
@@ -205,6 +207,7 @@ class EnableTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -213,7 +216,7 @@ class EnableTriggerTests: SmallTestBase {
     }
 
     func testEnableTrigger_trigger_not_available_error() {
-        let expectation = self.expectationWithDescription("testEnableTrigger_trigger_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEnableTrigger_trigger_not_available_error")
         let setting = TestSetting()
         let api = setting.api
         let triggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
@@ -233,6 +236,7 @@ class EnableTriggerTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

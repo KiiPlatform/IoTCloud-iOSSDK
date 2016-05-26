@@ -12,7 +12,7 @@ class GatewayAPITestBase: SmallTestBase {
     let ACCESSTOKEN: String = "token-0000-1111-aaaa-bbbb"
 
     func getLoggedInGatewayAPI() -> GatewayAPI {
-        let expectation = self.expectationWithDescription("getLoggedInGatewayAPI")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("getLoggedInGatewayAPI")
         let setting = TestSetting()
 
         do {
@@ -34,6 +34,7 @@ class GatewayAPITestBase: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

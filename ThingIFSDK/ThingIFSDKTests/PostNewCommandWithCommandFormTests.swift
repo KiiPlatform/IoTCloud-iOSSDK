@@ -135,7 +135,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
             tag: String,
             testcase: TestCase,
             setting:TestSetting) {
-        let expectation : XCTestExpectation! = self.expectationWithDescription(tag)
+        var expectation : XCTestExpectation! = self.expectationWithDescription(tag)
 
         do {
             let expectedCommandID = "c6f1b8d0-46ea-11e5-a5eb-06d9d1527620"
@@ -198,6 +198,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout for \(tag)")
             }
@@ -206,7 +207,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
 
     func testPostNewCommand_400_error() {
 
-        let expectation = self.expectationWithDescription("testPostNewCommand_400_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewCommand_400_error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -274,6 +275,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -282,7 +284,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
 
     func testPostNewCommand_target_not_available_error() {
 
-        let expectation = self.expectationWithDescription("testPostNewCommand_target_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewCommand_target_not_available_error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -301,6 +303,7 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

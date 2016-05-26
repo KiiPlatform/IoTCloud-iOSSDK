@@ -21,7 +21,7 @@ class DeleteTriggerTests: SmallTestBase {
     func testDeleteTrigger_success() {
         let setting:TestSetting = TestSetting()
         let api = setting.api
-        let expectation = self.expectationWithDescription("enableTriggerTests")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("enableTriggerTests")
 
         // perform onboarding
         api._target = setting.target
@@ -53,6 +53,7 @@ class DeleteTriggerTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -64,7 +65,7 @@ class DeleteTriggerTests: SmallTestBase {
         let api = setting.api
         let owner = setting.owner
         let target = setting.target
-        let expectation = self.expectationWithDescription("enableTrigger404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("enableTrigger404Error")
 
         // perform onboarding
         api._target = setting.target
@@ -112,6 +113,7 @@ class DeleteTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -121,7 +123,7 @@ class DeleteTriggerTests: SmallTestBase {
     func testDeleteTrigger_trigger_not_available_error() {
         let setting:TestSetting = TestSetting()
         let api = setting.api
-        let expectation = self.expectationWithDescription("testDeleteTrigger_trigger_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testDeleteTrigger_trigger_not_available_error")
 
         let triggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
 
@@ -140,6 +142,7 @@ class DeleteTriggerTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

@@ -22,7 +22,7 @@ class GetVendorThingIDTests: SmallTestBase {
 
     func testGetVendorThingIDSuccess()
     {
-        let expectation = self.expectationWithDescription("testGetVendorThingIDSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testGetVendorThingIDSuccess")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -71,6 +71,7 @@ class GetVendorThingIDTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -79,7 +80,7 @@ class GetVendorThingIDTests: SmallTestBase {
 
     func testGetVendorThingID404Error()
     {
-        let expectation = self.expectationWithDescription("testGetVendorThingID404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testGetVendorThingID404Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -127,6 +128,7 @@ class GetVendorThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

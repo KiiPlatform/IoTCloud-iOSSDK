@@ -31,7 +31,7 @@ class OnboardingTests: SmallTestBase {
 
     func testOnboardWithThingIDFail() {
         
-        let expectation = self.expectationWithDescription("onboardWithThingID")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("onboardWithThingID")
         let setting = TestSetting()
         let api = setting.api
         let owner = setting.owner
@@ -84,6 +84,7 @@ class OnboardingTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -93,7 +94,7 @@ class OnboardingTests: SmallTestBase {
     
     func testOnboardWithVendorThingIDSuccess() {
         
-        let expectation = self.expectationWithDescription("onboardWithVendorThingID")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("onboardWithVendorThingID")
         let setting = TestSetting()
         let api = setting.api
         let owner = setting.owner
@@ -143,6 +144,7 @@ class OnboardingTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -152,7 +154,7 @@ class OnboardingTests: SmallTestBase {
     }
 
     func testOnboardWithThingID_already_onboarded_error() {
-        let expectation = self.expectationWithDescription("testOnboardWithThingID_already_onboarded_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOnboardWithThingID_already_onboarded_error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -172,6 +174,7 @@ class OnboardingTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -180,7 +183,7 @@ class OnboardingTests: SmallTestBase {
 
     func testOnboardWithVendorThingIDAndImplementTag() {
 
-        let expectation = self.expectationWithDescription("onboardWithVendorThingID")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("onboardWithVendorThingID")
         let setting = TestSetting()
         let owner = setting.owner
         let app = setting.app
@@ -231,6 +234,7 @@ class OnboardingTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

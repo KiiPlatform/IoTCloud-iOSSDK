@@ -22,7 +22,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOnboardEndnodeWithGatewaySuccess()
     {
-        let expectation = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingIDSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingIDSuccess")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -109,6 +109,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -117,7 +118,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOnboardEndnodeWithGateway403Error()
     {
-        let expectation = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID403Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID403Error")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -199,6 +200,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -207,7 +209,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOnboardEndnodeWithGateway404Error()
     {
-        let expectation = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID404Error")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -289,6 +291,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -297,7 +300,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOnboardEndnodeWithGateway500Error()
     {
-        let expectation = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID500Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOnboardEndnodeWithGatewayThingID500Error")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -379,6 +382,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -387,7 +391,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOboardEndnodeWithGatewayWithoutOnboardingGatewayError()
     {
-        let expectation = self.expectationWithDescription("testOboardEndnodeWithGatewayWithoutOnboardingGatewayError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOboardEndnodeWithGatewayWithoutOnboardingGatewayError")
         let setting = TestSetting()
         let vendorThingID = "dummyVendorThingID"
         let password = "dummyPassword"
@@ -417,6 +421,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -425,7 +430,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOboardEndnodeWithGatewayWithNilVendorThingIDError()
     {
-        let expectation = self.expectationWithDescription("testOboardEndnodeWithGatewayWithNilVendorThingIDError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOboardEndnodeWithGatewayWithNilVendorThingIDError")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -458,6 +463,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -466,7 +472,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOboardEndnodeWithGatewayWithEmptyVendorThingIDError()
     {
-        let expectation = self.expectationWithDescription("testOboardEndnodeWithGatewayWithEmptyVendorThingIDError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOboardEndnodeWithGatewayWithEmptyVendorThingIDError")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -500,6 +506,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -508,7 +515,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
 
     func testOboardEndnodeWithGatewayWithEmptyVendorThingPasswordError()
     {
-        let expectation = self.expectationWithDescription("testOboardEndnodeWithGatewayWithEmptyVendorThingPasswordError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testOboardEndnodeWithGatewayWithEmptyVendorThingPasswordError")
         let setting = TestSetting()
         let gatewayThingID = "dummyGatewayThingID"
         let vendorThingID = "dummyVendorThingID"
@@ -542,6 +549,7 @@ class OnboardEndnodeWithGatewayThingIDTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

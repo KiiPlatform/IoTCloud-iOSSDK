@@ -56,7 +56,7 @@ class ListTriggersTests: SmallTestBase {
         ]
 
 
-        let expectation = self.expectationWithDescription("testListTriggers_success_predicates")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testListTriggers_success_predicates")
 
         do{
             let expectedActionsDict: [Dictionary<String, AnyObject>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
@@ -124,6 +124,7 @@ class ListTriggersTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -131,7 +132,7 @@ class ListTriggersTests: SmallTestBase {
     }
     
     func testListTriggers_404_error() {
-        let expectation = self.expectationWithDescription("getTrigger403Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("getTrigger403Error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -180,6 +181,7 @@ class ListTriggersTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -187,7 +189,7 @@ class ListTriggersTests: SmallTestBase {
     }
 
     func testListTriggers_target_not_available_error() {
-        let expectation = self.expectationWithDescription("testListTriggers_target_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testListTriggers_target_not_available_error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -208,6 +210,7 @@ class ListTriggersTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

@@ -22,7 +22,7 @@ class GatewayAPIStoredInstanceTests: GatewayAPITestBase {
 
     func testLoadFromStoredInstance()
     {
-        let expectation = self.expectationWithDescription("testLoadFromStoredInstanceWithTag")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testLoadFromStoredInstanceWithTag")
         let setting = TestSetting()
 
         do {
@@ -45,6 +45,7 @@ class GatewayAPIStoredInstanceTests: GatewayAPITestBase {
         XCTAssertNil(api.tag)
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -66,7 +67,7 @@ class GatewayAPIStoredInstanceTests: GatewayAPITestBase {
 
     func testLoadFromStoredInstanceWithTag()
     {
-        let expectation = self.expectationWithDescription("testLoadFromStoredInstanceWithTag")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testLoadFromStoredInstanceWithTag")
         let setting = TestSetting()
         let tag = "dummyTag"
 
@@ -90,6 +91,7 @@ class GatewayAPIStoredInstanceTests: GatewayAPITestBase {
         XCTAssertEqual(tag, api.tag)
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

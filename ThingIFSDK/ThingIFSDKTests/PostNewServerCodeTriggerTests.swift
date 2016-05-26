@@ -26,7 +26,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
         let setting:TestSetting = TestSetting()
         let api = setting.api
         let tag = "PostNewServerCodeTriggerTests.testPostNewTrigger_success"
-        let expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_success_\(predicate.getEventSource().rawValue)")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_success_\(predicate.getEventSource().rawValue)")
         let expectedTriggerID = "0267251d9d60-1858-5e11-3dc3-00f3f0b5"
         let expectedEndpoint = "my_function"
         let expectedExecutorAccessToken = "abcdefgHIJKLMN1234567"
@@ -92,6 +92,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout for \(tag)")
             }
@@ -113,7 +114,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
         let setting:TestSetting = TestSetting()
         let api = setting.api
         let tag = "PostNewServerCodeTriggerTests.testPostNewServerCodeTrigger_http_404"
-        let expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_http_404_\(predicate.getEventSource().rawValue)")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_http_404_\(predicate.getEventSource().rawValue)")
         let expectedEndpoint = "my_function"
         let expectedExecutorAccessToken = "abcdefgHIJKLMN1234567"
         let expectedTargetAppID = "app000001"
@@ -179,6 +180,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout for \(tag)")
             }
@@ -188,7 +190,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
     func testPostNewServerCodeTrigger_UnsupportError() {
         let setting:TestSetting = TestSetting()
         let api = setting.api
-        let expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_UnsupportError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_UnsupportError")
         
         let serverCode:ServerCode = ServerCode(endpoint: "function_name", executorAccessToken: "abcd", targetAppID: "app001", parameters: nil)
         let predicate = SchedulePredicate(schedule: "'*/15 * * * *")
@@ -209,6 +211,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
         })
         
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -218,7 +221,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
     func testPostNewServerCodeTrigger_target_not_available_error() {
         let setting:TestSetting = TestSetting()
         let api = setting.api
-        let expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_target_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPostNewServerCodeTrigger_target_not_available_error")
         
         let serverCode:ServerCode = ServerCode(endpoint: "function_name", executorAccessToken: "abcd", targetAppID: "app001", parameters: nil)
         let predicate = StatePredicate(condition: Condition(clause: EqualsClause(field: "color", intValue: 0)), triggersWhen: TriggersWhen.CONDITION_FALSE_TO_TRUE)
@@ -238,6 +241,7 @@ class PostNewServerCodeTriggerTests: SmallTestBase {
         })
         
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

@@ -23,7 +23,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func testSuccess()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSuccess")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -62,6 +62,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -72,7 +73,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     {
         let setting = TestSetting()
         let api:GatewayAPI = GatewayAPI(app: setting.app, gatewayAddress: NSURL(string: setting.app.baseURL)!)
-        let expectation = self.expectationWithDescription("testNoLoggedInError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testNoLoggedInError")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -89,6 +90,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -98,7 +100,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func testEmptyThingIDError()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testEmptyThingIDError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEmptyThingIDError")
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: "", vendorThingID: vendorThingID)
 
@@ -114,6 +116,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -123,7 +126,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func testEmptyVendorThingIDError()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testEmptyVendorThingIDError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEmptyVendorThingIDError")
         let thingID = "dummyThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: "")
 
@@ -139,6 +142,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -148,7 +152,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func test400Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test400Error")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -193,6 +197,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -202,7 +207,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func test401Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test401Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test401Error")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -247,6 +252,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -256,7 +262,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func test404Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test404Error")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -301,6 +307,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -310,7 +317,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func test409Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test409Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test409Error")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -355,6 +362,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -364,7 +372,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
     func test503Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test503Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test503Error")
         let thingID = "dummyThingID"
         let vendorThingID = "dummyVendorThingID"
         let endNode = EndNode(thingID: thingID, vendorThingID: vendorThingID)
@@ -409,6 +417,7 @@ class NotifyOnboardingCompletionTests: GatewayAPITestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
