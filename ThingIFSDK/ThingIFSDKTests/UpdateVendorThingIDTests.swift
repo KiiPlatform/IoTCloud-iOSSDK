@@ -22,7 +22,7 @@ class UpdateVendorThingIDTests: SmallTestBase {
 
     func testUpdateVendorThingIDSuccess()
     {
-        let expectation = self.expectationWithDescription("testUpdateVendorThingIDSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testUpdateVendorThingIDSuccess")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -84,7 +84,8 @@ class UpdateVendorThingIDTests: SmallTestBase {
                 expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -93,7 +94,7 @@ class UpdateVendorThingIDTests: SmallTestBase {
 
     func testUpdateVendorThingID400Error()
     {
-        let expectation = self.expectationWithDescription("testUpdateVendorThingID400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testUpdateVendorThingID400Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -161,7 +162,8 @@ class UpdateVendorThingIDTests: SmallTestBase {
                 expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -170,7 +172,7 @@ class UpdateVendorThingIDTests: SmallTestBase {
 
     func testUpdateVendorThingID409Error()
     {
-        let expectation = self.expectationWithDescription("testUpdateVendorThingID409Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testUpdateVendorThingID409Error")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -238,7 +240,8 @@ class UpdateVendorThingIDTests: SmallTestBase {
                 expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -247,7 +250,7 @@ class UpdateVendorThingIDTests: SmallTestBase {
 
     func testUpdateVendorThingIDWithEmptyVendorThingIDError()
     {
-        let expectation = self.expectationWithDescription("testUpdateVendorThingIDWithEmptyVendorThingIDError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testUpdateVendorThingIDWithEmptyVendorThingIDError")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -271,7 +274,8 @@ class UpdateVendorThingIDTests: SmallTestBase {
                 expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -280,7 +284,7 @@ class UpdateVendorThingIDTests: SmallTestBase {
 
     func testUpdateVendorThingIDWithEmptyPasswordError()
     {
-        let expectation = self.expectationWithDescription("testUpdateVendorThingIDWithEmptyPasswordError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testUpdateVendorThingIDWithEmptyPasswordError")
         let setting = TestSetting()
         let api = setting.api
         let target = setting.target
@@ -304,7 +308,8 @@ class UpdateVendorThingIDTests: SmallTestBase {
                 expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

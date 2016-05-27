@@ -35,7 +35,7 @@ class PushInstallationTests: SmallTestBase {
         }
     }
     func onboard(setting:TestSetting){
-        let expectation = self.expectationWithDescription("onboardWithVendorThingID")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("onboardWithVendorThingID")
         
         do{
             let thingProperties:Dictionary<String, AnyObject> = ["key1":"value1", "key2":"value2"]
@@ -76,6 +76,7 @@ class PushInstallationTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -85,7 +86,7 @@ class PushInstallationTests: SmallTestBase {
     func testPushInstallation_success() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushInstallation_success")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushInstallation_success")
         //iotSession = NSURLSession.self
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -124,6 +125,7 @@ class PushInstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -134,7 +136,7 @@ class PushInstallationTests: SmallTestBase {
     func testPushInstallation_http_404() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushInstallation_http_404")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushInstallation_http_404")
         //iotSession = NSURLSession.self
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -184,6 +186,7 @@ class PushInstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -195,7 +198,7 @@ class PushInstallationTests: SmallTestBase {
     func testPushInstallation_http_400() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushInstallation_http_400")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushInstallation_http_400")
         //iotSession = NSURLSession.self
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -245,6 +248,7 @@ class PushInstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -256,7 +260,7 @@ class PushInstallationTests: SmallTestBase {
     func testPushInstallation_http_401() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushInstallation_http_401")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushInstallation_http_401")
         //iotSession = NSURLSession.self
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -306,6 +310,7 @@ class PushInstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

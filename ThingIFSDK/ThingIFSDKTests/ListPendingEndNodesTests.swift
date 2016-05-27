@@ -23,7 +23,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func testSuccess()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSuccess")
         let propeties:Dictionary<String, AnyObject> = [ "debug": true ]
         let list = [
             [ "vendorThingID": "abcd-1234" ],
@@ -74,7 +74,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             XCTFail("should not throw error")
         }
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -84,7 +85,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func testEmpty()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("testEmpty")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEmpty")
         let list = [
         ]
 
@@ -125,7 +126,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             XCTFail("should not throw error")
         }
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -136,7 +138,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     {
         let setting = TestSetting()
         let api:GatewayAPI = GatewayAPI(app: setting.app, gatewayAddress: NSURL(string: setting.app.baseURL)!)
-        let expectation = self.expectationWithDescription("testNoLoggedInError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testNoLoggedInError")
 
         api.listPendingEndNodes( { (nodes:[PendingEndNode]?, error:ThingIFError?) -> Void in
             XCTAssertNil(nodes)
@@ -150,7 +152,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -160,7 +163,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func test400Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test400Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -198,7 +201,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -208,7 +212,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func test401Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test401Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test401Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -246,7 +250,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -256,7 +261,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func test404Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test404Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test404Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -294,7 +299,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -304,7 +310,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func test409Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test409Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test409Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -342,7 +348,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -352,7 +359,7 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
     func test503Error()
     {
         let api:GatewayAPI = getLoggedInGatewayAPI()
-        let expectation = self.expectationWithDescription("test503Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test503Error")
 
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -390,7 +397,8 @@ class ListPendingEndNodesTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

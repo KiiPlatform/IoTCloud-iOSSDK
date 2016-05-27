@@ -95,10 +95,8 @@ class PatchTriggerTests: SmallTestBase {
     }
 
     func patchTrigger(tag: String, testcase: TestCase) {
-        weak var expectation : XCTestExpectation! = self.expectationWithDescription(tag)
-        defer{
-            expectation = nil
-        }
+        var expectation : XCTestExpectation! = self.expectationWithDescription(tag)
+        
         let setting = TestSetting()
         let api = setting.api
 
@@ -197,6 +195,7 @@ class PatchTriggerTests: SmallTestBase {
         })
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout for \(tag)")
             }
@@ -204,7 +203,7 @@ class PatchTriggerTests: SmallTestBase {
     }
 
     func testPatchTrigger_UnsupportError() {
-        weak var expectation : XCTestExpectation! = self.expectationWithDescription("patchTriggerUnsupportError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("patchTriggerUnsupportError")
         let setting = TestSetting()
         let api = setting.api
 
@@ -228,13 +227,14 @@ class PatchTriggerTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
         }
     }
     func testPatchTrigger_target_not_available_error() {
-        weak var expectation : XCTestExpectation! = self.expectationWithDescription("testPatchTrigger_target_not_available_error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPatchTrigger_target_not_available_error")
         let setting = TestSetting()
         let api = setting.api
 
@@ -256,6 +256,7 @@ class PatchTriggerTests: SmallTestBase {
         }
 
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

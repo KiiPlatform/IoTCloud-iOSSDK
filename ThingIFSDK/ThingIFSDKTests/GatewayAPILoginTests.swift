@@ -22,7 +22,7 @@ class GatewayAPILoginTests: GatewayAPITestBase {
 
     func testSuccess()
     {
-        let expectation = self.expectationWithDescription("testSuccess")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testSuccess")
         let setting = TestSetting()
         let username = "dummyUser"
         let password = "dummyPass"
@@ -71,7 +71,8 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -80,7 +81,7 @@ class GatewayAPILoginTests: GatewayAPITestBase {
 
     func testEmptyUsernameError()
     {
-        let expectation = self.expectationWithDescription("testEmptyUsernameError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEmptyUsernameError")
         let setting = TestSetting()
         let password = "dummyPass"
 
@@ -96,7 +97,8 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -105,7 +107,7 @@ class GatewayAPILoginTests: GatewayAPITestBase {
 
     func testEmptyPasswordError()
     {
-        let expectation = self.expectationWithDescription("testEmptyPasswordError")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testEmptyPasswordError")
         let setting = TestSetting()
         let username = "dummyUser"
 
@@ -121,7 +123,8 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -130,7 +133,7 @@ class GatewayAPILoginTests: GatewayAPITestBase {
 
     func test400Error()
     {
-        let expectation = self.expectationWithDescription("test400Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test400Error")
         let setting = TestSetting()
         let username = "dummyUser"
         let password = "dummyPass"
@@ -179,7 +182,8 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -188,7 +192,7 @@ class GatewayAPILoginTests: GatewayAPITestBase {
 
     func test401Error()
     {
-        let expectation = self.expectationWithDescription("test401Error")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("test401Error")
         let setting = TestSetting()
         let username = "dummyUser"
         let password = "dummyPass"
@@ -237,7 +241,8 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             expectation.fulfill()
         })
 
-        self.waitForExpectationsWithTimeout(20.0) { (error) -> Void in
+        self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }

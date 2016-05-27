@@ -10,13 +10,22 @@ import UIKit
 public class SDKVersion: NSObject {
     public static let sharedInstance = SDKVersion()
     /** Version of the Thing-IF SDK */
-    public var versionString:String?
-    internal var kiiSDKHeader:String?
-    private override init() {
+    private var _header : String?
+    private var _versionString : String?
+
+    public var versionString:String { if _versionString == nil {
         let b:NSBundle? = NSBundle.allFrameworks().filter{$0.bundleIdentifier == "Kii-Corporation.ThingIFSDK"}.first
-        versionString = b?.infoDictionary?["CFBundleShortVersionString"] as! String?
-        if let v = versionString {
-            kiiSDKHeader = "sn=it;sv=\(v);pv=\(UIDevice.currentDevice().systemVersion)"
+        _versionString = b?.infoDictionary?["CFBundleShortVersionString"] as! String?
         }
+        return _versionString!
+    }
+    internal var kiiSDKHeader:String {
+        if _header == nil {
+            _header = "sn=it;sv=\(versionString);pv=\(UIDevice.currentDevice().systemVersion)"
+        }
+
+        return _header!
+    }
+    private override init() {
     }
 }

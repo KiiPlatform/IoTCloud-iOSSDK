@@ -33,7 +33,7 @@ class PushUninstallationTests: SmallTestBase {
     }
 
     func onboard(setting:TestSetting){
-        let expectation = self.expectationWithDescription("onboardWithVendorThingID")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("onboardWithVendorThingID")
         
         do{
             let thingProperties:Dictionary<String, AnyObject> = ["key1":"value1", "key2":"value2"]
@@ -74,6 +74,7 @@ class PushUninstallationTests: SmallTestBase {
             print(e)
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -83,7 +84,7 @@ class PushUninstallationTests: SmallTestBase {
     func testPushUninstallation_success() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushUninstallation_success")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushUninstallation_success")
         let installID = "dummyInstallId"
         
         // verify request
@@ -110,6 +111,7 @@ class PushUninstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -119,7 +121,7 @@ class PushUninstallationTests: SmallTestBase {
     func testPushUninstallation_http_404() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushUninstallation_http_404")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushUninstallation_http_404")
         let installID = "dummyInstallId"
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -168,6 +170,7 @@ class PushUninstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
@@ -177,7 +180,7 @@ class PushUninstallationTests: SmallTestBase {
     func testPushUninstallation_http_401() {
         let setting = TestSetting()
         self.onboard(setting)
-        let expectation = self.expectationWithDescription("testPushUninstallation_http_401")
+        var expectation : XCTestExpectation! = self.expectationWithDescription("testPushUninstallation_http_401")
         let installID = "dummyInstallId"
         // verify request
         let requestVerifier: ((NSURLRequest) -> Void) = {(request) in
@@ -226,6 +229,7 @@ class PushUninstallationTests: SmallTestBase {
             expectation.fulfill()
         }
         self.waitForExpectationsWithTimeout(TEST_TIMEOUT) { (error) -> Void in
+expectation = nil
             if error != nil {
                 XCTFail("execution timeout")
             }
