@@ -639,7 +639,7 @@ class ThingIFSDKTests: SmallTestBase {
             XCTAssertFalse(false, "Unexpected exception throwed.")
         }
     }
-/*
+
     func testLoadFromStoredInstanceUpperSDKVersion()
     {
         let expectation = self.expectation(description: "testLoadFromStoredInstanceUpperSDKVersion")
@@ -678,5 +678,4 @@ class ThingIFSDKTests: SmallTestBase {
             XCTAssertFalse(false, "Unexpected exception throwed.")
         }
     }
-*/
 }
