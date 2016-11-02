@@ -19,7 +19,7 @@ class ThingIFSDKTests: SmallTestBase {
     override func tearDown() {
         super.tearDown()
     }
-    
+    /*
     func testSavedInstanceWithInit(){
         let persistance = UserDefaults.standard
         let baseKey = "ThingIFAPI_INSTANCE"
@@ -678,4 +678,5 @@ class ThingIFSDKTests: SmallTestBase {
             XCTAssertFalse(false, "Unexpected exception throwed.")
         }
     }
+*/
 }
