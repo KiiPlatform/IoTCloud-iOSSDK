@@ -485,7 +485,7 @@ class ThingIFSDKTests: SmallTestBase {
         let persistance = UserDefaults.standard
         let baseKey = "ThingIFAPI_INSTANCE"
         let versionKey = "ThingIFAPI_VERSION"
-        let sdkVersion = SDKVersion.sharedInstance.versionString
+        let sdkVersion = SDKVersion.sharedInstance.versionString!
         //clear
         persistance.removeObject(forKey: baseKey)
         persistance.synchronize()
@@ -530,7 +530,7 @@ class ThingIFSDKTests: SmallTestBase {
         }
 
         //set invalid object type to the persistance
-        persistance.set(NSDictionary(dictionary: [baseKey:"a", versionKey:sdkVersion!]), forKey: baseKey)
+        persistance.set(NSDictionary(dictionary: [baseKey:"a", versionKey:sdkVersion]), forKey: baseKey)
         persistance.synchronize()
         
         XCTAssertThrowsError(try ThingIFAPI.loadWithStoredInstance()) { error in
@@ -542,7 +542,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-/*
+
         //set invalid object to the persistance
         persistance.set(NSDictionary(dictionary: [baseKey:NSKeyedArchiver.archivedData(withRootObject: "a"), versionKey:sdkVersion]), forKey: baseKey)
         persistance.synchronize()
@@ -557,7 +557,7 @@ class ThingIFSDKTests: SmallTestBase {
             }
         } catch {
             XCTFail("Exception should be INVALID_STORED_API")
-        }*/
+        }
     }
  
     func testLoadFromStoredInstanceNoSDKVersion()
