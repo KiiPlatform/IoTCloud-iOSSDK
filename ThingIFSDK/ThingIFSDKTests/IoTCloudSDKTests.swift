@@ -300,7 +300,7 @@ class ThingIFSDKTests: SmallTestBase {
         }
     }
 
-    
+    */
     fileprivate func setMockResponse4Onboard(_ accessToken: String, thingID: String, setting:TestSetting) -> Void {
         let dict = ["accessToken":accessToken,"thingID":thingID]
         do {
@@ -313,7 +313,7 @@ class ThingIFSDKTests: SmallTestBase {
             XCTFail("exception happened")
             return;
         }
-    }
+    }/*
     func testSavedInstanceWithInstallPush(){
         let tags = ["tag1","tag2"]
         let setting = TestSetting()
@@ -557,7 +557,7 @@ class ThingIFSDKTests: SmallTestBase {
             }
         }
     }
-    
+    */
     func testLoadFromStoredInstanceNoSDKVersion()
     {
         let expectation = self.expectation(description: "testLoadFromStoredInstanceNoSDKVersion")
@@ -598,7 +598,7 @@ class ThingIFSDKTests: SmallTestBase {
             XCTAssertFalse(false, "Unexpected exception throwed.")
         }
     }
-
+/*
     func testLoadFromStoredInstanceLowerSDKVersion()
     {
         let expectation = self.expectation(description: "testLoadFromStoredInstanceLowerSDKVersion")
