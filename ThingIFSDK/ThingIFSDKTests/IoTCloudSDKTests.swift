@@ -419,7 +419,7 @@ class ThingIFSDKTests: SmallTestBase {
             return;
         }
 
-    }
+    }*/
     func testSavedInstanceWithCopyWithTarget(){
         let tags = ["tag1","tag2"]
         let setting = TestSetting()
@@ -479,7 +479,7 @@ class ThingIFSDKTests: SmallTestBase {
                 XCTFail("Unexpect error")
             }
         }
-    }*/
+    }/*
     func testInvalidSavedInstance(){
 
         let persistance = UserDefaults.standard
@@ -556,7 +556,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-    }
+    }*/
  
     func testLoadFromStoredInstanceNoSDKVersion()
     {
