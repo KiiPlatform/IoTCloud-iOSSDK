@@ -528,7 +528,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-/*
+
         //set invalid object type to the persistance
         persistance.set(NSDictionary(dictionary: [baseKey:"a", versionKey:sdkVersion]), forKey: baseKey)
         persistance.synchronize()
@@ -542,7 +542,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-
+/*
         //set invalid object to the persistance
         persistance.set(NSDictionary(dictionary: [baseKey:NSKeyedArchiver.archivedData(withRootObject: "a"), versionKey:sdkVersion]), forKey: baseKey)
         persistance.synchronize()
