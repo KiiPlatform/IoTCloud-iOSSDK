@@ -500,7 +500,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-/*
+
         //set invalid object to base key
         persistance.set(1, forKey: baseKey)
         persistance.synchronize()
@@ -514,7 +514,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-
+/*
         //set empty dict to base key
         persistance.set(NSDictionary(), forKey: baseKey)
         persistance.synchronize()
