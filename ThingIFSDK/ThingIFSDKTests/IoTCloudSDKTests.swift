@@ -19,7 +19,7 @@ class ThingIFSDKTests: SmallTestBase {
     override func tearDown() {
         super.tearDown()
     }
-    /*
+    
     func testSavedInstanceWithInit(){
         let persistance = UserDefaults.standard
         let baseKey = "ThingIFAPI_INSTANCE"
@@ -313,7 +313,7 @@ class ThingIFSDKTests: SmallTestBase {
             XCTFail("exception happened")
             return;
         }
-    }/*
+    }
     func testSavedInstanceWithInstallPush(){
         let tags = ["tag1","tag2"]
         let setting = TestSetting()
@@ -419,7 +419,7 @@ class ThingIFSDKTests: SmallTestBase {
             return;
         }
 
-    }*/
+    }
     func testSavedInstanceWithCopyWithTarget(){
         let tags = ["tag1","tag2"]
         let setting = TestSetting()
