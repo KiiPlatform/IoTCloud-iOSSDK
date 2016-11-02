@@ -530,7 +530,7 @@ class ThingIFSDKTests: SmallTestBase {
         }
 
         //set invalid object type to the persistance
-        persistance.set(NSDictionary(dictionary: [baseKey:"a", versionKey:sdkVersion]), forKey: baseKey)
+        persistance.set(NSDictionary(dictionary: [baseKey:"a", versionKey:sdkVersion!]), forKey: baseKey)
         persistance.synchronize()
         
         XCTAssertThrowsError(try ThingIFAPI.loadWithStoredInstance()) { error in
