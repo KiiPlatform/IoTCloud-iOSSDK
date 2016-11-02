@@ -300,7 +300,7 @@ class ThingIFSDKTests: SmallTestBase {
         }
     }
 
-    */
+ 
     fileprivate func setMockResponse4Onboard(_ accessToken: String, thingID: String, setting:TestSetting) -> Void {
         let dict = ["accessToken":accessToken,"thingID":thingID]
         do {
