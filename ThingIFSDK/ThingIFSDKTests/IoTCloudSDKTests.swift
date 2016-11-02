@@ -479,7 +479,7 @@ class ThingIFSDKTests: SmallTestBase {
                 XCTFail("Unexpect error")
             }
         }
-    }
+    }*/
     func testInvalidSavedInstance(){
 
         let persistance = UserDefaults.standard
@@ -557,7 +557,7 @@ class ThingIFSDKTests: SmallTestBase {
             }
         }
     }
-    */
+ 
     func testLoadFromStoredInstanceNoSDKVersion()
     {
         let expectation = self.expectation(description: "testLoadFromStoredInstanceNoSDKVersion")
