@@ -10,11 +10,11 @@ open class ThingIFAPI: NSObject, NSCoding {
 
     fileprivate static let SHARED_NSUSERDEFAULT_KEY_INSTANCE = "ThingIFAPI_INSTANCE"
     fileprivate static func getStoredInstanceKey(_ tag : String?) -> String{
-        return SHARED_NSUSERDEFAULT_KEY_INSTANCE + (tag == nil ? "" : "_\(tag)")
+        return SHARED_NSUSERDEFAULT_KEY_INSTANCE + (tag == nil ? "" : "_\(tag!)")
     }
     fileprivate static let SHARED_NSUSERDEFAULT_SDK_VERSION_KEY = "ThingIFAPI_VERSION"
     fileprivate static func getStoredSDKVersionKey(_ tag : String?) -> String{
-        return SHARED_NSUSERDEFAULT_SDK_VERSION_KEY + (tag == nil ? "" : "_\(tag)")
+        return SHARED_NSUSERDEFAULT_SDK_VERSION_KEY + (tag == nil ? "" : "_\(tag!)")
     }
     fileprivate static let MINIMUM_LOADABLE_SDK_VERSION = "0.13.0"
 
@@ -812,9 +812,9 @@ open class ThingIFAPI: NSObject, NSCoding {
         {
             if dict.object(forKey: key) != nil {
 
-                let sdkVersion = dict.object(forKey: versionKey) as? String
-                if isLoadable(sdkVersion) == false {
-                    throw ThingIFError.api_UNLOADABLE
+                let storedSDKVersion = dict.object(forKey: versionKey) as? String
+                if isLoadable(storedSDKVersion) == false {
+                    throw ThingIFError.api_UNLOADABLE(tag: tag, storedVersion: storedSDKVersion, minimumVersion: MINIMUM_LOADABLE_SDK_VERSION)
                 }
 
                 if let data = dict[key] as? Data {
@@ -827,10 +827,10 @@ open class ThingIFAPI: NSObject, NSCoding {
                     throw ThingIFError.invalid_STORED_API
                 }
             } else {
-                throw ThingIFError.api_NOT_STORED
+                throw ThingIFError.api_NOT_STORED(tag: tag)
             }
         }else{
-            throw ThingIFError.api_NOT_STORED
+            throw ThingIFError.api_NOT_STORED(tag: tag)
         }
     }
     /** Save this instance

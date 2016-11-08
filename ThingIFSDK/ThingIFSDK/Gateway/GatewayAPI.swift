@@ -514,9 +514,9 @@ open class GatewayAPI: NSObject, NSCoding {
         if let dict = UserDefaults.standard.object(forKey: baseKey) as? NSDictionary {
             if dict.object(forKey: key) != nil {
 
-                let sdkVersion = dict.object(forKey: versionKey) as? String
-                if isLoadable(sdkVersion) == false {
-                    throw ThingIFError.api_UNLOADABLE
+                let storedSDKVersion = dict.object(forKey: versionKey) as? String
+                if isLoadable(storedSDKVersion) == false {
+                    throw ThingIFError.api_UNLOADABLE(tag: tag, storedVersion: storedSDKVersion, minimumVersion: MINIMUM_LOADABLE_SDK_VERSION)
                 }
 
                 if let data = dict[key] as? Data {
@@ -529,10 +529,10 @@ open class GatewayAPI: NSObject, NSCoding {
                     throw ThingIFError.invalid_STORED_API
                 }
             } else {
-                throw ThingIFError.api_NOT_STORED
+                throw ThingIFError.api_NOT_STORED(tag: tag)
             }
         } else {
-            throw ThingIFError.api_NOT_STORED
+            throw ThingIFError.api_NOT_STORED(tag: tag)
         }
     }
 
