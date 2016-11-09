@@ -2,7 +2,7 @@ machine:
   xcode:
     version: "8.1"
   environment:
-    default_destination: platform=iOS Simulator,name=iPhone 6,OS=latest
+    default_destination: platform=iOS Simulator,name=iPhone 6,OS=10.1
 
 dependencies:
   pre:
