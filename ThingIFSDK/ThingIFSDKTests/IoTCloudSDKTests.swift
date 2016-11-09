@@ -479,7 +479,7 @@ class ThingIFSDKTests: SmallTestBase {
                 XCTFail("Unexpect error")
             }
         }
-    }/*
+    }
     func testInvalidSavedInstance(){
 
         let persistance = UserDefaults.standard
@@ -500,7 +500,7 @@ class ThingIFSDKTests: SmallTestBase {
                 break
             }
         }
-
+/*
         //set invalid object to base key
         persistance.set(1, forKey: baseKey)
         persistance.synchronize()
@@ -555,8 +555,10 @@ class ThingIFSDKTests: SmallTestBase {
                 XCTFail("Exception should be INVALID_STORED_API")
                 break
             }
-        }
-    }*/
+        } catch {
+            XCTFail("Exception should be INVALID_STORED_API")
+        }*/
+    }
  
     func testLoadFromStoredInstanceNoSDKVersion()
     {
