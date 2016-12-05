@@ -46,7 +46,7 @@ open class CommandForm: NSObject, NSCoding {
     Initializer of CommandForm instance.
 
     - Parameter actions: List of actions. Must not be empty. Both of
-      non trait acation list and trait action list are acceptable but
+      non trait action list and trait action list are acceptable but
       non trait action and trait action must not be mixed in a list.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
