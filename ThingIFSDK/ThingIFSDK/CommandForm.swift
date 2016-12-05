@@ -16,7 +16,7 @@ This class contains data in order to create `Command` with
 
 Mandatory data are followings:
 
-  - List of actions
+  - Array of actions
 
 Optional data are followings:
 
@@ -28,7 +28,7 @@ open class CommandForm: NSObject, NSCoding {
 
     // MARK: - Properties
 
-    /// List of actions.
+    /// Array of actions.
     open let actions: [[String : Any]]
 
     /// Title of a command.
@@ -45,9 +45,9 @@ open class CommandForm: NSObject, NSCoding {
     /**
     Initializer of CommandForm instance.
 
-    - Parameter actions: List of actions. Must not be empty. Both of
-      non trait action list and trait action list are acceptable but
-      non trait action and trait action must not be mixed in a list.
+    - Parameter actions: Array of actions. Must not be empty. Both of
+      non trait action array and trait action array are acceptable but
+      non trait action and trait action must not be mixed in a array.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
     - Parameter description: Description of a comand. This should be
