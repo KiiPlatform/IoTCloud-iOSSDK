@@ -51,12 +51,12 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     open let useTrait: Bool
 
     // MARK: - Initializing TriggeredCommandForm instance.
-    init(actions: [[String : Any]],
-         useTrait: Bool,
-         targetID: TypedID? = nil,
-         title: String? = nil,
-         commandDescription: String? = nil,
-         metadata: Dictionary<String, Any>? = nil)
+    private init(actions: [[String : Any]],
+                 useTrait: Bool,
+                 targetID: TypedID? = nil,
+                 title: String? = nil,
+                 commandDescription: String? = nil,
+                 metadata: Dictionary<String, Any>? = nil)
     {
         self.actions = actions
         self.targetID = targetID

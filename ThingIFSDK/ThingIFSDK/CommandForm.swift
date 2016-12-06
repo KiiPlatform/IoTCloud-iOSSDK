@@ -45,11 +45,11 @@ open class CommandForm: NSObject, NSCoding {
 
     // MARK: - Initializing CommandForm instance.
 
-    init(actions: [[String : Any]],
-         useTrait: Bool,
-         title: String? = nil,
-         commandDescription: String? = nil,
-         metadata: Dictionary<String, Any>? = nil)
+    private init(actions: [[String : Any]],
+                 useTrait: Bool,
+                 title: String? = nil,
+                 commandDescription: String? = nil,
+                 metadata: Dictionary<String, Any>? = nil)
     {
         self.actions = actions
         self.useTrait = useTrait
