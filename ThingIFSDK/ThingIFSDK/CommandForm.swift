@@ -41,7 +41,7 @@ open class CommandForm: NSObject, NSCoding {
     open let metadata: Dictionary<String, Any>?
 
     /// Use trait or not.
-    open let useTrait: Bool
+    internal let useTrait: Bool
 
     // MARK: - Initializing CommandForm instance.
 
