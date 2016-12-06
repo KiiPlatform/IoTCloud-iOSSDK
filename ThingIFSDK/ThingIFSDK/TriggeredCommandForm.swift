@@ -47,32 +47,73 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     /// Meta data of ad command.
     open let metadata: Dictionary<String, Any>?
 
+    /// Use trait or not.
+    internal let useTrait: Bool
 
     // MARK: - Initializing TriggeredCommandForm instance.
-    /**
-    Initializer of TriggeredCommandForm instance.
+    private init(actions: [[String : Any]],
+                 useTrait: Bool,
+                 targetID: TypedID? = nil,
+                 title: String? = nil,
+                 commandDescription: String? = nil,
+                 metadata: Dictionary<String, Any>? = nil)
+    {
+        self.actions = actions
+        self.targetID = targetID
+        self.useTrait = useTrait
+        self.title = title;
+        self.commandDescription = commandDescription;
+        self.metadata = metadata;
+    }
 
-    - Parameter actions: Array of actions. Must not be empty. Both of
-      non trait action array and trait action array are acceptable but
-      non trait action and trait action must not be mixed in a array.
-    - Parameter targetID: target thing ID.
+    /**
+    Initializer of TriggeredCommandForm instance for non trait.
+
+    - Parameter actions: Array of actions. Must not be empty. The
+      contente of this array must be non trait actions.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
     - Parameter description: Description of a comand. This should be
       equal or less than 200 characters.
     - Parameter metadata: Meta data of a command.
     */
-    public init(actions: [[String : Any]],
-                targetID: TypedID? = nil,
-                title: String? = nil,
-                commandDescription: String? = nil,
-                metadata: Dictionary<String, Any>? = nil)
+    public convenience init(actions: [[String : Any]],
+                            targetID: TypedID? = nil,
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
     {
-        self.actions = actions
-        self.targetID = targetID
-        self.title = title
-        self.commandDescription = commandDescription
-        self.metadata = metadata
+        self.init(actions: actions,
+                  useTrait: false,
+                  targetID: targetID,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
+    }
+
+    /**
+    Initializer of TriggeredCommandForm instance for trait.
+
+    - Parameter actions: Array of actions. Must not be empty. The
+      contente of this array must be trait actions.
+    - Parameter title: Title of a command. This should be equal or
+      less than 50 characters.
+    - Parameter description: Description of a comand. This should be
+      equal or less than 200 characters.
+    - Parameter metadata: Meta data of a command.
+    */
+    public convenience init(traitActions: [[String : [String : Any]]],
+                            targetID: TypedID? = nil,
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
+    {
+        self.init(actions: traitActions,
+                  useTrait: true,
+                  targetID: targetID,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
     }
 
     /**

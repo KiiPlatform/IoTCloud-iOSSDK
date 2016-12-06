@@ -40,29 +40,68 @@ open class CommandForm: NSObject, NSCoding {
     /// Meta data of ad command.
     open let metadata: Dictionary<String, Any>?
 
+    /// Use trait or not.
+    internal let useTrait: Bool
 
     // MARK: - Initializing CommandForm instance.
-    /**
-    Initializer of CommandForm instance.
 
-    - Parameter actions: Array of actions. Must not be empty. Both of
-      non trait action array and trait action array are acceptable but
-      non trait action and trait action must not be mixed in a array.
+    private init(actions: [[String : Any]],
+                 useTrait: Bool,
+                 title: String? = nil,
+                 commandDescription: String? = nil,
+                 metadata: Dictionary<String, Any>? = nil)
+    {
+        self.actions = actions
+        self.useTrait = useTrait
+        self.title = title;
+        self.commandDescription = commandDescription;
+        self.metadata = metadata;
+    }
+
+    /**
+    Initializer of CommandForm instance for non trait.
+
+    - Parameter actions: Array of actions. Must not be empty. The
+      contente of this array must be non trait actions.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
     - Parameter description: Description of a comand. This should be
       equal or less than 200 characters.
     - Parameter metadata: Meta data of a command.
     */
-    public init(actions: [[String : Any]],
-                title: String? = nil,
-                commandDescription: String? = nil,
-                metadata: Dictionary<String, Any>? = nil)
+    public convenience init(actions: [[String : Any]],
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
     {
-        self.actions = actions
-        self.title = title;
-        self.commandDescription = commandDescription;
-        self.metadata = metadata;
+        self.init(actions: actions,
+                  useTrait: false,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
+    }
+
+    /**
+    Initializer of CommandForm instance for trait.
+
+    - Parameter actions: Array of trait actions. Must not be
+      empty. The contente of this array must be trait actions.
+    - Parameter title: Title of a command. This should be equal or
+      less than 50 characters.
+    - Parameter description: Description of a comand. This should be
+      equal or less than 200 characters.
+    - Parameter metadata: Meta data of a command.
+    */
+    public convenience init(traitActions: [[String : [String : Any]]],
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
+    {
+        self.init(actions: traitActions,
+                  useTrait: true,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
     }
 
     open func encode(with aCoder: NSCoder) {
