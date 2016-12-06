@@ -619,6 +619,13 @@ open class ThingIFAPI: NSObject, NSCoding {
         }
     }
 
+    // MARK: - Firmware version
+    /**
+     */
+    open func update(firmwareVersion: String) {
+        // TODO: implement me.
+    }
+
     // MARK: - Copy with new target instance
 
     /** Get new instance with new target
