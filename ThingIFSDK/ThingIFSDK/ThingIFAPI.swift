@@ -619,6 +619,39 @@ open class ThingIFAPI: NSObject, NSCoding {
         }
     }
 
+    // MARK: - Update thing information.
+
+    /** Update firmware version of thing.
+
+     - Parameter firmwareVersion: new firmware version to be updated.
+     - Parameter completionHandler: A closure to be executed once when
+       this method is finished. The closure takes 1 argument: an
+       instance of ThingIFError is set when execution is
+       failed. Otherwise nil.
+     */
+    open func update(
+        firmwareVersion: String,
+        completionHandler: @escaping(ThingIFError?) -> Void) -> Void
+    {
+        // TODO: implement me.
+    }
+
+    /** Update thingType of thing. This method must be used to make
+     thing start to use trait.
+
+     - Parameter thingType: Thing type must be alreday defined.
+     - Parameter completionHandler: A closure to be executed once when
+       this method is finished. The closure takes 1 argument: an
+       instance of ThingIFError is set when execution is
+       failed. Otherwise nil.
+     */
+    open func update(
+        thingType: String,
+        completionHandler: @escaping(ThingIFError?) -> Void) -> Void
+    {
+        // TODO: implement me.
+    }
+
     // MARK: - Copy with new target instance
 
     /** Get new instance with new target
