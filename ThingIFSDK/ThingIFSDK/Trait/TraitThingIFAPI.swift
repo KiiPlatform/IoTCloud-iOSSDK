@@ -10,6 +10,10 @@ import Foundation
 
 open class TraitThingIFAPI: NSObject, NSCoding {
 
+    // NOTE: This should be removed in implementation.
+    private override init() {
+    }
+
     // MARK: - Implements NSCoding protocol
     open func encode(with aCoder: NSCoder) {
         // TODO: implement me.
@@ -230,9 +234,10 @@ open class TraitThingIFAPI: NSObject, NSCoding {
     */
     open func copyWithTarget(
         _ newTarget: Target,
-        tag : String? = nil) -> TraitThingIFAPI
+        tag: String? = nil) -> TraitThingIFAPI
     {
         // TODO: implement me.
+        return TraitThingIFAPI()
     }
 
     /** Try to load the instance of TraitThingIFAPI using stored serialized instance.
@@ -257,10 +262,11 @@ open class TraitThingIFAPI: NSObject, NSCoding {
      - Returns: TraitThingIFAPI instance.
     */
     open static func loadWithStoredInstance(
-        _ tag : String? = nil)
+        _ tag: String? = nil)
       throws -> TraitThingIFAPI?
     {
         // TODO: implement me.
+        return nil
     }
 
     /** Save this instance */
@@ -278,7 +284,7 @@ open class TraitThingIFAPI: NSObject, NSCoding {
      - Parameter tag: tag of the TraitThingIFAPI instance or nil for
        default tag
     */
-    open static func removeStoredInstances(_ tag : String?=nil) -> Void{
+    open static func removeStoredInstances(_ tag: String? = nil) -> Void {
         // TODO: implement me.
     }
 
