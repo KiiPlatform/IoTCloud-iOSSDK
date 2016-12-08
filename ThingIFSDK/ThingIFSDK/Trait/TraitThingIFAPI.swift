@@ -10,8 +10,25 @@ import Foundation
 
 open class TraitThingIFAPI: NSObject, NSCoding {
 
+    private let thingIfApi: ThingIFAPI
+
     // NOTE: This should be removed in implementation.
     private override init() {
+        // This is dummy code. Please fix in implementation phase.
+        self.thingIfApi = ThingIFAPI(
+          app: AppBuilder(appID: "dummy",
+                          appKey: "dummy",
+                          hostName: "dummy").make(),
+          owner: Owner(typedID: TypedID(type: "dummy",
+                                        id: "dummy"),
+                       accessToken: "dummy"))
+    }
+
+    private init?(thingIfApi: ThingIFAPI?) {
+        guard let api = thingIfApi else {
+            return nil
+        }
+        self.thingIfApi = api
     }
 
     // MARK: - Implements NSCoding protocol
@@ -21,6 +38,15 @@ open class TraitThingIFAPI: NSObject, NSCoding {
 
     public required init(coder aDecoder: NSCoder){
         // TODO: implement me.
+
+        // This is dummy code. Please fix in implementation phase.
+        self.thingIfApi = ThingIFAPI(
+          app: AppBuilder(appID: "dummy",
+                          appKey: "dummy",
+                          hostName: "dummy").make(),
+          owner: Owner(typedID: TypedID(type: "dummy",
+                                        id: "dummy"),
+                       accessToken: "dummy"))
     }
 
     // MARK: - On board methods
@@ -52,7 +78,10 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         completionHandler: @escaping (Target?, ThingIFError?)-> Void
         ) ->Void
     {
-        // TODO: implement me.
+        self.thingIfApi.onboardWith(vendorThingID: vendorThingID,
+                                    thingPassword: thingPassword,
+                                    options: options,
+                                    completionHandler: completionHandler)
     }
 
     /** On board IoT Cloud with the specified thing ID.
@@ -83,7 +112,10 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         completionHandler: @escaping (Target?, ThingIFError?)-> Void
         ) ->Void
     {
-        // TODO: implement me.
+        self.thingIfApi.onboardWith(thingID: thingID,
+                                    thingPassword: thingPassword,
+                                    options: options,
+                                    completionHandler: completionHandler)
     }
 
     /** Endpoints execute onboarding for the thing and merge MQTT
@@ -104,7 +136,10 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         completionHandler: @escaping (EndNode?, ThingIFError?)-> Void
         ) ->Void
     {
-        // TODO: implement me.
+        self.thingIfApi.onboard(pendingEndnode: pendingEndnode,
+                     endnodePassword: endnodePassword,
+                     options: options,
+                     completionHandler: completionHandler)
     }
 
     // MARK: - Push notification methods
@@ -128,7 +163,9 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         development:Bool?=false,
         completionHandler: @escaping (String?, ThingIFError?)-> Void) -> Void
     {
-        // TODO: implement me.
+        self.thingIfApi.installPush(deviceToken,
+                                    development: development,
+                                    completionHandler: completionHandler)
     }
 
     /** Uninstall push notification.
@@ -142,7 +179,8 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         _ installationID:String?,
         completionHandler: @escaping (ThingIFError?)-> Void) -> Void
     {
-        // TODO: implement me.
+        self.thingIfApi.uninstallPush(installationID,
+                                      completionHandler: completionHandler)
     }
 
     // MARK: - Trigger methods
@@ -168,7 +206,9 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         enable:Bool,
         completionHandler: @escaping (Trigger?, ThingIFError?)-> Void) -> Void
     {
-        // TODO: implement me.
+        self.thingIfApi.enableTrigger(triggerID,
+                                      enable: enable,
+                                      completionHandler: completionHandler)
     }
 
     /** Delete a registered Trigger.
@@ -187,7 +227,8 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         _ triggerID:String,
         completionHandler: @escaping (String, ThingIFError?)-> Void) -> Void
     {
-        // TODO: implement me.
+        self.thingIfApi.deleteTrigger(triggerID,
+                           completionHandler: completionHandler)
     }
 
     // MARK: - Get the state of specified target
@@ -203,7 +244,7 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         _ completionHandler: @escaping (String?, ThingIFError?)-> Void
         )
     {
-        // TODO: implement me.
+        self.thingIfApi.getVendorThingID(completionHandler)
     }
 
     /** Update the Vendor Thing ID of specified Target.
@@ -219,7 +260,9 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         password: String,
         completionHandler: @escaping (ThingIFError?)-> Void) -> Void
     {
-        // TODO: implement me.
+        self.thingIfApi.update(vendorThingID,
+                               password: password,
+                               completionHandler: completionHandler)
     }
 
     // MARK: - Copy with new target instance
@@ -236,8 +279,8 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         _ newTarget: Target,
         tag: String? = nil) -> TraitThingIFAPI
     {
-        // TODO: implement me.
-        return TraitThingIFAPI()
+        return TraitThingIFAPI(
+          thingIfApi: self.thingIfApi.copyWithTarget(newTarget, tag: tag))!
     }
 
     /** Try to load the instance of TraitThingIFAPI using stored serialized instance.
@@ -265,18 +308,21 @@ open class TraitThingIFAPI: NSObject, NSCoding {
         _ tag: String? = nil)
       throws -> TraitThingIFAPI?
     {
-        // TODO: implement me.
-        return nil
+        // NOTE: We may distinguish saved ThingIFAPI and
+        // TraitThingIFAPI instance. We should consider about this in
+        // implementation phase.
+        return try TraitThingIFAPI(
+          thingIfApi: ThingIFAPI.loadWithStoredInstance(tag))
     }
 
     /** Save this instance */
     open func saveInstance() -> Void {
-        // TODO: implement me.
+        self.thingIfApi.saveInstance()
     }
 
     /** Clear all saved instances in the NSUserDefaults. */
-    open static func removeAllStoredInstances(){
-        // TODO: implement me.
+    open static func removeAllStoredInstances() -> Void{
+        ThingIFAPI.removeAllStoredInstances()
     }
 
     /** Remove saved specified instance in the NSUserDefaults.
@@ -285,7 +331,7 @@ open class TraitThingIFAPI: NSObject, NSCoding {
        default tag
     */
     open static func removeStoredInstances(_ tag: String? = nil) -> Void {
-        // TODO: implement me.
+        ThingIFAPI.removeStoredInstances(tag)
     }
 
 
