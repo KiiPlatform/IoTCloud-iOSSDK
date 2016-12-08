@@ -1,0 +1,83 @@
+//
+//  TraitCommandForm.swift
+//  ThingIFSDK
+//
+//  Created on 2016/12/08.
+//  Copyright (c) 2016 Kii. All rights reserved.
+//
+
+import Foundation
+
+/**
+Form of a command for trait version thing.
+
+This class contains data in order to create `Command` with
+`TraitThingIFAPI.postNewCommand(_:completionHandler:)`.
+
+Mandatory data are followings:
+
+  - List of actions
+
+Optional data are followings:
+
+  - Title of a command
+  - Description of a command
+  - Meta data of a command
+*/
+open class TraitCommandForm: NSObject, NSCoding {
+
+    // MARK: - Properties
+
+    /// List of actions.
+    open let actions: [[String : [String : Any]]]
+
+    /// Title of a command.
+    open let title: String?
+
+    /// Description of a command.
+    open let commandDescription: String?
+
+    /// Meta data of ad command.
+    open let metadata: [String : Any]?
+
+
+    // MARK: - Initializing TraitCommandForm instance.
+    /**
+     Initializer of TraitCommandForm instance.
+
+     - Parameter actions: List of actions. Must not be empty.
+     - Parameter title: Title of a command. This should be equal or
+       less than 50 characters.
+     - Parameter description: Description of a comand. This should be
+       equal or less than 200 characters.
+     - Parameter metadata: Meta data of a command.
+    */
+    public init(actions: [[String : [String : Any]]],
+                title: String? = nil,
+                commandDescription: String? = nil,
+                metadata: [String : Any]? = nil)
+    {
+        self.actions = actions
+        self.title = title;
+        self.commandDescription = commandDescription;
+        self.metadata = metadata;
+    }
+
+    open func encode(with aCoder: NSCoder) {
+        aCoder.encode(self.actions, forKey: "actions")
+        aCoder.encode(self.title, forKey: "title")
+        aCoder.encode(self.commandDescription,
+                forKey: "commandDescription");
+        aCoder.encode(self.metadata, forKey: "metadata")
+    }
+
+    public required init?(coder aDecoder: NSCoder) {
+        self.actions = aDecoder.decodeObject(forKey: "actions")
+          as! [[String : [String : Any]]];
+        self.title = aDecoder.decodeObject(forKey: "title") as? String
+        self.commandDescription =
+            aDecoder.decodeObject(forKey: "commandDescription") as? String;
+        self.metadata = aDecoder.decodeObject(forKey: "metadata")
+          as? [String : Any];
+    }
+}
