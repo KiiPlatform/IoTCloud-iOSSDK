@@ -115,6 +115,7 @@
 		B61FEC611DF80E860090DF6B /* TraitThingIFAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FEC601DF80E860090DF6B /* TraitThingIFAPI.swift */; };
 		B61FEC631DF80F2C0090DF6B /* TraitThingIFAPIBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FEC621DF80F2C0090DF6B /* TraitThingIFAPIBuilder.swift */; };
 		B61FEC651DF941A40090DF6B /* TraitCommandForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FEC641DF941A40090DF6B /* TraitCommandForm.swift */; };
+		B61FEC751DFA84E90090DF6B /* TraitCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = B61FEC741DFA84E90090DF6B /* TraitCommand.swift */; };
 		B6323D291DA6271B0012D6A1 /* PatchTriggerWithTriggeredCommandFormTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6323D281DA6271B0012D6A1 /* PatchTriggerWithTriggeredCommandFormTests.swift */; };
 		B6323D2B1DA7572E0012D6A1 /* PostNewServerCodeTriggerWithTriggerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6323D2A1DA7572E0012D6A1 /* PostNewServerCodeTriggerWithTriggerOptionsTests.swift */; };
 		B6323D2D1DA78BC70012D6A1 /* PatchServerCodeTriggerWIthTriggerOptionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6323D2C1DA78BC70012D6A1 /* PatchServerCodeTriggerWIthTriggerOptionsTests.swift */; };
@@ -270,6 +271,7 @@
 		B61FEC601DF80E860090DF6B /* TraitThingIFAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraitThingIFAPI.swift; path = Trait/TraitThingIFAPI.swift; sourceTree = "<group>"; };
 		B61FEC621DF80F2C0090DF6B /* TraitThingIFAPIBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraitThingIFAPIBuilder.swift; path = Trait/TraitThingIFAPIBuilder.swift; sourceTree = "<group>"; };
 		B61FEC641DF941A40090DF6B /* TraitCommandForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraitCommandForm.swift; path = Trait/TraitCommandForm.swift; sourceTree = "<group>"; };
+		B61FEC741DFA84E90090DF6B /* TraitCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TraitCommand.swift; path = Trait/TraitCommand.swift; sourceTree = "<group>"; };
 		B6323D281DA6271B0012D6A1 /* PatchTriggerWithTriggeredCommandFormTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatchTriggerWithTriggeredCommandFormTests.swift; sourceTree = "<group>"; };
 		B6323D2A1DA7572E0012D6A1 /* PostNewServerCodeTriggerWithTriggerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostNewServerCodeTriggerWithTriggerOptionsTests.swift; sourceTree = "<group>"; };
 		B6323D2C1DA78BC70012D6A1 /* PatchServerCodeTriggerWIthTriggerOptionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PatchServerCodeTriggerWIthTriggerOptionsTests.swift; sourceTree = "<group>"; };
@@ -517,6 +519,7 @@
 			isa = PBXGroup;
 			children = (
 				B61FEC641DF941A40090DF6B /* TraitCommandForm.swift */,
+				B61FEC741DFA84E90090DF6B /* TraitCommand.swift */,
 				B61FEC601DF80E860090DF6B /* TraitThingIFAPI.swift */,
 				B61FEC621DF80F2C0090DF6B /* TraitThingIFAPIBuilder.swift */,
 			);
@@ -739,6 +742,7 @@
 				7D36B6701BD4D03100D9B821 /* NetworkObserver.swift in Sources */,
 				226EA0CD1CD0CCFD002C1821 /* PendingEndNode.swift in Sources */,
 				7D36B6BF1BD4D43700D9B821 /* ThingIFAPI+Trigger.swift in Sources */,
+				B61FEC751DFA84E90090DF6B /* TraitCommand.swift in Sources */,
 				22E486341CC4E1C000269A1E /* GatewayAPI.swift in Sources */,
 				7D36B6BE1BD4D43700D9B821 /* ThingIFAPI+Push.swift in Sources */,
 				7D36B6851BD4D03100D9B821 /* URLSessionTaskOperation.swift in Sources */,
