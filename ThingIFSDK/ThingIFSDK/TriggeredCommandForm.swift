@@ -19,29 +19,21 @@ This class contains data in order to create or modify `Command` in
 
 Mandatory data are followings:
 
-  - Schema name
-  - Schema version
-  - List of actions
+  - Array of actions
 
 Optional data are followings:
 
   - Target thing id
-  - Title of a schema
-  - Description of a schema
-  - Meta data of a schema
+  - Title of a triggered command
+  - Description of a triggered command
+  - Meta data of a triggered command
 */
 open class TriggeredCommandForm: NSObject, NSCoding {
 
     // MARK: - Properties
 
-    /// Schema name.
-    open let schemaName: String
-
-    /// Schema version.
-    open let schemaVersion: Int
-
-    /// List of actions.
-    open let actions: [Dictionary<String, Any>]
+    /// Array of actions.
+    open let actions: [[String : Any]]
 
     /// Target thing ID.
     open let targetID: TypedID?
@@ -55,36 +47,73 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     /// Meta data of ad command.
     open let metadata: Dictionary<String, Any>?
 
+    /// Use trait or not.
+    internal let useTrait: Bool
 
     // MARK: - Initializing TriggeredCommandForm instance.
-    /**
-    Initializer of TriggeredCommandForm instance.
+    private init(actions: [[String : Any]],
+                 useTrait: Bool,
+                 targetID: TypedID? = nil,
+                 title: String? = nil,
+                 commandDescription: String? = nil,
+                 metadata: Dictionary<String, Any>? = nil)
+    {
+        self.actions = actions
+        self.targetID = targetID
+        self.useTrait = useTrait
+        self.title = title;
+        self.commandDescription = commandDescription;
+        self.metadata = metadata;
+    }
 
-    - Parameter schemaName: Schema name.
-    - Parameter schemaVersion: Schema version.
-    - Parameter actions: List of actions. Must not be empty.
-    - Parameter targetID: target thing ID.
+    /**
+    Initializer of TriggeredCommandForm instance for non trait.
+
+    - Parameter actions: Array of actions. Must not be empty. The
+      contente of this array must be non trait actions.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
     - Parameter description: Description of a comand. This should be
       equal or less than 200 characters.
     - Parameter metadata: Meta data of a command.
     */
-    public init(schemaName: String,
-                schemaVersion: Int,
-                actions: [Dictionary<String, Any>],
-                targetID: TypedID? = nil,
-                title: String? = nil,
-                commandDescription: String? = nil,
-                metadata: Dictionary<String, Any>? = nil)
+    public convenience init(actions: [[String : Any]],
+                            targetID: TypedID? = nil,
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
     {
-        self.schemaName = schemaName
-        self.schemaVersion = schemaVersion
-        self.actions = actions
-        self.targetID = targetID
-        self.title = title
-        self.commandDescription = commandDescription
-        self.metadata = metadata
+        self.init(actions: actions,
+                  useTrait: false,
+                  targetID: targetID,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
+    }
+
+    /**
+    Initializer of TriggeredCommandForm instance for trait.
+
+    - Parameter actions: Array of actions. Must not be empty. The
+      contente of this array must be trait actions.
+    - Parameter title: Title of a command. This should be equal or
+      less than 50 characters.
+    - Parameter description: Description of a comand. This should be
+      equal or less than 200 characters.
+    - Parameter metadata: Meta data of a command.
+    */
+    public convenience init(traitActions: [[String : [String : Any]]],
+                            targetID: TypedID? = nil,
+                            title: String? = nil,
+                            commandDescription: String? = nil,
+                            metadata: Dictionary<String, Any>? = nil)
+    {
+        self.init(actions: traitActions,
+                  useTrait: true,
+                  targetID: targetID,
+                  title: title,
+                  commandDescription: commandDescription,
+                  metadata: metadata)
     }
 
     /**
@@ -92,8 +121,6 @@ open class TriggeredCommandForm: NSObject, NSCoding {
 
     This initializer copies following fields:
 
-    - `Command.schemaName`
-    - `Command.schemaVersion`
     - `Command.actions`
     - `Command.targetID`
     - `Command.title`
@@ -104,9 +131,9 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     value, Optional argument values win against the `Command` values.
 
     - Parameter command: source command of this TriggeredCommandForm.
-    - Parameter schemaName: Schema name.
-    - Parameter schemaVersion: Schema version.
-    - Parameter actions: List of actions. Must not be empty.
+    - Parameter actions: Array of actions. Must not be empty. Both of
+      non trait action array and trait action array are acceptable but
+      non trait action and trait action must not be mixed in a array.
     - Parameter targetID: target thing ID.
     - Parameter title: Title of a command. This should be equal or
       less than 50 characters.
@@ -115,17 +142,12 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     - Parameter metadata: Meta data of a command.
     */
     public init(command: Command,
-                schemaName: String? = nil,
-                schemaVersion: Int? = nil,
                 actions: [Dictionary<String, Any>]? = nil,
                 targetID: TypedID? = nil,
                 title: String? = nil,
                 commandDescription: String? = nil,
                 metadata: Dictionary<String, Any>? = nil)
     {
-        self.schemaName = schemaName != nil ? schemaName! : command.schemaName
-        self.schemaVersion =
-             schemaVersion != nil ? schemaVersion! : command.schemaVersion
         self.actions = actions != nil ? actions! : command.actions
         self.targetID = targetID != nil ? targetID : command.targetID
         self.title = title != nil ? title : command.title
@@ -136,8 +158,6 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     }
 
     open func encode(with aCoder: NSCoder) {
-        aCoder.encode(self.schemaName, forKey: "schemaName")
-        aCoder.encode(self.schemaVersion, forKey: "schemaVersion")
         aCoder.encode(self.actions, forKey: "actions")
         aCoder.encode(self.targetID, forKey: "targetID")
         aCoder.encode(self.title, forKey: "title")
@@ -147,8 +167,6 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     }
 
     public required init?(coder aDecoder: NSCoder) {
-        self.schemaName = aDecoder.decodeObject(forKey: "schemaName") as! String
-        self.schemaVersion = aDecoder.decodeInteger(forKey: "schemaVersion")
         self.actions = aDecoder.decodeObject(forKey: "actions")
                 as! [Dictionary<String, Any>];
         self.targetID = aDecoder.decodeObject(forKey: "targetID") as? TypedID
@@ -162,8 +180,6 @@ open class TriggeredCommandForm: NSObject, NSCoding {
     func toDictionary() -> Dictionary<String, Any> {
         var retval: Dictionary<String, Any> =
             [
-                "schema": self.schemaName,
-                "schemaVersion": self.schemaVersion,
                 "actions": self.actions
             ]
         if let targetID = self.targetID {
