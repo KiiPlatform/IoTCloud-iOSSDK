@@ -15,6 +15,9 @@ class PostNewTriggerWithTriggeredCommandFormTests: SmallTestBase {
       _ form: TriggeredCommandForm,
       setting: TestSetting) -> Dictionary<String, Any>
     {
+        XCTFail("We must fix this method.")
+        return [ : ] as [ String : Any]
+        /*
         let targetID = form.targetID ?? setting.api.target!.typedID
         var command: Dictionary<String, Any> = [
           "schema" : form.schemaName,
@@ -31,9 +34,12 @@ class PostNewTriggerWithTriggeredCommandFormTests: SmallTestBase {
                  "predicate" : [ "eventSource" : "SCHEDULE",
                                  "schedule" : "1 * * * *" ],
                  "triggersWhat": TriggersWhat.command.rawValue ]
+         */
     }
 
     func testSuccess () {
+        XCTFail("We must fix this test.")
+        /*
         let actions: [Dictionary<String, Any>] =
             [["actions-key" : "actions-value"]]
         let command_metadata: Dictionary<String, Any> =
@@ -240,5 +246,6 @@ class PostNewTriggerWithTriggeredCommandFormTests: SmallTestBase {
                 }
         }
 
+        */
     }
 }

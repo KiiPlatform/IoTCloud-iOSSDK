@@ -244,6 +244,8 @@ class PostNewTriggerForScheduleTests: SmallTestBase {
     }
 
     func postNewTrigger(_ testCase: TestCase, setting: TestSetting) {
+        XCTFail("We must fix this method.")
+        /*
         weak var expectation : XCTestExpectation!
         defer {
             expectation = nil
@@ -273,6 +275,7 @@ class PostNewTriggerForScheduleTests: SmallTestBase {
                 XCTFail("execution timeout for \(testCase.verifier.requestVerifier.tag)")
             }
         }
+        */
     }
 
     func testPostNewTrigger_success() {

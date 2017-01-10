@@ -83,6 +83,8 @@ class CommandSerializationTest: SmallTestBase {
     }
 
     func testSerializeCommand() {
+        XCTFail("We must fix this test.")
+        /*
         let created = Date(timeIntervalSince1970: 100);
         let modified = Date(timeIntervalSince1970: 200);
         let actions: [Dictionary<String, Any>] =
@@ -180,5 +182,6 @@ class CommandSerializationTest: SmallTestBase {
         XCTAssertTrue(
             CommandSerializationTest.isSameDictionary(
                 source.metadata!, target: target.metadata!));
+        */
     }
 }

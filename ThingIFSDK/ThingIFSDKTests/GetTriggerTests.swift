@@ -67,6 +67,8 @@ class GetTriggerTests: SmallTestBase {
 
     func getTriggerSuccess(_ tag: String, statementToTest: Dictionary<String, Any>, triggersWhen: String, setting:TestSetting) {
 
+        XCTFail("We must fix this method.")
+        /*
         let expectation : XCTestExpectation! = self.expectation(description: tag)
 
         do{
@@ -127,6 +129,7 @@ class GetTriggerTests: SmallTestBase {
                 XCTFail("execution timeout")
             }
         }
+        */
     }
 
     func testGetServerCodeTrigger_success() {

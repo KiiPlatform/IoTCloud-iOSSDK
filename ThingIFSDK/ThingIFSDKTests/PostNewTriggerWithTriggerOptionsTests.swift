@@ -11,6 +11,12 @@ import XCTest
 
 class PostNewTriggerWithTriggerOptionsTests: SmallTestBase {
 
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     private func createSuccessRequestBody(
       _ options: TriggerOptions,
       setting: TestSetting) -> Dictionary<String, Any>
@@ -177,4 +183,5 @@ class PostNewTriggerWithTriggerOptionsTests: SmallTestBase {
                 }
         }
     }
+    */
 }

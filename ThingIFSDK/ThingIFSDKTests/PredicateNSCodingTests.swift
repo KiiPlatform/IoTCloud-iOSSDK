@@ -10,6 +10,12 @@ import XCTest
 
 class PredicateNSCodingTests: SmallTestBase {
 
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     override func setUp() {
         super.setUp()
     }
@@ -48,4 +54,5 @@ class PredicateNSCodingTests: SmallTestBase {
         self.verifyDict2(decode.condition.makeDictionary(), predicate.condition.makeDictionary());
         XCTAssertEqual(decode.triggersWhen, predicate.triggersWhen);
     }
+    */
 }

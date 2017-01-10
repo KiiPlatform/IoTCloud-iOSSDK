@@ -10,6 +10,12 @@ import XCTest
 
 class TriggerNSCodingTests: SmallTestBase {
 
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     override func setUp() {
         super.setUp()
     }
@@ -106,4 +112,5 @@ class TriggerNSCodingTests: SmallTestBase {
         XCTAssertNil(decode.triggerDescription);
         XCTAssertNil(decode.metadata);
     }
+    */
 }

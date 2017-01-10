@@ -21,6 +21,8 @@ class TriggeredCommandFormTest: SmallTestBase {
     }
 
     func testInitWithRequiredValue() {
+        XCTFail("We must fix this test class")
+        /*
         let actions: [Dictionary<String, Any>] = [
           [
             "action1" :
@@ -41,8 +43,11 @@ class TriggeredCommandFormTest: SmallTestBase {
         XCTAssertNil(form.title)
         XCTAssertNil(form.commandDescription)
         XCTAssertNil(form.metadata)
+        */
     }
 
+    /*
+     TODO: We must fix following tests too.
     func testInitWithTitle() {
         let actions: [Dictionary<String, Any>] = [
           [
@@ -466,5 +471,5 @@ class TriggeredCommandFormTest: SmallTestBase {
         XCTAssertEqual(deserialized.commandDescription, "description")
         verifyDict(deserialized.metadata!, actualDict: metadata)
     }
-
+    */
 }
