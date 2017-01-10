@@ -135,6 +135,8 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
             _ tag: String,
             testcase: TestCase,
             setting:TestSetting) {
+        XCTFail("We must fix this method")
+        /*
         let expectation : XCTestExpectation! = self.expectation(description: tag)
 
         do {
@@ -202,10 +204,13 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
                 XCTFail("execution timeout for \(tag)")
             }
         }
+        */
     }
 
     func testPostNewCommand_400_error() {
 
+        XCTFail("We must fix this test")
+        /*
         let expectation = self.expectation(description: "testPostNewCommand_400_error")
         let setting = TestSetting()
         let api = setting.api
@@ -278,10 +283,13 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
                 XCTFail("execution timeout")
             }
         }
+        */
     }
 
     func testPostNewCommand_target_not_available_error() {
 
+        XCTFail("We must fix this test")
+        /*
         let expectation = self.expectation(description: "testPostNewCommand_target_not_available_error")
         let setting = TestSetting()
         let api = setting.api
@@ -305,5 +313,6 @@ class PostNewCommandWithCommandFormTests: SmallTestBase {
                 XCTFail("execution timeout")
             }
         }
+        */
     }
 }

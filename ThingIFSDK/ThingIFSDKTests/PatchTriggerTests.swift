@@ -57,6 +57,8 @@ class PatchTriggerTests: SmallTestBase {
 
     func testPatchTrigger() {
 
+        XCTFail("We must fix this test.")
+        /*
         let expectedActions: [Dictionary<String, Any>] = [["turnPower":["power":true]],["setBrightness":["bribhtness":90]]]
         let setting = TestSetting()
         let api = setting.api
@@ -78,9 +80,12 @@ class PatchTriggerTests: SmallTestBase {
         for (index,testCase) in testsCases.enumerated() {
             patchTrigger("testPatchTrigger_\(index)", testcase: testCase)
         }
+        */
     }
 
     func patchTrigger(_ tag: String, testcase: TestCase) {
+        XCTFail("We must fix this method.")
+        /*
         let expectation : XCTestExpectation! = self.expectation(description: tag)
         
         let setting = TestSetting()
@@ -191,6 +196,7 @@ class PatchTriggerTests: SmallTestBase {
                 XCTFail("execution timeout for \(tag)")
             }
         }
+        */
     }
 
     func testPatchTrigger_target_not_available_error() {

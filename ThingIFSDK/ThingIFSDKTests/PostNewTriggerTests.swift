@@ -19,6 +19,12 @@ class PostNewTriggerTests: SmallTestBase {
         super.tearDown()
     }
 
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     struct TestCase {
         var clause: Clause?
         var expectedClauseDict: Dictionary<String, Any>?
@@ -459,4 +465,5 @@ class PostNewTriggerTests: SmallTestBase {
             }
         }
     }
+    */
 }

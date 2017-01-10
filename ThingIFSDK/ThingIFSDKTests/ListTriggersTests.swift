@@ -32,6 +32,8 @@ class ListTriggersTests: SmallTestBase {
     }
 
     func testListTriggers_success_predicates() {
+        XCTFail("We must fix this test.")
+        /*
         let setting = TestSetting()
         let api = setting.api
         let triggerIDPrifex = "0267251d9d60-1858-5e11-3dc3-00f3f0b"
@@ -128,6 +130,7 @@ class ListTriggersTests: SmallTestBase {
                 XCTFail("execution timeout")
             }
         }
+        */
     }
     
     func testListTriggers_404_error() {

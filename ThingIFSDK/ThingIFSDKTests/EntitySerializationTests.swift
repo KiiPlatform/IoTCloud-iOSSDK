@@ -10,6 +10,12 @@ import XCTest
 @testable import ThingIFSDK
 
 class EntitySerializationTests: SmallTestBase {
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     
     override func setUp() {
         super.setUp()
@@ -185,6 +191,5 @@ class EntitySerializationTests: SmallTestBase {
         XCTAssertNotEqual(aTarget, aTargetWithAccessToken)
 
     }
-    
-    
+    */
 }

@@ -10,6 +10,12 @@ import XCTest
 
 class UpdateVendorThingIDTests: SmallTestBase {
 
+    func testToFail() {
+        XCTFail("We must fix this test class")
+    }
+
+    /*
+     TODO: We must fix this test class.
     override func setUp()
     {
         super.setUp()
@@ -310,4 +316,5 @@ class UpdateVendorThingIDTests: SmallTestBase {
             }
         }
     }
+    */
 }

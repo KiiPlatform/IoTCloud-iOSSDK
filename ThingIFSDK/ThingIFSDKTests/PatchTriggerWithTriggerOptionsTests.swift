@@ -33,6 +33,8 @@ class PatchTriggerWithTriggerOptionsTests: SmallTestBase {
     }
 
     func testSuccess() {
+        XCTFail("We must fix this test.")
+        /*
         let trigger_metadata: Dictionary<String, Any> =
             ["trigger_metadata-key" : "trigger_metadata-value"]
 
@@ -217,6 +219,7 @@ class PatchTriggerWithTriggerOptionsTests: SmallTestBase {
                     }
                 }
         }
+        */
     }
 
 }

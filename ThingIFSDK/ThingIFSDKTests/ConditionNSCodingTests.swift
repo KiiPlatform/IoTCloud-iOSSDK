@@ -19,6 +19,8 @@ class ConditionNSCodingTests: SmallTestBase {
     }
 
     func test() {
+        XCTFail("We must fix this test.")
+        /*
         let clause = EqualsClause(field: "f", stringValue: "v")
         let condition = Condition(clause: clause)
 
@@ -31,5 +33,6 @@ class ConditionNSCodingTests: SmallTestBase {
         XCTAssertNotNil(decode)
         XCTAssertNotNil(decode.clause)
         verifyDict2(decode.makeDictionary(), condition.makeDictionary());
+        */
     }
 }
