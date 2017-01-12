@@ -550,8 +550,8 @@ open class ThingIFAPI: NSObject, NSCoding {
      */
     open func getState(
       _ alias: String,
-      _ completionHandler:@escaping ([String : Any]?,
-                                     ThingIFError?)-> Void) -> Void
+      completionHandler:@escaping ([String : Any]?,
+                                   ThingIFError?)-> Void) -> Void
     {
         fatalError("TODO: We must reimplement this method.")
     }
@@ -658,24 +658,6 @@ open class ThingIFAPI: NSObject, NSCoding {
         }
     }
 
-    /** Check firmware version for thing type.
-
-     - Parameter thingType: thing type to check firmware version.
-     - Parameter firmwareVersion: firmwareVersion to be checked.
-     - Parameter completionHandler: A closure to be executed once on
-       checking has finished The closure takes 2 arguments. First one
-       is existence of firmware version. If true, firmware version for
-       the thing type exists. If false, not exist. Second one is
-       ThingIFError.
-     */
-    open func check(
-      _ thingType: String,
-      _ firmwareVersion: String,
-      _ completionHandler: @escaping (Bool?, ThingIFError?) -> Void) -> Void
-    {
-        // TODO: implement me.
-    }
-
     /** Update firmware version.
 
      This method updates firmware version for `target` thing.
@@ -701,7 +683,7 @@ open class ThingIFAPI: NSObject, NSCoding {
        is firmware version. Second one is ThingIFError.
      */
     open func getFirmewareVerson(
-      completionHandler: @escaping (String?, ThingIFError?) -> Void) -> Void
+      _ completionHandler: @escaping (String?, ThingIFError?) -> Void) -> Void
     {
         // TODO: implement me.
     }
@@ -731,7 +713,7 @@ open class ThingIFAPI: NSObject, NSCoding {
        is thing type. Second one is ThingIFError.
      */
     open func getThingType(
-      completionHandler: @escaping (String?, ThingIFError?) -> Void) -> Void
+      _ completionHandler: @escaping (String?, ThingIFError?) -> Void) -> Void
     {
         // TODO: implement me.
     }
@@ -741,7 +723,7 @@ open class ThingIFAPI: NSObject, NSCoding {
     /** Query history states with trait alias.
 
      - Parameter alias: Target trait alias to query.
-     - Parameter clause: QueryClause to narrow down history states. if
+     - Parameter clause: Clause to narrow down history states. if
        nil, query all history states.
      - Parameter firmwareVersion: Target firmware version to query.
      - Parameter nextPaginationKey: If there is further page to be
@@ -761,7 +743,7 @@ open class ThingIFAPI: NSObject, NSCoding {
      */
     open func query(
       _ alias: String,
-      clause: QueryClause? = nil,
+      clause: Clause? = nil,
       firmwareVersion: String? = nil,
       bestEffortLimit: Int? = nil,
       nextPaginationKey: String? = nil,
@@ -776,7 +758,7 @@ open class ThingIFAPI: NSObject, NSCoding {
 
      - Parameter alias: Target trait alias to query.
      - Parameter range: Time range to query
-     - Parameter clause: QueryClause to narrow down history states. if
+     - Parameter clause: Clause to narrow down history states. if
        nil, query all history states.
      - Parameter firmwareVersion: target firmware version to query.
      - Parameter completionHandler: A closure to be executed once
@@ -791,8 +773,8 @@ open class ThingIFAPI: NSObject, NSCoding {
      */
     open func query(
       _ alias: String,
-      _ range: (from: Date, to: Date),
-      clause: QueryClause? = nil,
+      range: (from: Date, to: Date),
+      clause: Clause? = nil,
       firmwareVersion: String? = nil,
       completionHandler: @escaping (
         [(range: (from: Date, to: Data), objects: [[String : Any]])]?,
@@ -801,43 +783,15 @@ open class ThingIFAPI: NSObject, NSCoding {
         // TODO: implement me.
     }
 
-    /** Count query of history states
-
-     - Parameter alias: Target trait alias to query.
-     - Parameter range: Time range to query
-     - Parameter field: A field to count.
-     - Parameter clause: QueryClause to narrow down history states. if
-       nil, query all history states.
-     - Parameter firmwareVersion: target firmware version to query.
-     - Parameter completionHandler: A closure to be executed once
-       finished. The closure takes 2 arguments:
-       - 1st one is an array of a tuple. The tuple have a count and
-         range.
-         - The count represents number of matched items.
-         - The time range represents a range which a developer
-           specifies with `DataGroupingInterval`.
-       - 2nd one is an instance of ThingIFError when failed.
-     */
-    open func count(
-      _ alias: String,
-      _ range: (from: Date, to: Date),
-      _ field: CountedField,
-      clause: QueryClause? = nil,
-      firmwareVersion: String? = nil,
-      completionHandler: @escaping (
-        [(count: Int, range: (from: Date, to: Date))]?,
-        ThingIFError?
-      ) -> Void) -> Void
-    {
-        // TODO: implement me.
-    }
-
     /** Aggregate history states
 
      - Parameter alias: Target trait alias to query.
      - Parameter range: Time range to query
-     - Parameter aggregation: aggregation information
-     - Parameter clause: QueryClause to narrow down history states. if
+     - Parameter aggregation: A tuple representing aggregation.
+       - name is a name of a filed to aggregate.
+       - type is a type of a filed to aggregate.
+       - function is a function applied to aggregated fields
+     - Parameter clause: Clause to narrow down history states. if
        nil, query all history states.
      - Parameter firmwareVersion: target firmware version to query.
      - Parameter completionHandler: A closure to be executed once
@@ -845,28 +799,29 @@ open class ThingIFAPI: NSObject, NSCoding {
        - 1st one is an array of a tuple. The tuple have a value, a
          range and objects array.
          - value denotes a value calculated with
-           `Aggregation.Function`. `Aggregation.FieldType` determines
-           a type of value. If you specify
-           `Aggregation.FieldType.integer`, you should choice Intger
-           as ReturnedValue, If you specify
-           `Aggregation.FieldType.decimal`, you should choice Float or
-           Double as ReturnedValue.
+           `Function`. Developers choose suitable type as
+           AggregatedValueType. In every case, AggregatedValueType is
+           Integer, Float or Double. In almost every cases, developers
+           would choose Float or Double for `Function.max`,
+           `Function.sum`, `Function.min`, and
+           `Function.mean`. Developers would choose Integer for
+           `Function.count` too.
          - range denotes a time range which a developer specifies with
            `DataGroupingInterval`.
          - objects array denotes objects to be queried. If there is no
            objects in a time range, objects array is empty.
        - 2nd one is an instance of ThingIFError when failed.
      */
-    open func aggregate<ReturnedValue>(
+    open func aggregate<AggregatedValueType>(
       _ alias: String,
-      _ range: (from: Date, to: Date),
-      _ aggregation: Aggregation,
-      clause: QueryClause? = nil,
+      range: (from: Date, to: Date),
+      aggregation: (name: String, type: FieldType, function: Function),
+      clause: Clause? = nil,
       firmwareVersion: String? = nil,
       completionHandler: @escaping(
         [
           (
-            value: ReturnedValue,
+            value: AggregatedValueType,
             range: (from: Date, to: Date),
             objects: [[String : Any]]
           )
