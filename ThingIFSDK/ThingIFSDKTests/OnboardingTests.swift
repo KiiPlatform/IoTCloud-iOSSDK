@@ -194,7 +194,7 @@ class OnboardingTests: SmallTestBase {
         let owner = setting.owner
         let app = setting.app
 
-        let api = ThingIFAPIBuilder(app:app, owner:owner, tag:"target1").make()
+        let api = ThingIFAPI(app, owner:owner, tag:"target1")
         do{
             let thingProperties:Dictionary<String, Any> = ["key1":"value1", "key2":"value2"]
             let thingType = "LED"

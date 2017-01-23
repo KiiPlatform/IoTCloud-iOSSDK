@@ -19,6 +19,11 @@ class ThingIFSDKTests: SmallTestBase {
     override func tearDown() {
         super.tearDown()
     }
+
+    func testFailed() {
+        XCTFail("We must fix this test class.")
+    }
+    /*
     
     func testSavedInstanceWithInit(){
         let persistance = UserDefaults.standard
@@ -731,4 +736,5 @@ class ThingIFSDKTests: SmallTestBase {
             XCTFail("Unexpected exception throwed.")
         }
     }
+    */
 }
