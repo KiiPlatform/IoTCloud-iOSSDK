@@ -127,6 +127,7 @@
 		B68D7BE11CF8242900D69149 /* LargeTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D7BE01CF8242900D69149 /* LargeTestBase.swift */; };
 		B699E9D11CFC3E8100EBBC39 /* TypedIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B699E9D01CFC3E8100EBBC39 /* TypedIDTests.swift */; };
 		B6ABF9761E372F0300981AC4 /* TriggerClause.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABF9751E372F0300981AC4 /* TriggerClause.swift */; };
+		B6ABF9781E374A2F00981AC4 /* QueryClauseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6ABF9771E374A2F00981AC4 /* QueryClauseTests.swift */; };
 		B6AC4A1A1D991CE1001A80DE /* TriggeredCommandForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC4A191D991CE1001A80DE /* TriggeredCommandForm.swift */; };
 		B6AC4A1C1D991DF2001A80DE /* TriggerOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AC4A1B1D991DF2001A80DE /* TriggerOptions.swift */; };
 		B6F64E171E35E24100824B4A /* BaseClause.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F64E161E35E24100824B4A /* BaseClause.swift */; };
@@ -281,6 +282,7 @@
 		B68D7BE01CF8242900D69149 /* LargeTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LargeTestBase.swift; sourceTree = "<group>"; };
 		B699E9D01CFC3E8100EBBC39 /* TypedIDTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypedIDTests.swift; sourceTree = "<group>"; };
 		B6ABF9751E372F0300981AC4 /* TriggerClause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerClause.swift; sourceTree = "<group>"; };
+		B6ABF9771E374A2F00981AC4 /* QueryClauseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryClauseTests.swift; sourceTree = "<group>"; };
 		B6AC4A191D991CE1001A80DE /* TriggeredCommandForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggeredCommandForm.swift; sourceTree = "<group>"; };
 		B6AC4A1B1D991DF2001A80DE /* TriggerOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriggerOptions.swift; sourceTree = "<group>"; };
 		B6F64E161E35E24100824B4A /* BaseClause.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseClause.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 				B6323D2C1DA78BC70012D6A1 /* PatchServerCodeTriggerWIthTriggerOptionsTests.swift */,
 				B66BDDA81DB9CA770085CA35 /* PatchTriggerWithTriggerOptionsTests.swift */,
 				B66BDDAA1DB9F3470085CA35 /* PostNewTriggerWithTriggerOptionsTests.swift */,
+				B6ABF9771E374A2F00981AC4 /* QueryClauseTests.swift */,
 			);
 			path = ThingIFSDKTests;
 			sourceTree = "<group>";
@@ -770,6 +773,7 @@
 				7D36B6A61BD4D0CC00D9B821 /* GetTriggerTests.swift in Sources */,
 				B67938251CE4448A000B9322 /* PostNewTriggerForScheduleTests.swift in Sources */,
 				225A591C1C8ED0EE0042B007 /* ConditionNSCodingTests.swift in Sources */,
+				B6ABF9781E374A2F00981AC4 /* QueryClauseTests.swift in Sources */,
 				B66EA4521DA4B61000B6AB75 /* TriggeredCommandFormTests.swift in Sources */,
 				B683A31B1CBB807A00742570 /* CommandFormTests.swift in Sources */,
 				743800F81C29303A005D8458 /* TestSetting.swift in Sources */,

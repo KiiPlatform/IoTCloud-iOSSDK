@@ -12,6 +12,34 @@ import XCTest
 
 extension XCTestCase {
 
+    func verifyAnyObject(
+      _ expected: AnyObject?,
+      _ actual: AnyObject?,
+      _ message: String = "no message")
+    {
+        if expected === actual {
+            return
+        }
+
+        guard let expected2 = expected else {
+            XCTFail(message)
+            return
+        }
+        guard let actual2 = actual else {
+            XCTFail(message)
+            return
+        }
+
+        if type(of: expected2) != type(of: actual2) {
+            XCTFail(message)
+            return
+        }
+
+        if expected2 is Int {
+            XCTAssertEqual(expected2 as! Int, actual2 as! Int, message)
+        }
+    }
+
     func verifyArray(_ expected: [Any]?,
                      actual: [Any]?,
                      message: String? = nil)
