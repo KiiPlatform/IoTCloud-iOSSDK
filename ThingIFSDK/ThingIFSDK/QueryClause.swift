@@ -93,17 +93,23 @@ open class EqualsClauseInQuery: QueryClause, BaseEquals {
      - Returns: A Dictionary instance.
      */
     open override func makeDictionary() -> [ String : Any ] {
-        fatalError("TODO: implement me.")
+        return [
+          "type": "eq",
+          "field": self.field,
+          "value": self.value
+        ] as [String : Any]
     }
 
     /** Decoder confirming `NSCoding`. */
     public required convenience init?(coder aDecoder: NSCoder) {
-        fatalError("TODO: implement me.")
+        self.init(aDecoder.decodeObject(forKey: "field") as! String,
+                  value: aDecoder.decodeObject(forKey: "value") as AnyObject)
     }
 
     /** Encoder confirming `NSCoding`. */
     open override func encode(with aCoder: NSCoder) {
-        fatalError("TODO: implement me.")
+        aCoder.encode(self.field, forKey: "field")
+        aCoder.encode(self.value as Any, forKey: "value")
     }
 
 }
