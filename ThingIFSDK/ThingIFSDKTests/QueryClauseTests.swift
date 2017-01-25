@@ -20,7 +20,7 @@ class QueryClauseTests: SmallTestBase {
         super.tearDown()
     }
 
-    func test() {
+    func testEqualClauses() {
         let testCases: [
           (
             clause: EqualsClauseInQuery,
@@ -32,27 +32,57 @@ class QueryClauseTests: SmallTestBase {
             EqualsClauseInQuery("f", intValue: 1),
             ("f", 1 as AnyObject),
             "test 1"
+          ),
+          (
+            EqualsClauseInQuery("f", boolValue: true),
+            ("f", true as AnyObject),
+            "test 1"
+          ),
+          (
+            EqualsClauseInQuery("f", stringValue: "1"),
+            ("f", "1" as AnyObject),
+            "test 1"
           )
         ]
 
-        for testCase in testCases {
+        for (clause, expected, message) in testCases {
             XCTAssertEqual(
-              testCase.expected.field,
-              testCase.clause.field,
-              testCase.message)
+              expected.field,
+              clause.field,
+              message)
+
             verifyAnyObject(
-              testCase.expected.value,
-              testCase.clause.value,
-              testCase.message)
+              expected.value,
+              clause.value,
+              message)
 
             verifyDict2(
               [
                 "type": "eq",
-                "field": testCase.expected.field,
-                "value": testCase.expected.value
+                "field": expected.field,
+                "value": expected.value
               ],
-              testCase.clause.makeDictionary(),
-              testCase.message)
+              clause.makeDictionary(),
+              message)
+
+            let data = NSMutableData(capacity: 1024)!;
+            let coder = NSKeyedArchiver(forWritingWith: data);
+            clause.encode(with: coder);
+            coder.finishEncoding();
+
+            let decoder = NSKeyedUnarchiver(forReadingWith: data as Data);
+            let deserialized = EqualsClauseInQuery(coder: decoder)!;
+            decoder.finishDecoding();
+
+            XCTAssertEqual(
+              expected.field,
+              deserialized.field,
+              message)
+
+            verifyAnyObject(
+              expected.value,
+              deserialized.value,
+              message)
         }
     }
 

@@ -22,22 +22,29 @@ extension XCTestCase {
         }
 
         guard let expected2 = expected else {
-            XCTFail(message)
+            XCTFail("\(message): expected is nil but actual is not nil.")
             return
         }
         guard let actual2 = actual else {
-            XCTFail(message)
+            XCTFail("\(message): expected is not nil but actual is nil.")
             return
         }
 
-        if type(of: expected2) != type(of: actual2) {
-            XCTFail(message)
+        if expected2 is String && actual2 is String {
+            XCTAssertEqual(
+              expected2 as! String,
+              actual2 as! String,
+              message)
+            return
+        } else if expected2 is NSNumber && actual2 is NSNumber {
+            XCTAssertEqual(
+              expected2 as! NSNumber,
+              actual2 as! NSNumber,
+              message)
             return
         }
 
-        if expected2 is Int {
-            XCTAssertEqual(expected2 as! Int, actual2 as! Int, message)
-        }
+        XCTFail("\(message): expected class=\(NSStringFromClass(type(of: expected!))), actual class\(NSStringFromClass(type(of: actual!)))")
     }
 
     func verifyArray(_ expected: [Any]?,
