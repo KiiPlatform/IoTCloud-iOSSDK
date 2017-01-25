@@ -12,6 +12,41 @@ import XCTest
 
 extension XCTestCase {
 
+    func verifyAnyObject(
+      _ expected: AnyObject?,
+      _ actual: AnyObject?,
+      _ message: String = "no message")
+    {
+        if expected === actual {
+            return
+        }
+
+        guard let expected2 = expected else {
+            XCTFail("\(message): expected is nil but actual is not nil.")
+            return
+        }
+        guard let actual2 = actual else {
+            XCTFail("\(message): expected is not nil but actual is nil.")
+            return
+        }
+
+        if expected2 is String && actual2 is String {
+            XCTAssertEqual(
+              expected2 as! String,
+              actual2 as! String,
+              message)
+            return
+        } else if expected2 is NSNumber && actual2 is NSNumber {
+            XCTAssertEqual(
+              expected2 as! NSNumber,
+              actual2 as! NSNumber,
+              message)
+            return
+        }
+
+        XCTFail("\(message): expected class=\(NSStringFromClass(type(of: expected!))), actual class\(NSStringFromClass(type(of: actual!)))")
+    }
+
     func verifyArray(_ expected: [Any]?,
                      actual: [Any]?,
                      message: String? = nil)
