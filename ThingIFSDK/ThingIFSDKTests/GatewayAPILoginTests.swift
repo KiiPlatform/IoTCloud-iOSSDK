@@ -189,11 +189,15 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             XCTAssertNil(error)
         }
 
-        XCTAssertThrowsError(try GatewayAPI.loadWithStoredInstance()) { error in
+        do{
+            _ = try GatewayAPI.loadWithStoredInstance()
+            XCTFail("Should throw exception")
+        } catch let error as ThingIFError{
             XCTAssertEqual(
-              ThingIFError.apiNotStored(tag: nil),
-              error as? ThingIFError)
+                ThingIFError.apiNotStored(tag: nil),
+                error )
         }
+
     }
 
     func test401Error() throws {
@@ -257,10 +261,13 @@ class GatewayAPILoginTests: GatewayAPITestBase {
             XCTAssertNil(error)
         }
 
-        XCTAssertThrowsError(try GatewayAPI.loadWithStoredInstance()) { error in
+        do{
+            _ = try GatewayAPI.loadWithStoredInstance()
+            XCTFail("Should throw exception")
+        } catch let error as ThingIFError{
             XCTAssertEqual(
-              ThingIFError.apiNotStored(tag: nil),
-              error as? ThingIFError)
+                ThingIFError.apiNotStored(tag: nil),
+                error )
         }
     }
 
