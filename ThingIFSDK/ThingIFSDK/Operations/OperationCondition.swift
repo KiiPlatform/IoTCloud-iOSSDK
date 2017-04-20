@@ -87,7 +87,9 @@ struct OperationConditionEvaluator {
             conditionGroup.enter()
             condition.evaluateForOperation(operation) { result in
                 results[index] = result
-                conditionGroup.leave()
+                DispatchQueue.main.async {
+                    conditionGroup.leave()
+                }
             }
         }
         
