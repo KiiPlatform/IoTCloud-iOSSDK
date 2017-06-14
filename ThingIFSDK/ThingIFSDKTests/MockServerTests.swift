@@ -57,4 +57,23 @@ class MockServerTests: XCTestCase {
             }
         }
     }
+
+    func testPostNewCommand() throws {
+        self.executeAsynchronous { expectation in
+            self.api.postNewCommand(
+              CommandForm(
+                [
+                  AliasAction("AirConditionerAlias",
+                              actions: Action("turnPower", value: true))
+                ])) { command, error in
+                  XCTAssertNil(error)
+                  XCTAssertNotNil(command);
+                  let cmd = command!
+                  XCTAssertEqual("YYYYYYYY", cmd.commandID);
+                  XCTAssertEqual(CommandState.sending, cmd.commandState)
+                  // TODO: check more.
+                  expectation.fulfill()
+            }
+        }
+    }
 }
