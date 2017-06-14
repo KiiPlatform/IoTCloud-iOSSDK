@@ -4,6 +4,10 @@ machine:
   environment:
     default_destination: platform=iOS Simulator,name=iPhone 6,OS=9.0
 
+checkout:
+  post:
+    - git submodule update --init --recursive
+
 dependencies:
   pre:
     - sudo gem install jazzy
