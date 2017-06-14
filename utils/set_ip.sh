@@ -16,4 +16,4 @@ echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 	<key>IP</key>
 	<string>${IP_ADDR}</string>
 </dict>
-</plist>" > ThingIFSDK/ThingIFSDKTests/ipaddr.plist
+</plist>" > ThingIFSDK/ThingIFSDKMockTests/ipaddr.plist
