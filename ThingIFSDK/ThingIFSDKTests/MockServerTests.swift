@@ -25,6 +25,7 @@ class MockServerTests: XCTestCase {
     var api: ThingIFAPI!
 
     override func setUp() {
+        iotSession = URLSession.self
         let dict =
           NSDictionary(contentsOfFile: PathGetter().path!) as! [String : String]
 
