@@ -38,6 +38,16 @@
                ReferencedContainer = "container:ThingIFSDK.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B63EA1121EF1327D00E0F55C"
+               BuildableName = "ThingIFSDKMockTests.xctest"
+               BlueprintName = "ThingIFSDKMockTests"
+               ReferencedContainer = "container:ThingIFSDK.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

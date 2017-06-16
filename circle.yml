@@ -2,7 +2,11 @@ machine:
   xcode:
     version: "8.1"
   environment:
-    default_destination: platform=iOS Simulator,name=iPhone 6,OS=9.0
+    default_destination: platform=iOS Simulator,name=iPhone 6,OS=9.3
+
+checkout:
+  post:
+    - git submodule update --init --recursive
 
 dependencies:
   pre:
@@ -12,6 +16,10 @@ dependencies:
     - sudo update_rubygems
 test:
   pre:
+    # get IP address.
+    - sh utils/set_ip.sh
+    # start mock server
+    - cd thing-if-mock-server; sh start.sh
     # Build sdk
     - cd ThingIFSDK; make all
     # Copy docs to artifacts

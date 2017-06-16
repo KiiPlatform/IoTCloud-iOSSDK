@@ -35,6 +35,19 @@ extension EquatableWrapper where T: TargetThing {
     }
 }
 
+struct StandaloneThingWrapper: EquatableWrapper {
+
+    internal let item: StandaloneThing
+
+    init?(_ item: StandaloneThing?) {
+        if item == nil {
+            return nil
+        }
+        self.item = item!
+    }
+
+}
+
 struct GatewayWrapper: EquatableWrapper {
 
     internal let item: Gateway
