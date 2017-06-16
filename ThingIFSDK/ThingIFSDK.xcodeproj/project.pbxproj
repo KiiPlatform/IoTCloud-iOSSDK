@@ -109,6 +109,7 @@
 		B67D6F541EF37F58001FD71F /* OnboardWithThingIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D6F531EF37F58001FD71F /* OnboardWithThingIDTests.swift */; };
 		B67D6F561EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D6F551EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift */; };
 		B67D6F581EF388D2001FD71F /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = B67D6F571EF388D2001FD71F /* setting.plist */; };
+		B67D6F591EF38E24001FD71F /* XCTest+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFD02B1E680D9C0066B4AD /* XCTest+Equatable.swift */; };
 		B69ADF331E88E2F500BC48A1 /* ThingIFAPIPatchCommandTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF321E88E2F500BC48A1 /* ThingIFAPIPatchCommandTriggerTests.swift */; };
 		B69ADF351E8A11C100BC48A1 /* ThingIFAPIPostNewServerCodeTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF341E8A11C100BC48A1 /* ThingIFAPIPostNewServerCodeTriggerTests.swift */; };
 		B69ADF371E8A2F9600BC48A1 /* ThingIFAPIPatchServerCodeTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF361E8A2F9600BC48A1 /* ThingIFAPIPatchServerCodeTriggerTests.swift */; };
@@ -1002,6 +1003,7 @@
 			files = (
 				B63EA1221EF1333700E0F55C /* XCTest+Utils.swift in Sources */,
 				B67D6F541EF37F58001FD71F /* OnboardWithThingIDTests.swift in Sources */,
+				B67D6F591EF38E24001FD71F /* XCTest+Equatable.swift in Sources */,
 				B67D6F561EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift in Sources */,
 				B63EA1211EF132D000E0F55C /* MockServerTests.swift in Sources */,
 			);

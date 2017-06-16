@@ -9,7 +9,7 @@
 import XCTest
 @testable import ThingIF
 
-class OnboardWithThingIDTests: XCTestCase {
+class OnboardWithThingIDTests: ThingIFHTTPMockTestBase {
 
     override func setUp() {
         super.setUp()
@@ -19,4 +19,26 @@ class OnboardWithThingIDTests: XCTestCase {
         super.tearDown()
     }
 
+    func testOnboardWithThingIDByOwner() throws {
+        let api = createThingIFAPI("test-onboard-with-id-success")
+        XCTAssertFalse(api.onboarded)
+        executeAsynchronous { expectation in
+            api.onboardWith(
+              thingID: "thing-id",
+              thingPassword: "thing-password") { target, error in
+                XCTAssertNil(error)
+                XCTAssertNotNil(target)
+                if let target = target {
+                    XCTAssertEqual(
+                      StandaloneThingWrapper(target as? StandaloneThing),
+                      StandaloneThingWrapper(StandaloneThing(
+                                               "thing-id",
+                                               vendorThingID: "",
+                                               accessToken: "accesstoken")))
+                }
+                expectation.fulfill()
+            }
+        }
+        XCTAssertTrue(api.onboarded)
+    }
 }
