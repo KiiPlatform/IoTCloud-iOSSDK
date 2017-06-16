@@ -87,7 +87,6 @@
 		A56B0A431C5B43B100E653EF /* TriggeredServerCodeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B0A421C5B43B100E653EF /* TriggeredServerCodeResult.swift */; };
 		B63385D81E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63385D71E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift */; };
 		B63EA1181EF1327D00E0F55C /* ThingIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD44DE91BD4B7CD00AE0249 /* ThingIF.framework */; };
-		B63EA1211EF132D000E0F55C /* MockServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63EA11F1EF132D000E0F55C /* MockServerTests.swift */; };
 		B63EA1221EF1333700E0F55C /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C33F0B1E4977C700DF2BF5 /* XCTest+Utils.swift */; };
 		B63FC8AE1CEEDBFF0042C747 /* ThingIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD44DE91BD4B7CD00AE0249 /* ThingIF.framework */; };
 		B645506C1E78ECC600D8FACF /* GatewayAPILoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B645506B1E78ECC600D8FACF /* GatewayAPILoginTests.swift */; };
@@ -309,7 +308,6 @@
 		B63385D71E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFAPIPostNewCommandTests.swift; sourceTree = "<group>"; };
 		B63EA1131EF1327D00E0F55C /* ThingIFSDKMockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThingIFSDKMockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63EA1171EF1327D00E0F55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B63EA11F1EF132D000E0F55C /* MockServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServerTests.swift; sourceTree = "<group>"; };
 		B63FC8A91CEEDBFF0042C747 /* ThingIFSDKLargeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThingIFSDKLargeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63FC8AD1CEEDBFF0042C747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B645506B1E78ECC600D8FACF /* GatewayAPILoginTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GatewayAPILoginTests.swift; sourceTree = "<group>"; };
@@ -602,7 +600,6 @@
 		B63EA1141EF1327D00E0F55C /* ThingIFSDKMockTests */ = {
 			isa = PBXGroup;
 			children = (
-				B63EA11F1EF132D000E0F55C /* MockServerTests.swift */,
 				B63EA1171EF1327D00E0F55C /* Info.plist */,
 				B67D6F531EF37F58001FD71F /* OnboardWithThingIDTests.swift */,
 				B67D6F551EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift */,
@@ -1005,7 +1002,6 @@
 				B67D6F541EF37F58001FD71F /* OnboardWithThingIDTests.swift in Sources */,
 				B67D6F591EF38E24001FD71F /* XCTest+Equatable.swift in Sources */,
 				B67D6F561EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift in Sources */,
-				B63EA1211EF132D000E0F55C /* MockServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
