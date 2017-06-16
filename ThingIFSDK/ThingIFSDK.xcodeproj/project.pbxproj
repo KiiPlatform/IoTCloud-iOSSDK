@@ -87,7 +87,6 @@
 		A56B0A431C5B43B100E653EF /* TriggeredServerCodeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56B0A421C5B43B100E653EF /* TriggeredServerCodeResult.swift */; };
 		B63385D81E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63385D71E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift */; };
 		B63EA1181EF1327D00E0F55C /* ThingIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD44DE91BD4B7CD00AE0249 /* ThingIF.framework */; };
-		B63EA1201EF132D000E0F55C /* ipaddr.plist in Resources */ = {isa = PBXBuildFile; fileRef = B63EA11E1EF132D000E0F55C /* ipaddr.plist */; };
 		B63EA1211EF132D000E0F55C /* MockServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B63EA11F1EF132D000E0F55C /* MockServerTests.swift */; };
 		B63EA1221EF1333700E0F55C /* XCTest+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C33F0B1E4977C700DF2BF5 /* XCTest+Utils.swift */; };
 		B63FC8AE1CEEDBFF0042C747 /* ThingIF.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7DD44DE91BD4B7CD00AE0249 /* ThingIF.framework */; };
@@ -109,6 +108,7 @@
 		B673C0051CF81CEC00AEF519 /* TestSetting.plist in Resources */ = {isa = PBXBuildFile; fileRef = B673C0041CF81CEC00AEF519 /* TestSetting.plist */; };
 		B67D6F541EF37F58001FD71F /* OnboardWithThingIDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D6F531EF37F58001FD71F /* OnboardWithThingIDTests.swift */; };
 		B67D6F561EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B67D6F551EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift */; };
+		B67D6F581EF388D2001FD71F /* setting.plist in Resources */ = {isa = PBXBuildFile; fileRef = B67D6F571EF388D2001FD71F /* setting.plist */; };
 		B69ADF331E88E2F500BC48A1 /* ThingIFAPIPatchCommandTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF321E88E2F500BC48A1 /* ThingIFAPIPatchCommandTriggerTests.swift */; };
 		B69ADF351E8A11C100BC48A1 /* ThingIFAPIPostNewServerCodeTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF341E8A11C100BC48A1 /* ThingIFAPIPostNewServerCodeTriggerTests.swift */; };
 		B69ADF371E8A2F9600BC48A1 /* ThingIFAPIPatchServerCodeTriggerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B69ADF361E8A2F9600BC48A1 /* ThingIFAPIPatchServerCodeTriggerTests.swift */; };
@@ -308,7 +308,6 @@
 		B63385D71E7EB01B0095466B /* ThingIFAPIPostNewCommandTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFAPIPostNewCommandTests.swift; sourceTree = "<group>"; };
 		B63EA1131EF1327D00E0F55C /* ThingIFSDKMockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThingIFSDKMockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63EA1171EF1327D00E0F55C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B63EA11E1EF132D000E0F55C /* ipaddr.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ipaddr.plist; sourceTree = "<group>"; };
 		B63EA11F1EF132D000E0F55C /* MockServerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockServerTests.swift; sourceTree = "<group>"; };
 		B63FC8A91CEEDBFF0042C747 /* ThingIFSDKLargeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ThingIFSDKLargeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B63FC8AD1CEEDBFF0042C747 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -329,6 +328,7 @@
 		B673C0041CF81CEC00AEF519 /* TestSetting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TestSetting.plist; sourceTree = "<group>"; };
 		B67D6F531EF37F58001FD71F /* OnboardWithThingIDTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardWithThingIDTests.swift; sourceTree = "<group>"; };
 		B67D6F551EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFHTTPMockTestBase.swift; sourceTree = "<group>"; };
+		B67D6F571EF388D2001FD71F /* setting.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = setting.plist; sourceTree = "<group>"; };
 		B69ADF321E88E2F500BC48A1 /* ThingIFAPIPatchCommandTriggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFAPIPatchCommandTriggerTests.swift; sourceTree = "<group>"; };
 		B69ADF341E8A11C100BC48A1 /* ThingIFAPIPostNewServerCodeTriggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFAPIPostNewServerCodeTriggerTests.swift; sourceTree = "<group>"; };
 		B69ADF361E8A2F9600BC48A1 /* ThingIFAPIPatchServerCodeTriggerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThingIFAPIPatchServerCodeTriggerTests.swift; sourceTree = "<group>"; };
@@ -601,11 +601,11 @@
 		B63EA1141EF1327D00E0F55C /* ThingIFSDKMockTests */ = {
 			isa = PBXGroup;
 			children = (
-				B63EA11E1EF132D000E0F55C /* ipaddr.plist */,
 				B63EA11F1EF132D000E0F55C /* MockServerTests.swift */,
 				B63EA1171EF1327D00E0F55C /* Info.plist */,
 				B67D6F531EF37F58001FD71F /* OnboardWithThingIDTests.swift */,
 				B67D6F551EF3826C001FD71F /* ThingIFHTTPMockTestBase.swift */,
+				B67D6F571EF388D2001FD71F /* setting.plist */,
 			);
 			path = ThingIFSDKMockTests;
 			sourceTree = "<group>";
@@ -885,7 +885,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B63EA1201EF132D000E0F55C /* ipaddr.plist in Resources */,
+				B67D6F581EF388D2001FD71F /* setting.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
